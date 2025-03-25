@@ -22,7 +22,7 @@ main:
     JSR setup
 
     ; load the intensity value for RGBs
-    LDA intensity,Y
+    LDA intensity
     STA globalByte
 
     ; load the Y register
