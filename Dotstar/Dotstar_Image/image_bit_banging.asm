@@ -53,9 +53,8 @@ main:
 
     ; send end frame
     JSR end_frame
-    JSR end_frame
 
-    JMP begin ; comment out if you don't want loop
+    ; JMP begin ; comment out if you don't want loop
     
     BRK ; break
 
@@ -173,9 +172,6 @@ end_frame: ; send end frame (1's in every position)
     JSR led_send
     
     RTS ; end subroutine
-
-
-
 
 
 ; send image data
