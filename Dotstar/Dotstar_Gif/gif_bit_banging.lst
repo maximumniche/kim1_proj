@@ -1,5 +1,5 @@
 Sections:
-00: "org0001:200" (200-17C6)
+00: "org0001:200" (200-806)
 01: "org0002:2000" (2000-3503)
 
 
@@ -25,7 +25,7 @@ Source: "gif_bit_banging.asm"
                         	    19: main:
                         	    20: 
                         	    21:     ; setup
-00:0200 208217          	    22:     JSR setup
+00:0200 20C207          	    22:     JSR setup
                         	    23: 
                         	    24:     ; load the intensity value for RGBs
 00:0203 B90020          	    25:     LDA intensity,Y
@@ -37,7 +37,7 @@ Source: "gif_bit_banging.asm"
                         	    31: 
                         	    32:     send_frames: ; send LED data, 256 bytes for each spec bc 3*256 rgb values
                         	    33: 
-00:020B 209617          	    34:         JSR start_frame ; send start of frame
+00:020B 20D607          	    34:         JSR start_frame ; send start of frame
                         	    35: 
                         	    36:         ; include a text file containing instructions to send to all leds
                         	    37:         .include "send_frame.txt"
@@ -50,7 +50,7 @@ Source: "send_frame.txt"
 00:0217 8D0310          	     5: STA greenByte
 00:021A B93B20          	     6: LDA red0,Y
 00:021D 8D0410          	     7: STA redByte
-00:0220 205517          	     8: JSR led_send
+00:0220 209507          	     8: JSR led_send
                         	     9: 
                         	    10: loadled1:
 00:0223 B95720          	    11: LDA blue1,Y
@@ -59,7 +59,7 @@ Source: "send_frame.txt"
 00:022C 8D0310          	    14: STA greenByte
 00:022F B98F20          	    15: LDA red1,Y
 00:0232 8D0410          	    16: STA redByte
-00:0235 205517          	    17: JSR led_send
+00:0235 209507          	    17: JSR led_send
                         	    18: 
                         	    19: loadled2:
 00:0238 B9AB20          	    20: LDA blue2,Y
@@ -68,7 +68,7 @@ Source: "send_frame.txt"
 00:0241 8D0310          	    23: STA greenByte
 00:0244 B9E320          	    24: LDA red2,Y
 00:0247 8D0410          	    25: STA redByte
-00:024A 205517          	    26: JSR led_send
+00:024A 209507          	    26: JSR led_send
                         	    27: 
                         	    28: loadled3:
 00:024D B9FF20          	    29: LDA blue3,Y
@@ -77,7 +77,7 @@ Source: "send_frame.txt"
 00:0256 8D0310          	    32: STA greenByte
 00:0259 B93721          	    33: LDA red3,Y
 00:025C 8D0410          	    34: STA redByte
-00:025F 205517          	    35: JSR led_send
+00:025F 209507          	    35: JSR led_send
                         	    36: 
                         	    37: loadled4:
 00:0262 B95321          	    38: LDA blue4,Y
@@ -86,7 +86,7 @@ Source: "send_frame.txt"
 00:026B 8D0310          	    41: STA greenByte
 00:026E B98B21          	    42: LDA red4,Y
 00:0271 8D0410          	    43: STA redByte
-00:0274 205517          	    44: JSR led_send
+00:0274 209507          	    44: JSR led_send
                         	    45: 
                         	    46: loadled5:
 00:0277 B9A721          	    47: LDA blue5,Y
@@ -95,7 +95,7 @@ Source: "send_frame.txt"
 00:0280 8D0310          	    50: STA greenByte
 00:0283 B9DF21          	    51: LDA red5,Y
 00:0286 8D0410          	    52: STA redByte
-00:0289 205517          	    53: JSR led_send
+00:0289 209507          	    53: JSR led_send
                         	    54: 
                         	    55: loadled6:
 00:028C B9FB21          	    56: LDA blue6,Y
@@ -104,7 +104,7 @@ Source: "send_frame.txt"
 00:0295 8D0310          	    59: STA greenByte
 00:0298 B93322          	    60: LDA red6,Y
 00:029B 8D0410          	    61: STA redByte
-00:029E 205517          	    62: JSR led_send
+00:029E 209507          	    62: JSR led_send
                         	    63: 
                         	    64: loadled7:
 00:02A1 B94F22          	    65: LDA blue7,Y
@@ -113,7 +113,7 @@ Source: "send_frame.txt"
 00:02AA 8D0310          	    68: STA greenByte
 00:02AD B98722          	    69: LDA red7,Y
 00:02B0 8D0410          	    70: STA redByte
-00:02B3 205517          	    71: JSR led_send
+00:02B3 209507          	    71: JSR led_send
                         	    72: 
                         	    73: loadled8:
 00:02B6 B9A322          	    74: LDA blue8,Y
@@ -122,7 +122,7 @@ Source: "send_frame.txt"
 00:02BF 8D0310          	    77: STA greenByte
 00:02C2 B9DB22          	    78: LDA red8,Y
 00:02C5 8D0410          	    79: STA redByte
-00:02C8 205517          	    80: JSR led_send
+00:02C8 209507          	    80: JSR led_send
                         	    81: 
                         	    82: loadled9:
 00:02CB B9F722          	    83: LDA blue9,Y
@@ -131,7 +131,7 @@ Source: "send_frame.txt"
 00:02D4 8D0310          	    86: STA greenByte
 00:02D7 B92F23          	    87: LDA red9,Y
 00:02DA 8D0410          	    88: STA redByte
-00:02DD 205517          	    89: JSR led_send
+00:02DD 209507          	    89: JSR led_send
                         	    90: 
                         	    91: loadled10:
 00:02E0 B94B23          	    92: LDA blue10,Y
@@ -140,7 +140,7 @@ Source: "send_frame.txt"
 00:02E9 8D0310          	    95: STA greenByte
 00:02EC B98323          	    96: LDA red10,Y
 00:02EF 8D0410          	    97: STA redByte
-00:02F2 205517          	    98: JSR led_send
+00:02F2 209507          	    98: JSR led_send
                         	    99: 
                         	   100: loadled11:
 00:02F5 B99F23          	   101: LDA blue11,Y
@@ -149,7 +149,7 @@ Source: "send_frame.txt"
 00:02FE 8D0310          	   104: STA greenByte
 00:0301 B9D723          	   105: LDA red11,Y
 00:0304 8D0410          	   106: STA redByte
-00:0307 205517          	   107: JSR led_send
+00:0307 209507          	   107: JSR led_send
                         	   108: 
                         	   109: loadled12:
 00:030A B9F323          	   110: LDA blue12,Y
@@ -158,7 +158,7 @@ Source: "send_frame.txt"
 00:0313 8D0310          	   113: STA greenByte
 00:0316 B92B24          	   114: LDA red12,Y
 00:0319 8D0410          	   115: STA redByte
-00:031C 205517          	   116: JSR led_send
+00:031C 209507          	   116: JSR led_send
                         	   117: 
                         	   118: loadled13:
 00:031F B94724          	   119: LDA blue13,Y
@@ -167,7 +167,7 @@ Source: "send_frame.txt"
 00:0328 8D0310          	   122: STA greenByte
 00:032B B97F24          	   123: LDA red13,Y
 00:032E 8D0410          	   124: STA redByte
-00:0331 205517          	   125: JSR led_send
+00:0331 209507          	   125: JSR led_send
                         	   126: 
                         	   127: loadled14:
 00:0334 B99B24          	   128: LDA blue14,Y
@@ -176,7 +176,7 @@ Source: "send_frame.txt"
 00:033D 8D0310          	   131: STA greenByte
 00:0340 B9D324          	   132: LDA red14,Y
 00:0343 8D0410          	   133: STA redByte
-00:0346 205517          	   134: JSR led_send
+00:0346 209507          	   134: JSR led_send
                         	   135: 
                         	   136: loadled15:
 00:0349 B9EF24          	   137: LDA blue15,Y
@@ -185,7 +185,7 @@ Source: "send_frame.txt"
 00:0352 8D0310          	   140: STA greenByte
 00:0355 B92725          	   141: LDA red15,Y
 00:0358 8D0410          	   142: STA redByte
-00:035B 205517          	   143: JSR led_send
+00:035B 209507          	   143: JSR led_send
                         	   144: 
                         	   145: loadled16:
 00:035E B94325          	   146: LDA blue16,Y
@@ -194,7 +194,7 @@ Source: "send_frame.txt"
 00:0367 8D0310          	   149: STA greenByte
 00:036A B97B25          	   150: LDA red16,Y
 00:036D 8D0410          	   151: STA redByte
-00:0370 205517          	   152: JSR led_send
+00:0370 209507          	   152: JSR led_send
                         	   153: 
                         	   154: loadled17:
 00:0373 B99725          	   155: LDA blue17,Y
@@ -203,7 +203,7 @@ Source: "send_frame.txt"
 00:037C 8D0310          	   158: STA greenByte
 00:037F B9CF25          	   159: LDA red17,Y
 00:0382 8D0410          	   160: STA redByte
-00:0385 205517          	   161: JSR led_send
+00:0385 209507          	   161: JSR led_send
                         	   162: 
                         	   163: loadled18:
 00:0388 B9EB25          	   164: LDA blue18,Y
@@ -212,7 +212,7 @@ Source: "send_frame.txt"
 00:0391 8D0310          	   167: STA greenByte
 00:0394 B92326          	   168: LDA red18,Y
 00:0397 8D0410          	   169: STA redByte
-00:039A 205517          	   170: JSR led_send
+00:039A 209507          	   170: JSR led_send
                         	   171: 
                         	   172: loadled19:
 00:039D B93F26          	   173: LDA blue19,Y
@@ -221,7 +221,7 @@ Source: "send_frame.txt"
 00:03A6 8D0310          	   176: STA greenByte
 00:03A9 B97726          	   177: LDA red19,Y
 00:03AC 8D0410          	   178: STA redByte
-00:03AF 205517          	   179: JSR led_send
+00:03AF 209507          	   179: JSR led_send
                         	   180: 
                         	   181: loadled20:
 00:03B2 B99326          	   182: LDA blue20,Y
@@ -230,7 +230,7 @@ Source: "send_frame.txt"
 00:03BB 8D0310          	   185: STA greenByte
 00:03BE B9CB26          	   186: LDA red20,Y
 00:03C1 8D0410          	   187: STA redByte
-00:03C4 205517          	   188: JSR led_send
+00:03C4 209507          	   188: JSR led_send
                         	   189: 
                         	   190: loadled21:
 00:03C7 B9E726          	   191: LDA blue21,Y
@@ -239,7 +239,7 @@ Source: "send_frame.txt"
 00:03D0 8D0310          	   194: STA greenByte
 00:03D3 B91F27          	   195: LDA red21,Y
 00:03D6 8D0410          	   196: STA redByte
-00:03D9 205517          	   197: JSR led_send
+00:03D9 209507          	   197: JSR led_send
                         	   198: 
                         	   199: loadled22:
 00:03DC B93B27          	   200: LDA blue22,Y
@@ -248,7 +248,7 @@ Source: "send_frame.txt"
 00:03E5 8D0310          	   203: STA greenByte
 00:03E8 B97327          	   204: LDA red22,Y
 00:03EB 8D0410          	   205: STA redByte
-00:03EE 205517          	   206: JSR led_send
+00:03EE 209507          	   206: JSR led_send
                         	   207: 
                         	   208: loadled23:
 00:03F1 B98F27          	   209: LDA blue23,Y
@@ -257,7 +257,7 @@ Source: "send_frame.txt"
 00:03FA 8D0310          	   212: STA greenByte
 00:03FD B9C727          	   213: LDA red23,Y
 00:0400 8D0410          	   214: STA redByte
-00:0403 205517          	   215: JSR led_send
+00:0403 209507          	   215: JSR led_send
                         	   216: 
                         	   217: loadled24:
 00:0406 B9E327          	   218: LDA blue24,Y
@@ -266,7 +266,7 @@ Source: "send_frame.txt"
 00:040F 8D0310          	   221: STA greenByte
 00:0412 B91B28          	   222: LDA red24,Y
 00:0415 8D0410          	   223: STA redByte
-00:0418 205517          	   224: JSR led_send
+00:0418 209507          	   224: JSR led_send
                         	   225: 
                         	   226: loadled25:
 00:041B B93728          	   227: LDA blue25,Y
@@ -275,7 +275,7 @@ Source: "send_frame.txt"
 00:0424 8D0310          	   230: STA greenByte
 00:0427 B96F28          	   231: LDA red25,Y
 00:042A 8D0410          	   232: STA redByte
-00:042D 205517          	   233: JSR led_send
+00:042D 209507          	   233: JSR led_send
                         	   234: 
                         	   235: loadled26:
 00:0430 B98B28          	   236: LDA blue26,Y
@@ -284,7 +284,7 @@ Source: "send_frame.txt"
 00:0439 8D0310          	   239: STA greenByte
 00:043C B9C328          	   240: LDA red26,Y
 00:043F 8D0410          	   241: STA redByte
-00:0442 205517          	   242: JSR led_send
+00:0442 209507          	   242: JSR led_send
                         	   243: 
                         	   244: loadled27:
 00:0445 B9DF28          	   245: LDA blue27,Y
@@ -293,7 +293,7 @@ Source: "send_frame.txt"
 00:044E 8D0310          	   248: STA greenByte
 00:0451 B91729          	   249: LDA red27,Y
 00:0454 8D0410          	   250: STA redByte
-00:0457 205517          	   251: JSR led_send
+00:0457 209507          	   251: JSR led_send
                         	   252: 
                         	   253: loadled28:
 00:045A B93329          	   254: LDA blue28,Y
@@ -302,7 +302,7 @@ Source: "send_frame.txt"
 00:0463 8D0310          	   257: STA greenByte
 00:0466 B96B29          	   258: LDA red28,Y
 00:0469 8D0410          	   259: STA redByte
-00:046C 205517          	   260: JSR led_send
+00:046C 209507          	   260: JSR led_send
                         	   261: 
                         	   262: loadled29:
 00:046F B98729          	   263: LDA blue29,Y
@@ -311,7 +311,7 @@ Source: "send_frame.txt"
 00:0478 8D0310          	   266: STA greenByte
 00:047B B9BF29          	   267: LDA red29,Y
 00:047E 8D0410          	   268: STA redByte
-00:0481 205517          	   269: JSR led_send
+00:0481 209507          	   269: JSR led_send
                         	   270: 
                         	   271: loadled30:
 00:0484 B9DB29          	   272: LDA blue30,Y
@@ -320,7 +320,7 @@ Source: "send_frame.txt"
 00:048D 8D0310          	   275: STA greenByte
 00:0490 B9132A          	   276: LDA red30,Y
 00:0493 8D0410          	   277: STA redByte
-00:0496 205517          	   278: JSR led_send
+00:0496 209507          	   278: JSR led_send
                         	   279: 
                         	   280: loadled31:
 00:0499 B92F2A          	   281: LDA blue31,Y
@@ -329,7 +329,7 @@ Source: "send_frame.txt"
 00:04A2 8D0310          	   284: STA greenByte
 00:04A5 B9672A          	   285: LDA red31,Y
 00:04A8 8D0410          	   286: STA redByte
-00:04AB 205517          	   287: JSR led_send
+00:04AB 209507          	   287: JSR led_send
                         	   288: 
                         	   289: loadled32:
 00:04AE B9832A          	   290: LDA blue32,Y
@@ -338,7 +338,7 @@ Source: "send_frame.txt"
 00:04B7 8D0310          	   293: STA greenByte
 00:04BA B9BB2A          	   294: LDA red32,Y
 00:04BD 8D0410          	   295: STA redByte
-00:04C0 205517          	   296: JSR led_send
+00:04C0 209507          	   296: JSR led_send
                         	   297: 
                         	   298: loadled33:
 00:04C3 B9D72A          	   299: LDA blue33,Y
@@ -347,7 +347,7 @@ Source: "send_frame.txt"
 00:04CC 8D0310          	   302: STA greenByte
 00:04CF B90F2B          	   303: LDA red33,Y
 00:04D2 8D0410          	   304: STA redByte
-00:04D5 205517          	   305: JSR led_send
+00:04D5 209507          	   305: JSR led_send
                         	   306: 
                         	   307: loadled34:
 00:04D8 B92B2B          	   308: LDA blue34,Y
@@ -356,7 +356,7 @@ Source: "send_frame.txt"
 00:04E1 8D0310          	   311: STA greenByte
 00:04E4 B9632B          	   312: LDA red34,Y
 00:04E7 8D0410          	   313: STA redByte
-00:04EA 205517          	   314: JSR led_send
+00:04EA 209507          	   314: JSR led_send
                         	   315: 
                         	   316: loadled35:
 00:04ED B97F2B          	   317: LDA blue35,Y
@@ -365,7 +365,7 @@ Source: "send_frame.txt"
 00:04F6 8D0310          	   320: STA greenByte
 00:04F9 B9B72B          	   321: LDA red35,Y
 00:04FC 8D0410          	   322: STA redByte
-00:04FF 205517          	   323: JSR led_send
+00:04FF 209507          	   323: JSR led_send
                         	   324: 
                         	   325: loadled36:
 00:0502 B9D32B          	   326: LDA blue36,Y
@@ -374,7 +374,7 @@ Source: "send_frame.txt"
 00:050B 8D0310          	   329: STA greenByte
 00:050E B90B2C          	   330: LDA red36,Y
 00:0511 8D0410          	   331: STA redByte
-00:0514 205517          	   332: JSR led_send
+00:0514 209507          	   332: JSR led_send
                         	   333: 
                         	   334: loadled37:
 00:0517 B9272C          	   335: LDA blue37,Y
@@ -383,7 +383,7 @@ Source: "send_frame.txt"
 00:0520 8D0310          	   338: STA greenByte
 00:0523 B95F2C          	   339: LDA red37,Y
 00:0526 8D0410          	   340: STA redByte
-00:0529 205517          	   341: JSR led_send
+00:0529 209507          	   341: JSR led_send
                         	   342: 
                         	   343: loadled38:
 00:052C B97B2C          	   344: LDA blue38,Y
@@ -392,7 +392,7 @@ Source: "send_frame.txt"
 00:0535 8D0310          	   347: STA greenByte
 00:0538 B9B32C          	   348: LDA red38,Y
 00:053B 8D0410          	   349: STA redByte
-00:053E 205517          	   350: JSR led_send
+00:053E 209507          	   350: JSR led_send
                         	   351: 
                         	   352: loadled39:
 00:0541 B9CF2C          	   353: LDA blue39,Y
@@ -401,7 +401,7 @@ Source: "send_frame.txt"
 00:054A 8D0310          	   356: STA greenByte
 00:054D B9072D          	   357: LDA red39,Y
 00:0550 8D0410          	   358: STA redByte
-00:0553 205517          	   359: JSR led_send
+00:0553 209507          	   359: JSR led_send
                         	   360: 
                         	   361: loadled40:
 00:0556 B9232D          	   362: LDA blue40,Y
@@ -410,7 +410,7 @@ Source: "send_frame.txt"
 00:055F 8D0310          	   365: STA greenByte
 00:0562 B95B2D          	   366: LDA red40,Y
 00:0565 8D0410          	   367: STA redByte
-00:0568 205517          	   368: JSR led_send
+00:0568 209507          	   368: JSR led_send
                         	   369: 
                         	   370: loadled41:
 00:056B B9772D          	   371: LDA blue41,Y
@@ -419,7 +419,7 @@ Source: "send_frame.txt"
 00:0574 8D0310          	   374: STA greenByte
 00:0577 B9AF2D          	   375: LDA red41,Y
 00:057A 8D0410          	   376: STA redByte
-00:057D 205517          	   377: JSR led_send
+00:057D 209507          	   377: JSR led_send
                         	   378: 
                         	   379: loadled42:
 00:0580 B9CB2D          	   380: LDA blue42,Y
@@ -428,7 +428,7 @@ Source: "send_frame.txt"
 00:0589 8D0310          	   383: STA greenByte
 00:058C B9032E          	   384: LDA red42,Y
 00:058F 8D0410          	   385: STA redByte
-00:0592 205517          	   386: JSR led_send
+00:0592 209507          	   386: JSR led_send
                         	   387: 
                         	   388: loadled43:
 00:0595 B91F2E          	   389: LDA blue43,Y
@@ -437,7 +437,7 @@ Source: "send_frame.txt"
 00:059E 8D0310          	   392: STA greenByte
 00:05A1 B9572E          	   393: LDA red43,Y
 00:05A4 8D0410          	   394: STA redByte
-00:05A7 205517          	   395: JSR led_send
+00:05A7 209507          	   395: JSR led_send
                         	   396: 
                         	   397: loadled44:
 00:05AA B9732E          	   398: LDA blue44,Y
@@ -446,7 +446,7 @@ Source: "send_frame.txt"
 00:05B3 8D0310          	   401: STA greenByte
 00:05B6 B9AB2E          	   402: LDA red44,Y
 00:05B9 8D0410          	   403: STA redByte
-00:05BC 205517          	   404: JSR led_send
+00:05BC 209507          	   404: JSR led_send
                         	   405: 
                         	   406: loadled45:
 00:05BF B9C72E          	   407: LDA blue45,Y
@@ -455,7 +455,7 @@ Source: "send_frame.txt"
 00:05C8 8D0310          	   410: STA greenByte
 00:05CB B9FF2E          	   411: LDA red45,Y
 00:05CE 8D0410          	   412: STA redByte
-00:05D1 205517          	   413: JSR led_send
+00:05D1 209507          	   413: JSR led_send
                         	   414: 
                         	   415: loadled46:
 00:05D4 B91B2F          	   416: LDA blue46,Y
@@ -464,7 +464,7 @@ Source: "send_frame.txt"
 00:05DD 8D0310          	   419: STA greenByte
 00:05E0 B9532F          	   420: LDA red46,Y
 00:05E3 8D0410          	   421: STA redByte
-00:05E6 205517          	   422: JSR led_send
+00:05E6 209507          	   422: JSR led_send
                         	   423: 
                         	   424: loadled47:
 00:05E9 B96F2F          	   425: LDA blue47,Y
@@ -473,7 +473,7 @@ Source: "send_frame.txt"
 00:05F2 8D0310          	   428: STA greenByte
 00:05F5 B9A72F          	   429: LDA red47,Y
 00:05F8 8D0410          	   430: STA redByte
-00:05FB 205517          	   431: JSR led_send
+00:05FB 209507          	   431: JSR led_send
                         	   432: 
                         	   433: loadled48:
 00:05FE B9C32F          	   434: LDA blue48,Y
@@ -482,7 +482,7 @@ Source: "send_frame.txt"
 00:0607 8D0310          	   437: STA greenByte
 00:060A B9FB2F          	   438: LDA red48,Y
 00:060D 8D0410          	   439: STA redByte
-00:0610 205517          	   440: JSR led_send
+00:0610 209507          	   440: JSR led_send
                         	   441: 
                         	   442: loadled49:
 00:0613 B91730          	   443: LDA blue49,Y
@@ -491,7 +491,7 @@ Source: "send_frame.txt"
 00:061C 8D0310          	   446: STA greenByte
 00:061F B94F30          	   447: LDA red49,Y
 00:0622 8D0410          	   448: STA redByte
-00:0625 205517          	   449: JSR led_send
+00:0625 209507          	   449: JSR led_send
                         	   450: 
                         	   451: loadled50:
 00:0628 B96B30          	   452: LDA blue50,Y
@@ -500,7 +500,7 @@ Source: "send_frame.txt"
 00:0631 8D0310          	   455: STA greenByte
 00:0634 B9A330          	   456: LDA red50,Y
 00:0637 8D0410          	   457: STA redByte
-00:063A 205517          	   458: JSR led_send
+00:063A 209507          	   458: JSR led_send
                         	   459: 
                         	   460: loadled51:
 00:063D B9BF30          	   461: LDA blue51,Y
@@ -509,7 +509,7 @@ Source: "send_frame.txt"
 00:0646 8D0310          	   464: STA greenByte
 00:0649 B9F730          	   465: LDA red51,Y
 00:064C 8D0410          	   466: STA redByte
-00:064F 205517          	   467: JSR led_send
+00:064F 209507          	   467: JSR led_send
                         	   468: 
                         	   469: loadled52:
 00:0652 B91331          	   470: LDA blue52,Y
@@ -518,7 +518,7 @@ Source: "send_frame.txt"
 00:065B 8D0310          	   473: STA greenByte
 00:065E B94B31          	   474: LDA red52,Y
 00:0661 8D0410          	   475: STA redByte
-00:0664 205517          	   476: JSR led_send
+00:0664 209507          	   476: JSR led_send
                         	   477: 
                         	   478: loadled53:
 00:0667 B96731          	   479: LDA blue53,Y
@@ -527,7 +527,7 @@ Source: "send_frame.txt"
 00:0670 8D0310          	   482: STA greenByte
 00:0673 B99F31          	   483: LDA red53,Y
 00:0676 8D0410          	   484: STA redByte
-00:0679 205517          	   485: JSR led_send
+00:0679 209507          	   485: JSR led_send
                         	   486: 
                         	   487: loadled54:
 00:067C B9BB31          	   488: LDA blue54,Y
@@ -536,7 +536,7 @@ Source: "send_frame.txt"
 00:0685 8D0310          	   491: STA greenByte
 00:0688 B9F331          	   492: LDA red54,Y
 00:068B 8D0410          	   493: STA redByte
-00:068E 205517          	   494: JSR led_send
+00:068E 209507          	   494: JSR led_send
                         	   495: 
                         	   496: loadled55:
 00:0691 B90F32          	   497: LDA blue55,Y
@@ -545,7 +545,7 @@ Source: "send_frame.txt"
 00:069A 8D0310          	   500: STA greenByte
 00:069D B94732          	   501: LDA red55,Y
 00:06A0 8D0410          	   502: STA redByte
-00:06A3 205517          	   503: JSR led_send
+00:06A3 209507          	   503: JSR led_send
                         	   504: 
                         	   505: loadled56:
 00:06A6 B96332          	   506: LDA blue56,Y
@@ -554,7 +554,7 @@ Source: "send_frame.txt"
 00:06AF 8D0310          	   509: STA greenByte
 00:06B2 B99B32          	   510: LDA red56,Y
 00:06B5 8D0410          	   511: STA redByte
-00:06B8 205517          	   512: JSR led_send
+00:06B8 209507          	   512: JSR led_send
                         	   513: 
                         	   514: loadled57:
 00:06BB B9B732          	   515: LDA blue57,Y
@@ -563,7 +563,7 @@ Source: "send_frame.txt"
 00:06C4 8D0310          	   518: STA greenByte
 00:06C7 B9EF32          	   519: LDA red57,Y
 00:06CA 8D0410          	   520: STA redByte
-00:06CD 205517          	   521: JSR led_send
+00:06CD 209507          	   521: JSR led_send
                         	   522: 
                         	   523: loadled58:
 00:06D0 B90B33          	   524: LDA blue58,Y
@@ -572,7 +572,7 @@ Source: "send_frame.txt"
 00:06D9 8D0310          	   527: STA greenByte
 00:06DC B94333          	   528: LDA red58,Y
 00:06DF 8D0410          	   529: STA redByte
-00:06E2 205517          	   530: JSR led_send
+00:06E2 209507          	   530: JSR led_send
                         	   531: 
                         	   532: loadled59:
 00:06E5 B95F33          	   533: LDA blue59,Y
@@ -581,7 +581,7 @@ Source: "send_frame.txt"
 00:06EE 8D0310          	   536: STA greenByte
 00:06F1 B99733          	   537: LDA red59,Y
 00:06F4 8D0410          	   538: STA redByte
-00:06F7 205517          	   539: JSR led_send
+00:06F7 209507          	   539: JSR led_send
                         	   540: 
                         	   541: loadled60:
 00:06FA B9B333          	   542: LDA blue60,Y
@@ -590,7 +590,7 @@ Source: "send_frame.txt"
 00:0703 8D0310          	   545: STA greenByte
 00:0706 B9EB33          	   546: LDA red60,Y
 00:0709 8D0410          	   547: STA redByte
-00:070C 205517          	   548: JSR led_send
+00:070C 209507          	   548: JSR led_send
                         	   549: 
                         	   550: loadled61:
 00:070F B90734          	   551: LDA blue61,Y
@@ -599,7 +599,7 @@ Source: "send_frame.txt"
 00:0718 8D0310          	   554: STA greenByte
 00:071B B93F34          	   555: LDA red61,Y
 00:071E 8D0410          	   556: STA redByte
-00:0721 205517          	   557: JSR led_send
+00:0721 209507          	   557: JSR led_send
                         	   558: 
                         	   559: loadled62:
 00:0724 B95B34          	   560: LDA blue62,Y
@@ -608,7 +608,7 @@ Source: "send_frame.txt"
 00:072D 8D0310          	   563: STA greenByte
 00:0730 B99334          	   564: LDA red62,Y
 00:0733 8D0410          	   565: STA redByte
-00:0736 205517          	   566: JSR led_send
+00:0736 209507          	   566: JSR led_send
                         	   567: 
                         	   568: loadled63:
 00:0739 B9AF34          	   569: LDA blue63,Y
@@ -617,1890 +617,162 @@ Source: "send_frame.txt"
 00:0742 8D0310          	   572: STA greenByte
 00:0745 B9E734          	   573: LDA red63,Y
 00:0748 8D0410          	   574: STA redByte
-00:074B 205517          	   575: JSR led_send
+00:074B 209507          	   575: JSR led_send
                         	   576: 
-                        	   577: loadled64:
-00:074E B90000          	   578: LDA blue64,Y
-00:0751 8D0210          	   579: STA blueByte
-00:0754 B90000          	   580: LDA green64,Y
-00:0757 8D0310          	   581: STA greenByte
-00:075A B90000          	   582: LDA red64,Y
-00:075D 8D0410          	   583: STA redByte
-00:0760 205517          	   584: JSR led_send
-                        	   585: 
-                        	   586: loadled65:
-00:0763 B90000          	   587: LDA blue65,Y
-00:0766 8D0210          	   588: STA blueByte
-00:0769 B90000          	   589: LDA green65,Y
-00:076C 8D0310          	   590: STA greenByte
-00:076F B90000          	   591: LDA red65,Y
-00:0772 8D0410          	   592: STA redByte
-00:0775 205517          	   593: JSR led_send
-                        	   594: 
-                        	   595: loadled66:
-00:0778 B90000          	   596: LDA blue66,Y
-00:077B 8D0210          	   597: STA blueByte
-00:077E B90000          	   598: LDA green66,Y
-00:0781 8D0310          	   599: STA greenByte
-00:0784 B90000          	   600: LDA red66,Y
-00:0787 8D0410          	   601: STA redByte
-00:078A 205517          	   602: JSR led_send
-                        	   603: 
-                        	   604: loadled67:
-00:078D B90000          	   605: LDA blue67,Y
-00:0790 8D0210          	   606: STA blueByte
-00:0793 B90000          	   607: LDA green67,Y
-00:0796 8D0310          	   608: STA greenByte
-00:0799 B90000          	   609: LDA red67,Y
-00:079C 8D0410          	   610: STA redByte
-00:079F 205517          	   611: JSR led_send
-                        	   612: 
-                        	   613: loadled68:
-00:07A2 B90000          	   614: LDA blue68,Y
-00:07A5 8D0210          	   615: STA blueByte
-00:07A8 B90000          	   616: LDA green68,Y
-00:07AB 8D0310          	   617: STA greenByte
-00:07AE B90000          	   618: LDA red68,Y
-00:07B1 8D0410          	   619: STA redByte
-00:07B4 205517          	   620: JSR led_send
-                        	   621: 
-                        	   622: loadled69:
-00:07B7 B90000          	   623: LDA blue69,Y
-00:07BA 8D0210          	   624: STA blueByte
-00:07BD B90000          	   625: LDA green69,Y
-00:07C0 8D0310          	   626: STA greenByte
-00:07C3 B90000          	   627: LDA red69,Y
-00:07C6 8D0410          	   628: STA redByte
-00:07C9 205517          	   629: JSR led_send
-                        	   630: 
-                        	   631: loadled70:
-00:07CC B90000          	   632: LDA blue70,Y
-00:07CF 8D0210          	   633: STA blueByte
-00:07D2 B90000          	   634: LDA green70,Y
-00:07D5 8D0310          	   635: STA greenByte
-00:07D8 B90000          	   636: LDA red70,Y
-00:07DB 8D0410          	   637: STA redByte
-00:07DE 205517          	   638: JSR led_send
-                        	   639: 
-                        	   640: loadled71:
-00:07E1 B90000          	   641: LDA blue71,Y
-00:07E4 8D0210          	   642: STA blueByte
-00:07E7 B90000          	   643: LDA green71,Y
-00:07EA 8D0310          	   644: STA greenByte
-00:07ED B90000          	   645: LDA red71,Y
-00:07F0 8D0410          	   646: STA redByte
-00:07F3 205517          	   647: JSR led_send
-                        	   648: 
-                        	   649: loadled72:
-00:07F6 B90000          	   650: LDA blue72,Y
-00:07F9 8D0210          	   651: STA blueByte
-00:07FC B90000          	   652: LDA green72,Y
-00:07FF 8D0310          	   653: STA greenByte
-00:0802 B90000          	   654: LDA red72,Y
-00:0805 8D0410          	   655: STA redByte
-00:0808 205517          	   656: JSR led_send
-                        	   657: 
-                        	   658: loadled73:
-00:080B B90000          	   659: LDA blue73,Y
-00:080E 8D0210          	   660: STA blueByte
-00:0811 B90000          	   661: LDA green73,Y
-00:0814 8D0310          	   662: STA greenByte
-00:0817 B90000          	   663: LDA red73,Y
-00:081A 8D0410          	   664: STA redByte
-00:081D 205517          	   665: JSR led_send
-                        	   666: 
-                        	   667: loadled74:
-00:0820 B90000          	   668: LDA blue74,Y
-00:0823 8D0210          	   669: STA blueByte
-00:0826 B90000          	   670: LDA green74,Y
-00:0829 8D0310          	   671: STA greenByte
-00:082C B90000          	   672: LDA red74,Y
-00:082F 8D0410          	   673: STA redByte
-00:0832 205517          	   674: JSR led_send
-                        	   675: 
-                        	   676: loadled75:
-00:0835 B90000          	   677: LDA blue75,Y
-00:0838 8D0210          	   678: STA blueByte
-00:083B B90000          	   679: LDA green75,Y
-00:083E 8D0310          	   680: STA greenByte
-00:0841 B90000          	   681: LDA red75,Y
-00:0844 8D0410          	   682: STA redByte
-00:0847 205517          	   683: JSR led_send
-                        	   684: 
-                        	   685: loadled76:
-00:084A B90000          	   686: LDA blue76,Y
-00:084D 8D0210          	   687: STA blueByte
-00:0850 B90000          	   688: LDA green76,Y
-00:0853 8D0310          	   689: STA greenByte
-00:0856 B90000          	   690: LDA red76,Y
-00:0859 8D0410          	   691: STA redByte
-00:085C 205517          	   692: JSR led_send
-                        	   693: 
-                        	   694: loadled77:
-00:085F B90000          	   695: LDA blue77,Y
-00:0862 8D0210          	   696: STA blueByte
-00:0865 B90000          	   697: LDA green77,Y
-00:0868 8D0310          	   698: STA greenByte
-00:086B B90000          	   699: LDA red77,Y
-00:086E 8D0410          	   700: STA redByte
-00:0871 205517          	   701: JSR led_send
-                        	   702: 
-                        	   703: loadled78:
-00:0874 B90000          	   704: LDA blue78,Y
-00:0877 8D0210          	   705: STA blueByte
-00:087A B90000          	   706: LDA green78,Y
-00:087D 8D0310          	   707: STA greenByte
-00:0880 B90000          	   708: LDA red78,Y
-00:0883 8D0410          	   709: STA redByte
-00:0886 205517          	   710: JSR led_send
-                        	   711: 
-                        	   712: loadled79:
-00:0889 B90000          	   713: LDA blue79,Y
-00:088C 8D0210          	   714: STA blueByte
-00:088F B90000          	   715: LDA green79,Y
-00:0892 8D0310          	   716: STA greenByte
-00:0895 B90000          	   717: LDA red79,Y
-00:0898 8D0410          	   718: STA redByte
-00:089B 205517          	   719: JSR led_send
-                        	   720: 
-                        	   721: loadled80:
-00:089E B90000          	   722: LDA blue80,Y
-00:08A1 8D0210          	   723: STA blueByte
-00:08A4 B90000          	   724: LDA green80,Y
-00:08A7 8D0310          	   725: STA greenByte
-00:08AA B90000          	   726: LDA red80,Y
-00:08AD 8D0410          	   727: STA redByte
-00:08B0 205517          	   728: JSR led_send
-                        	   729: 
-                        	   730: loadled81:
-00:08B3 B90000          	   731: LDA blue81,Y
-00:08B6 8D0210          	   732: STA blueByte
-00:08B9 B90000          	   733: LDA green81,Y
-00:08BC 8D0310          	   734: STA greenByte
-00:08BF B90000          	   735: LDA red81,Y
-00:08C2 8D0410          	   736: STA redByte
-00:08C5 205517          	   737: JSR led_send
-                        	   738: 
-                        	   739: loadled82:
-00:08C8 B90000          	   740: LDA blue82,Y
-00:08CB 8D0210          	   741: STA blueByte
-00:08CE B90000          	   742: LDA green82,Y
-00:08D1 8D0310          	   743: STA greenByte
-00:08D4 B90000          	   744: LDA red82,Y
-00:08D7 8D0410          	   745: STA redByte
-00:08DA 205517          	   746: JSR led_send
-                        	   747: 
-                        	   748: loadled83:
-00:08DD B90000          	   749: LDA blue83,Y
-00:08E0 8D0210          	   750: STA blueByte
-00:08E3 B90000          	   751: LDA green83,Y
-00:08E6 8D0310          	   752: STA greenByte
-00:08E9 B90000          	   753: LDA red83,Y
-00:08EC 8D0410          	   754: STA redByte
-00:08EF 205517          	   755: JSR led_send
-                        	   756: 
-                        	   757: loadled84:
-00:08F2 B90000          	   758: LDA blue84,Y
-00:08F5 8D0210          	   759: STA blueByte
-00:08F8 B90000          	   760: LDA green84,Y
-00:08FB 8D0310          	   761: STA greenByte
-00:08FE B90000          	   762: LDA red84,Y
-00:0901 8D0410          	   763: STA redByte
-00:0904 205517          	   764: JSR led_send
-                        	   765: 
-                        	   766: loadled85:
-00:0907 B90000          	   767: LDA blue85,Y
-00:090A 8D0210          	   768: STA blueByte
-00:090D B90000          	   769: LDA green85,Y
-00:0910 8D0310          	   770: STA greenByte
-00:0913 B90000          	   771: LDA red85,Y
-00:0916 8D0410          	   772: STA redByte
-00:0919 205517          	   773: JSR led_send
-                        	   774: 
-                        	   775: loadled86:
-00:091C B90000          	   776: LDA blue86,Y
-00:091F 8D0210          	   777: STA blueByte
-00:0922 B90000          	   778: LDA green86,Y
-00:0925 8D0310          	   779: STA greenByte
-00:0928 B90000          	   780: LDA red86,Y
-00:092B 8D0410          	   781: STA redByte
-00:092E 205517          	   782: JSR led_send
-                        	   783: 
-                        	   784: loadled87:
-00:0931 B90000          	   785: LDA blue87,Y
-00:0934 8D0210          	   786: STA blueByte
-00:0937 B90000          	   787: LDA green87,Y
-00:093A 8D0310          	   788: STA greenByte
-00:093D B90000          	   789: LDA red87,Y
-00:0940 8D0410          	   790: STA redByte
-00:0943 205517          	   791: JSR led_send
-                        	   792: 
-                        	   793: loadled88:
-00:0946 B90000          	   794: LDA blue88,Y
-00:0949 8D0210          	   795: STA blueByte
-00:094C B90000          	   796: LDA green88,Y
-00:094F 8D0310          	   797: STA greenByte
-00:0952 B90000          	   798: LDA red88,Y
-00:0955 8D0410          	   799: STA redByte
-00:0958 205517          	   800: JSR led_send
-                        	   801: 
-                        	   802: loadled89:
-00:095B B90000          	   803: LDA blue89,Y
-00:095E 8D0210          	   804: STA blueByte
-00:0961 B90000          	   805: LDA green89,Y
-00:0964 8D0310          	   806: STA greenByte
-00:0967 B90000          	   807: LDA red89,Y
-00:096A 8D0410          	   808: STA redByte
-00:096D 205517          	   809: JSR led_send
-                        	   810: 
-                        	   811: loadled90:
-00:0970 B90000          	   812: LDA blue90,Y
-00:0973 8D0210          	   813: STA blueByte
-00:0976 B90000          	   814: LDA green90,Y
-00:0979 8D0310          	   815: STA greenByte
-00:097C B90000          	   816: LDA red90,Y
-00:097F 8D0410          	   817: STA redByte
-00:0982 205517          	   818: JSR led_send
-                        	   819: 
-                        	   820: loadled91:
-00:0985 B90000          	   821: LDA blue91,Y
-00:0988 8D0210          	   822: STA blueByte
-00:098B B90000          	   823: LDA green91,Y
-00:098E 8D0310          	   824: STA greenByte
-00:0991 B90000          	   825: LDA red91,Y
-00:0994 8D0410          	   826: STA redByte
-00:0997 205517          	   827: JSR led_send
-                        	   828: 
-                        	   829: loadled92:
-00:099A B90000          	   830: LDA blue92,Y
-00:099D 8D0210          	   831: STA blueByte
-00:09A0 B90000          	   832: LDA green92,Y
-00:09A3 8D0310          	   833: STA greenByte
-00:09A6 B90000          	   834: LDA red92,Y
-00:09A9 8D0410          	   835: STA redByte
-00:09AC 205517          	   836: JSR led_send
-                        	   837: 
-                        	   838: loadled93:
-00:09AF B90000          	   839: LDA blue93,Y
-00:09B2 8D0210          	   840: STA blueByte
-00:09B5 B90000          	   841: LDA green93,Y
-00:09B8 8D0310          	   842: STA greenByte
-00:09BB B90000          	   843: LDA red93,Y
-00:09BE 8D0410          	   844: STA redByte
-00:09C1 205517          	   845: JSR led_send
-                        	   846: 
-                        	   847: loadled94:
-00:09C4 B90000          	   848: LDA blue94,Y
-00:09C7 8D0210          	   849: STA blueByte
-00:09CA B90000          	   850: LDA green94,Y
-00:09CD 8D0310          	   851: STA greenByte
-00:09D0 B90000          	   852: LDA red94,Y
-00:09D3 8D0410          	   853: STA redByte
-00:09D6 205517          	   854: JSR led_send
-                        	   855: 
-                        	   856: loadled95:
-00:09D9 B90000          	   857: LDA blue95,Y
-00:09DC 8D0210          	   858: STA blueByte
-00:09DF B90000          	   859: LDA green95,Y
-00:09E2 8D0310          	   860: STA greenByte
-00:09E5 B90000          	   861: LDA red95,Y
-00:09E8 8D0410          	   862: STA redByte
-00:09EB 205517          	   863: JSR led_send
-                        	   864: 
-                        	   865: loadled96:
-00:09EE B90000          	   866: LDA blue96,Y
-00:09F1 8D0210          	   867: STA blueByte
-00:09F4 B90000          	   868: LDA green96,Y
-00:09F7 8D0310          	   869: STA greenByte
-00:09FA B90000          	   870: LDA red96,Y
-00:09FD 8D0410          	   871: STA redByte
-00:0A00 205517          	   872: JSR led_send
-                        	   873: 
-                        	   874: loadled97:
-00:0A03 B90000          	   875: LDA blue97,Y
-00:0A06 8D0210          	   876: STA blueByte
-00:0A09 B90000          	   877: LDA green97,Y
-00:0A0C 8D0310          	   878: STA greenByte
-00:0A0F B90000          	   879: LDA red97,Y
-00:0A12 8D0410          	   880: STA redByte
-00:0A15 205517          	   881: JSR led_send
-                        	   882: 
-                        	   883: loadled98:
-00:0A18 B90000          	   884: LDA blue98,Y
-00:0A1B 8D0210          	   885: STA blueByte
-00:0A1E B90000          	   886: LDA green98,Y
-00:0A21 8D0310          	   887: STA greenByte
-00:0A24 B90000          	   888: LDA red98,Y
-00:0A27 8D0410          	   889: STA redByte
-00:0A2A 205517          	   890: JSR led_send
-                        	   891: 
-                        	   892: loadled99:
-00:0A2D B90000          	   893: LDA blue99,Y
-00:0A30 8D0210          	   894: STA blueByte
-00:0A33 B90000          	   895: LDA green99,Y
-00:0A36 8D0310          	   896: STA greenByte
-00:0A39 B90000          	   897: LDA red99,Y
-00:0A3C 8D0410          	   898: STA redByte
-00:0A3F 205517          	   899: JSR led_send
-                        	   900: 
-                        	   901: loadled100:
-00:0A42 B90000          	   902: LDA blue100,Y
-00:0A45 8D0210          	   903: STA blueByte
-00:0A48 B90000          	   904: LDA green100,Y
-00:0A4B 8D0310          	   905: STA greenByte
-00:0A4E B90000          	   906: LDA red100,Y
-00:0A51 8D0410          	   907: STA redByte
-00:0A54 205517          	   908: JSR led_send
-                        	   909: 
-                        	   910: loadled101:
-00:0A57 B90000          	   911: LDA blue101,Y
-00:0A5A 8D0210          	   912: STA blueByte
-00:0A5D B90000          	   913: LDA green101,Y
-00:0A60 8D0310          	   914: STA greenByte
-00:0A63 B90000          	   915: LDA red101,Y
-00:0A66 8D0410          	   916: STA redByte
-00:0A69 205517          	   917: JSR led_send
-                        	   918: 
-                        	   919: loadled102:
-00:0A6C B90000          	   920: LDA blue102,Y
-00:0A6F 8D0210          	   921: STA blueByte
-00:0A72 B90000          	   922: LDA green102,Y
-00:0A75 8D0310          	   923: STA greenByte
-00:0A78 B90000          	   924: LDA red102,Y
-00:0A7B 8D0410          	   925: STA redByte
-00:0A7E 205517          	   926: JSR led_send
-                        	   927: 
-                        	   928: loadled103:
-00:0A81 B90000          	   929: LDA blue103,Y
-00:0A84 8D0210          	   930: STA blueByte
-00:0A87 B90000          	   931: LDA green103,Y
-00:0A8A 8D0310          	   932: STA greenByte
-00:0A8D B90000          	   933: LDA red103,Y
-00:0A90 8D0410          	   934: STA redByte
-00:0A93 205517          	   935: JSR led_send
-                        	   936: 
-                        	   937: loadled104:
-00:0A96 B90000          	   938: LDA blue104,Y
-00:0A99 8D0210          	   939: STA blueByte
-00:0A9C B90000          	   940: LDA green104,Y
-00:0A9F 8D0310          	   941: STA greenByte
-00:0AA2 B90000          	   942: LDA red104,Y
-00:0AA5 8D0410          	   943: STA redByte
-00:0AA8 205517          	   944: JSR led_send
-                        	   945: 
-                        	   946: loadled105:
-00:0AAB B90000          	   947: LDA blue105,Y
-00:0AAE 8D0210          	   948: STA blueByte
-00:0AB1 B90000          	   949: LDA green105,Y
-00:0AB4 8D0310          	   950: STA greenByte
-00:0AB7 B90000          	   951: LDA red105,Y
-00:0ABA 8D0410          	   952: STA redByte
-00:0ABD 205517          	   953: JSR led_send
-                        	   954: 
-                        	   955: loadled106:
-00:0AC0 B90000          	   956: LDA blue106,Y
-00:0AC3 8D0210          	   957: STA blueByte
-00:0AC6 B90000          	   958: LDA green106,Y
-00:0AC9 8D0310          	   959: STA greenByte
-00:0ACC B90000          	   960: LDA red106,Y
-00:0ACF 8D0410          	   961: STA redByte
-00:0AD2 205517          	   962: JSR led_send
-                        	   963: 
-                        	   964: loadled107:
-00:0AD5 B90000          	   965: LDA blue107,Y
-00:0AD8 8D0210          	   966: STA blueByte
-00:0ADB B90000          	   967: LDA green107,Y
-00:0ADE 8D0310          	   968: STA greenByte
-00:0AE1 B90000          	   969: LDA red107,Y
-00:0AE4 8D0410          	   970: STA redByte
-00:0AE7 205517          	   971: JSR led_send
-                        	   972: 
-                        	   973: loadled108:
-00:0AEA B90000          	   974: LDA blue108,Y
-00:0AED 8D0210          	   975: STA blueByte
-00:0AF0 B90000          	   976: LDA green108,Y
-00:0AF3 8D0310          	   977: STA greenByte
-00:0AF6 B90000          	   978: LDA red108,Y
-00:0AF9 8D0410          	   979: STA redByte
-00:0AFC 205517          	   980: JSR led_send
-                        	   981: 
-                        	   982: loadled109:
-00:0AFF B90000          	   983: LDA blue109,Y
-00:0B02 8D0210          	   984: STA blueByte
-00:0B05 B90000          	   985: LDA green109,Y
-00:0B08 8D0310          	   986: STA greenByte
-00:0B0B B90000          	   987: LDA red109,Y
-00:0B0E 8D0410          	   988: STA redByte
-00:0B11 205517          	   989: JSR led_send
-                        	   990: 
-                        	   991: loadled110:
-00:0B14 B90000          	   992: LDA blue110,Y
-00:0B17 8D0210          	   993: STA blueByte
-00:0B1A B90000          	   994: LDA green110,Y
-00:0B1D 8D0310          	   995: STA greenByte
-00:0B20 B90000          	   996: LDA red110,Y
-00:0B23 8D0410          	   997: STA redByte
-00:0B26 205517          	   998: JSR led_send
-                        	   999: 
-                        	  1000: loadled111:
-00:0B29 B90000          	  1001: LDA blue111,Y
-00:0B2C 8D0210          	  1002: STA blueByte
-00:0B2F B90000          	  1003: LDA green111,Y
-00:0B32 8D0310          	  1004: STA greenByte
-00:0B35 B90000          	  1005: LDA red111,Y
-00:0B38 8D0410          	  1006: STA redByte
-00:0B3B 205517          	  1007: JSR led_send
-                        	  1008: 
-                        	  1009: loadled112:
-00:0B3E B90000          	  1010: LDA blue112,Y
-00:0B41 8D0210          	  1011: STA blueByte
-00:0B44 B90000          	  1012: LDA green112,Y
-00:0B47 8D0310          	  1013: STA greenByte
-00:0B4A B90000          	  1014: LDA red112,Y
-00:0B4D 8D0410          	  1015: STA redByte
-00:0B50 205517          	  1016: JSR led_send
-                        	  1017: 
-                        	  1018: loadled113:
-00:0B53 B90000          	  1019: LDA blue113,Y
-00:0B56 8D0210          	  1020: STA blueByte
-00:0B59 B90000          	  1021: LDA green113,Y
-00:0B5C 8D0310          	  1022: STA greenByte
-00:0B5F B90000          	  1023: LDA red113,Y
-00:0B62 8D0410          	  1024: STA redByte
-00:0B65 205517          	  1025: JSR led_send
-                        	  1026: 
-                        	  1027: loadled114:
-00:0B68 B90000          	  1028: LDA blue114,Y
-00:0B6B 8D0210          	  1029: STA blueByte
-00:0B6E B90000          	  1030: LDA green114,Y
-00:0B71 8D0310          	  1031: STA greenByte
-00:0B74 B90000          	  1032: LDA red114,Y
-00:0B77 8D0410          	  1033: STA redByte
-00:0B7A 205517          	  1034: JSR led_send
-                        	  1035: 
-                        	  1036: loadled115:
-00:0B7D B90000          	  1037: LDA blue115,Y
-00:0B80 8D0210          	  1038: STA blueByte
-00:0B83 B90000          	  1039: LDA green115,Y
-00:0B86 8D0310          	  1040: STA greenByte
-00:0B89 B90000          	  1041: LDA red115,Y
-00:0B8C 8D0410          	  1042: STA redByte
-00:0B8F 205517          	  1043: JSR led_send
-                        	  1044: 
-                        	  1045: loadled116:
-00:0B92 B90000          	  1046: LDA blue116,Y
-00:0B95 8D0210          	  1047: STA blueByte
-00:0B98 B90000          	  1048: LDA green116,Y
-00:0B9B 8D0310          	  1049: STA greenByte
-00:0B9E B90000          	  1050: LDA red116,Y
-00:0BA1 8D0410          	  1051: STA redByte
-00:0BA4 205517          	  1052: JSR led_send
-                        	  1053: 
-                        	  1054: loadled117:
-00:0BA7 B90000          	  1055: LDA blue117,Y
-00:0BAA 8D0210          	  1056: STA blueByte
-00:0BAD B90000          	  1057: LDA green117,Y
-00:0BB0 8D0310          	  1058: STA greenByte
-00:0BB3 B90000          	  1059: LDA red117,Y
-00:0BB6 8D0410          	  1060: STA redByte
-00:0BB9 205517          	  1061: JSR led_send
-                        	  1062: 
-                        	  1063: loadled118:
-00:0BBC B90000          	  1064: LDA blue118,Y
-00:0BBF 8D0210          	  1065: STA blueByte
-00:0BC2 B90000          	  1066: LDA green118,Y
-00:0BC5 8D0310          	  1067: STA greenByte
-00:0BC8 B90000          	  1068: LDA red118,Y
-00:0BCB 8D0410          	  1069: STA redByte
-00:0BCE 205517          	  1070: JSR led_send
-                        	  1071: 
-                        	  1072: loadled119:
-00:0BD1 B90000          	  1073: LDA blue119,Y
-00:0BD4 8D0210          	  1074: STA blueByte
-00:0BD7 B90000          	  1075: LDA green119,Y
-00:0BDA 8D0310          	  1076: STA greenByte
-00:0BDD B90000          	  1077: LDA red119,Y
-00:0BE0 8D0410          	  1078: STA redByte
-00:0BE3 205517          	  1079: JSR led_send
-                        	  1080: 
-                        	  1081: loadled120:
-00:0BE6 B90000          	  1082: LDA blue120,Y
-00:0BE9 8D0210          	  1083: STA blueByte
-00:0BEC B90000          	  1084: LDA green120,Y
-00:0BEF 8D0310          	  1085: STA greenByte
-00:0BF2 B90000          	  1086: LDA red120,Y
-00:0BF5 8D0410          	  1087: STA redByte
-00:0BF8 205517          	  1088: JSR led_send
-                        	  1089: 
-                        	  1090: loadled121:
-00:0BFB B90000          	  1091: LDA blue121,Y
-00:0BFE 8D0210          	  1092: STA blueByte
-00:0C01 B90000          	  1093: LDA green121,Y
-00:0C04 8D0310          	  1094: STA greenByte
-00:0C07 B90000          	  1095: LDA red121,Y
-00:0C0A 8D0410          	  1096: STA redByte
-00:0C0D 205517          	  1097: JSR led_send
-                        	  1098: 
-                        	  1099: loadled122:
-00:0C10 B90000          	  1100: LDA blue122,Y
-00:0C13 8D0210          	  1101: STA blueByte
-00:0C16 B90000          	  1102: LDA green122,Y
-00:0C19 8D0310          	  1103: STA greenByte
-00:0C1C B90000          	  1104: LDA red122,Y
-00:0C1F 8D0410          	  1105: STA redByte
-00:0C22 205517          	  1106: JSR led_send
-                        	  1107: 
-                        	  1108: loadled123:
-00:0C25 B90000          	  1109: LDA blue123,Y
-00:0C28 8D0210          	  1110: STA blueByte
-00:0C2B B90000          	  1111: LDA green123,Y
-00:0C2E 8D0310          	  1112: STA greenByte
-00:0C31 B90000          	  1113: LDA red123,Y
-00:0C34 8D0410          	  1114: STA redByte
-00:0C37 205517          	  1115: JSR led_send
-                        	  1116: 
-                        	  1117: loadled124:
-00:0C3A B90000          	  1118: LDA blue124,Y
-00:0C3D 8D0210          	  1119: STA blueByte
-00:0C40 B90000          	  1120: LDA green124,Y
-00:0C43 8D0310          	  1121: STA greenByte
-00:0C46 B90000          	  1122: LDA red124,Y
-00:0C49 8D0410          	  1123: STA redByte
-00:0C4C 205517          	  1124: JSR led_send
-                        	  1125: 
-                        	  1126: loadled125:
-00:0C4F B90000          	  1127: LDA blue125,Y
-00:0C52 8D0210          	  1128: STA blueByte
-00:0C55 B90000          	  1129: LDA green125,Y
-00:0C58 8D0310          	  1130: STA greenByte
-00:0C5B B90000          	  1131: LDA red125,Y
-00:0C5E 8D0410          	  1132: STA redByte
-00:0C61 205517          	  1133: JSR led_send
-                        	  1134: 
-                        	  1135: loadled126:
-00:0C64 B90000          	  1136: LDA blue126,Y
-00:0C67 8D0210          	  1137: STA blueByte
-00:0C6A B90000          	  1138: LDA green126,Y
-00:0C6D 8D0310          	  1139: STA greenByte
-00:0C70 B90000          	  1140: LDA red126,Y
-00:0C73 8D0410          	  1141: STA redByte
-00:0C76 205517          	  1142: JSR led_send
-                        	  1143: 
-                        	  1144: loadled127:
-00:0C79 B90000          	  1145: LDA blue127,Y
-00:0C7C 8D0210          	  1146: STA blueByte
-00:0C7F B90000          	  1147: LDA green127,Y
-00:0C82 8D0310          	  1148: STA greenByte
-00:0C85 B90000          	  1149: LDA red127,Y
-00:0C88 8D0410          	  1150: STA redByte
-00:0C8B 205517          	  1151: JSR led_send
-                        	  1152: 
-                        	  1153: loadled128:
-00:0C8E B90000          	  1154: LDA blue128,Y
-00:0C91 8D0210          	  1155: STA blueByte
-00:0C94 B90000          	  1156: LDA green128,Y
-00:0C97 8D0310          	  1157: STA greenByte
-00:0C9A B90000          	  1158: LDA red128,Y
-00:0C9D 8D0410          	  1159: STA redByte
-00:0CA0 205517          	  1160: JSR led_send
-                        	  1161: 
-                        	  1162: loadled129:
-00:0CA3 B90000          	  1163: LDA blue129,Y
-00:0CA6 8D0210          	  1164: STA blueByte
-00:0CA9 B90000          	  1165: LDA green129,Y
-00:0CAC 8D0310          	  1166: STA greenByte
-00:0CAF B90000          	  1167: LDA red129,Y
-00:0CB2 8D0410          	  1168: STA redByte
-00:0CB5 205517          	  1169: JSR led_send
-                        	  1170: 
-                        	  1171: loadled130:
-00:0CB8 B90000          	  1172: LDA blue130,Y
-00:0CBB 8D0210          	  1173: STA blueByte
-00:0CBE B90000          	  1174: LDA green130,Y
-00:0CC1 8D0310          	  1175: STA greenByte
-00:0CC4 B90000          	  1176: LDA red130,Y
-00:0CC7 8D0410          	  1177: STA redByte
-00:0CCA 205517          	  1178: JSR led_send
-                        	  1179: 
-                        	  1180: loadled131:
-00:0CCD B90000          	  1181: LDA blue131,Y
-00:0CD0 8D0210          	  1182: STA blueByte
-00:0CD3 B90000          	  1183: LDA green131,Y
-00:0CD6 8D0310          	  1184: STA greenByte
-00:0CD9 B90000          	  1185: LDA red131,Y
-00:0CDC 8D0410          	  1186: STA redByte
-00:0CDF 205517          	  1187: JSR led_send
-                        	  1188: 
-                        	  1189: loadled132:
-00:0CE2 B90000          	  1190: LDA blue132,Y
-00:0CE5 8D0210          	  1191: STA blueByte
-00:0CE8 B90000          	  1192: LDA green132,Y
-00:0CEB 8D0310          	  1193: STA greenByte
-00:0CEE B90000          	  1194: LDA red132,Y
-00:0CF1 8D0410          	  1195: STA redByte
-00:0CF4 205517          	  1196: JSR led_send
-                        	  1197: 
-                        	  1198: loadled133:
-00:0CF7 B90000          	  1199: LDA blue133,Y
-00:0CFA 8D0210          	  1200: STA blueByte
-00:0CFD B90000          	  1201: LDA green133,Y
-00:0D00 8D0310          	  1202: STA greenByte
-00:0D03 B90000          	  1203: LDA red133,Y
-00:0D06 8D0410          	  1204: STA redByte
-00:0D09 205517          	  1205: JSR led_send
-                        	  1206: 
-                        	  1207: loadled134:
-00:0D0C B90000          	  1208: LDA blue134,Y
-00:0D0F 8D0210          	  1209: STA blueByte
-00:0D12 B90000          	  1210: LDA green134,Y
-00:0D15 8D0310          	  1211: STA greenByte
-00:0D18 B90000          	  1212: LDA red134,Y
-00:0D1B 8D0410          	  1213: STA redByte
-00:0D1E 205517          	  1214: JSR led_send
-                        	  1215: 
-                        	  1216: loadled135:
-00:0D21 B90000          	  1217: LDA blue135,Y
-00:0D24 8D0210          	  1218: STA blueByte
-00:0D27 B90000          	  1219: LDA green135,Y
-00:0D2A 8D0310          	  1220: STA greenByte
-00:0D2D B90000          	  1221: LDA red135,Y
-00:0D30 8D0410          	  1222: STA redByte
-00:0D33 205517          	  1223: JSR led_send
-                        	  1224: 
-                        	  1225: loadled136:
-00:0D36 B90000          	  1226: LDA blue136,Y
-00:0D39 8D0210          	  1227: STA blueByte
-00:0D3C B90000          	  1228: LDA green136,Y
-00:0D3F 8D0310          	  1229: STA greenByte
-00:0D42 B90000          	  1230: LDA red136,Y
-00:0D45 8D0410          	  1231: STA redByte
-00:0D48 205517          	  1232: JSR led_send
-                        	  1233: 
-                        	  1234: loadled137:
-00:0D4B B90000          	  1235: LDA blue137,Y
-00:0D4E 8D0210          	  1236: STA blueByte
-00:0D51 B90000          	  1237: LDA green137,Y
-00:0D54 8D0310          	  1238: STA greenByte
-00:0D57 B90000          	  1239: LDA red137,Y
-00:0D5A 8D0410          	  1240: STA redByte
-00:0D5D 205517          	  1241: JSR led_send
-                        	  1242: 
-                        	  1243: loadled138:
-00:0D60 B90000          	  1244: LDA blue138,Y
-00:0D63 8D0210          	  1245: STA blueByte
-00:0D66 B90000          	  1246: LDA green138,Y
-00:0D69 8D0310          	  1247: STA greenByte
-00:0D6C B90000          	  1248: LDA red138,Y
-00:0D6F 8D0410          	  1249: STA redByte
-00:0D72 205517          	  1250: JSR led_send
-                        	  1251: 
-                        	  1252: loadled139:
-00:0D75 B90000          	  1253: LDA blue139,Y
-00:0D78 8D0210          	  1254: STA blueByte
-00:0D7B B90000          	  1255: LDA green139,Y
-00:0D7E 8D0310          	  1256: STA greenByte
-00:0D81 B90000          	  1257: LDA red139,Y
-00:0D84 8D0410          	  1258: STA redByte
-00:0D87 205517          	  1259: JSR led_send
-                        	  1260: 
-                        	  1261: loadled140:
-00:0D8A B90000          	  1262: LDA blue140,Y
-00:0D8D 8D0210          	  1263: STA blueByte
-00:0D90 B90000          	  1264: LDA green140,Y
-00:0D93 8D0310          	  1265: STA greenByte
-00:0D96 B90000          	  1266: LDA red140,Y
-00:0D99 8D0410          	  1267: STA redByte
-00:0D9C 205517          	  1268: JSR led_send
-                        	  1269: 
-                        	  1270: loadled141:
-00:0D9F B90000          	  1271: LDA blue141,Y
-00:0DA2 8D0210          	  1272: STA blueByte
-00:0DA5 B90000          	  1273: LDA green141,Y
-00:0DA8 8D0310          	  1274: STA greenByte
-00:0DAB B90000          	  1275: LDA red141,Y
-00:0DAE 8D0410          	  1276: STA redByte
-00:0DB1 205517          	  1277: JSR led_send
-                        	  1278: 
-                        	  1279: loadled142:
-00:0DB4 B90000          	  1280: LDA blue142,Y
-00:0DB7 8D0210          	  1281: STA blueByte
-00:0DBA B90000          	  1282: LDA green142,Y
-00:0DBD 8D0310          	  1283: STA greenByte
-00:0DC0 B90000          	  1284: LDA red142,Y
-00:0DC3 8D0410          	  1285: STA redByte
-00:0DC6 205517          	  1286: JSR led_send
-                        	  1287: 
-                        	  1288: loadled143:
-00:0DC9 B90000          	  1289: LDA blue143,Y
-00:0DCC 8D0210          	  1290: STA blueByte
-00:0DCF B90000          	  1291: LDA green143,Y
-00:0DD2 8D0310          	  1292: STA greenByte
-00:0DD5 B90000          	  1293: LDA red143,Y
-00:0DD8 8D0410          	  1294: STA redByte
-00:0DDB 205517          	  1295: JSR led_send
-                        	  1296: 
-                        	  1297: loadled144:
-00:0DDE B90000          	  1298: LDA blue144,Y
-00:0DE1 8D0210          	  1299: STA blueByte
-00:0DE4 B90000          	  1300: LDA green144,Y
-00:0DE7 8D0310          	  1301: STA greenByte
-00:0DEA B90000          	  1302: LDA red144,Y
-00:0DED 8D0410          	  1303: STA redByte
-00:0DF0 205517          	  1304: JSR led_send
-                        	  1305: 
-                        	  1306: loadled145:
-00:0DF3 B90000          	  1307: LDA blue145,Y
-00:0DF6 8D0210          	  1308: STA blueByte
-00:0DF9 B90000          	  1309: LDA green145,Y
-00:0DFC 8D0310          	  1310: STA greenByte
-00:0DFF B90000          	  1311: LDA red145,Y
-00:0E02 8D0410          	  1312: STA redByte
-00:0E05 205517          	  1313: JSR led_send
-                        	  1314: 
-                        	  1315: loadled146:
-00:0E08 B90000          	  1316: LDA blue146,Y
-00:0E0B 8D0210          	  1317: STA blueByte
-00:0E0E B90000          	  1318: LDA green146,Y
-00:0E11 8D0310          	  1319: STA greenByte
-00:0E14 B90000          	  1320: LDA red146,Y
-00:0E17 8D0410          	  1321: STA redByte
-00:0E1A 205517          	  1322: JSR led_send
-                        	  1323: 
-                        	  1324: loadled147:
-00:0E1D B90000          	  1325: LDA blue147,Y
-00:0E20 8D0210          	  1326: STA blueByte
-00:0E23 B90000          	  1327: LDA green147,Y
-00:0E26 8D0310          	  1328: STA greenByte
-00:0E29 B90000          	  1329: LDA red147,Y
-00:0E2C 8D0410          	  1330: STA redByte
-00:0E2F 205517          	  1331: JSR led_send
-                        	  1332: 
-                        	  1333: loadled148:
-00:0E32 B90000          	  1334: LDA blue148,Y
-00:0E35 8D0210          	  1335: STA blueByte
-00:0E38 B90000          	  1336: LDA green148,Y
-00:0E3B 8D0310          	  1337: STA greenByte
-00:0E3E B90000          	  1338: LDA red148,Y
-00:0E41 8D0410          	  1339: STA redByte
-00:0E44 205517          	  1340: JSR led_send
-                        	  1341: 
-                        	  1342: loadled149:
-00:0E47 B90000          	  1343: LDA blue149,Y
-00:0E4A 8D0210          	  1344: STA blueByte
-00:0E4D B90000          	  1345: LDA green149,Y
-00:0E50 8D0310          	  1346: STA greenByte
-00:0E53 B90000          	  1347: LDA red149,Y
-00:0E56 8D0410          	  1348: STA redByte
-00:0E59 205517          	  1349: JSR led_send
-                        	  1350: 
-                        	  1351: loadled150:
-00:0E5C B90000          	  1352: LDA blue150,Y
-00:0E5F 8D0210          	  1353: STA blueByte
-00:0E62 B90000          	  1354: LDA green150,Y
-00:0E65 8D0310          	  1355: STA greenByte
-00:0E68 B90000          	  1356: LDA red150,Y
-00:0E6B 8D0410          	  1357: STA redByte
-00:0E6E 205517          	  1358: JSR led_send
-                        	  1359: 
-                        	  1360: loadled151:
-00:0E71 B90000          	  1361: LDA blue151,Y
-00:0E74 8D0210          	  1362: STA blueByte
-00:0E77 B90000          	  1363: LDA green151,Y
-00:0E7A 8D0310          	  1364: STA greenByte
-00:0E7D B90000          	  1365: LDA red151,Y
-00:0E80 8D0410          	  1366: STA redByte
-00:0E83 205517          	  1367: JSR led_send
-                        	  1368: 
-                        	  1369: loadled152:
-00:0E86 B90000          	  1370: LDA blue152,Y
-00:0E89 8D0210          	  1371: STA blueByte
-00:0E8C B90000          	  1372: LDA green152,Y
-00:0E8F 8D0310          	  1373: STA greenByte
-00:0E92 B90000          	  1374: LDA red152,Y
-00:0E95 8D0410          	  1375: STA redByte
-00:0E98 205517          	  1376: JSR led_send
-                        	  1377: 
-                        	  1378: loadled153:
-00:0E9B B90000          	  1379: LDA blue153,Y
-00:0E9E 8D0210          	  1380: STA blueByte
-00:0EA1 B90000          	  1381: LDA green153,Y
-00:0EA4 8D0310          	  1382: STA greenByte
-00:0EA7 B90000          	  1383: LDA red153,Y
-00:0EAA 8D0410          	  1384: STA redByte
-00:0EAD 205517          	  1385: JSR led_send
-                        	  1386: 
-                        	  1387: loadled154:
-00:0EB0 B90000          	  1388: LDA blue154,Y
-00:0EB3 8D0210          	  1389: STA blueByte
-00:0EB6 B90000          	  1390: LDA green154,Y
-00:0EB9 8D0310          	  1391: STA greenByte
-00:0EBC B90000          	  1392: LDA red154,Y
-00:0EBF 8D0410          	  1393: STA redByte
-00:0EC2 205517          	  1394: JSR led_send
-                        	  1395: 
-                        	  1396: loadled155:
-00:0EC5 B90000          	  1397: LDA blue155,Y
-00:0EC8 8D0210          	  1398: STA blueByte
-00:0ECB B90000          	  1399: LDA green155,Y
-00:0ECE 8D0310          	  1400: STA greenByte
-00:0ED1 B90000          	  1401: LDA red155,Y
-00:0ED4 8D0410          	  1402: STA redByte
-00:0ED7 205517          	  1403: JSR led_send
-                        	  1404: 
-                        	  1405: loadled156:
-00:0EDA B90000          	  1406: LDA blue156,Y
-00:0EDD 8D0210          	  1407: STA blueByte
-00:0EE0 B90000          	  1408: LDA green156,Y
-00:0EE3 8D0310          	  1409: STA greenByte
-00:0EE6 B90000          	  1410: LDA red156,Y
-00:0EE9 8D0410          	  1411: STA redByte
-00:0EEC 205517          	  1412: JSR led_send
-                        	  1413: 
-                        	  1414: loadled157:
-00:0EEF B90000          	  1415: LDA blue157,Y
-00:0EF2 8D0210          	  1416: STA blueByte
-00:0EF5 B90000          	  1417: LDA green157,Y
-00:0EF8 8D0310          	  1418: STA greenByte
-00:0EFB B90000          	  1419: LDA red157,Y
-00:0EFE 8D0410          	  1420: STA redByte
-00:0F01 205517          	  1421: JSR led_send
-                        	  1422: 
-                        	  1423: loadled158:
-00:0F04 B90000          	  1424: LDA blue158,Y
-00:0F07 8D0210          	  1425: STA blueByte
-00:0F0A B90000          	  1426: LDA green158,Y
-00:0F0D 8D0310          	  1427: STA greenByte
-00:0F10 B90000          	  1428: LDA red158,Y
-00:0F13 8D0410          	  1429: STA redByte
-00:0F16 205517          	  1430: JSR led_send
-                        	  1431: 
-                        	  1432: loadled159:
-00:0F19 B90000          	  1433: LDA blue159,Y
-00:0F1C 8D0210          	  1434: STA blueByte
-00:0F1F B90000          	  1435: LDA green159,Y
-00:0F22 8D0310          	  1436: STA greenByte
-00:0F25 B90000          	  1437: LDA red159,Y
-00:0F28 8D0410          	  1438: STA redByte
-00:0F2B 205517          	  1439: JSR led_send
-                        	  1440: 
-                        	  1441: loadled160:
-00:0F2E B90000          	  1442: LDA blue160,Y
-00:0F31 8D0210          	  1443: STA blueByte
-00:0F34 B90000          	  1444: LDA green160,Y
-00:0F37 8D0310          	  1445: STA greenByte
-00:0F3A B90000          	  1446: LDA red160,Y
-00:0F3D 8D0410          	  1447: STA redByte
-00:0F40 205517          	  1448: JSR led_send
-                        	  1449: 
-                        	  1450: loadled161:
-00:0F43 B90000          	  1451: LDA blue161,Y
-00:0F46 8D0210          	  1452: STA blueByte
-00:0F49 B90000          	  1453: LDA green161,Y
-00:0F4C 8D0310          	  1454: STA greenByte
-00:0F4F B90000          	  1455: LDA red161,Y
-00:0F52 8D0410          	  1456: STA redByte
-00:0F55 205517          	  1457: JSR led_send
-                        	  1458: 
-                        	  1459: loadled162:
-00:0F58 B90000          	  1460: LDA blue162,Y
-00:0F5B 8D0210          	  1461: STA blueByte
-00:0F5E B90000          	  1462: LDA green162,Y
-00:0F61 8D0310          	  1463: STA greenByte
-00:0F64 B90000          	  1464: LDA red162,Y
-00:0F67 8D0410          	  1465: STA redByte
-00:0F6A 205517          	  1466: JSR led_send
-                        	  1467: 
-                        	  1468: loadled163:
-00:0F6D B90000          	  1469: LDA blue163,Y
-00:0F70 8D0210          	  1470: STA blueByte
-00:0F73 B90000          	  1471: LDA green163,Y
-00:0F76 8D0310          	  1472: STA greenByte
-00:0F79 B90000          	  1473: LDA red163,Y
-00:0F7C 8D0410          	  1474: STA redByte
-00:0F7F 205517          	  1475: JSR led_send
-                        	  1476: 
-                        	  1477: loadled164:
-00:0F82 B90000          	  1478: LDA blue164,Y
-00:0F85 8D0210          	  1479: STA blueByte
-00:0F88 B90000          	  1480: LDA green164,Y
-00:0F8B 8D0310          	  1481: STA greenByte
-00:0F8E B90000          	  1482: LDA red164,Y
-00:0F91 8D0410          	  1483: STA redByte
-00:0F94 205517          	  1484: JSR led_send
-                        	  1485: 
-                        	  1486: loadled165:
-00:0F97 B90000          	  1487: LDA blue165,Y
-00:0F9A 8D0210          	  1488: STA blueByte
-00:0F9D B90000          	  1489: LDA green165,Y
-00:0FA0 8D0310          	  1490: STA greenByte
-00:0FA3 B90000          	  1491: LDA red165,Y
-00:0FA6 8D0410          	  1492: STA redByte
-00:0FA9 205517          	  1493: JSR led_send
-                        	  1494: 
-                        	  1495: loadled166:
-00:0FAC B90000          	  1496: LDA blue166,Y
-00:0FAF 8D0210          	  1497: STA blueByte
-00:0FB2 B90000          	  1498: LDA green166,Y
-00:0FB5 8D0310          	  1499: STA greenByte
-00:0FB8 B90000          	  1500: LDA red166,Y
-00:0FBB 8D0410          	  1501: STA redByte
-00:0FBE 205517          	  1502: JSR led_send
-                        	  1503: 
-                        	  1504: loadled167:
-00:0FC1 B90000          	  1505: LDA blue167,Y
-00:0FC4 8D0210          	  1506: STA blueByte
-00:0FC7 B90000          	  1507: LDA green167,Y
-00:0FCA 8D0310          	  1508: STA greenByte
-00:0FCD B90000          	  1509: LDA red167,Y
-00:0FD0 8D0410          	  1510: STA redByte
-00:0FD3 205517          	  1511: JSR led_send
-                        	  1512: 
-                        	  1513: loadled168:
-00:0FD6 B90000          	  1514: LDA blue168,Y
-00:0FD9 8D0210          	  1515: STA blueByte
-00:0FDC B90000          	  1516: LDA green168,Y
-00:0FDF 8D0310          	  1517: STA greenByte
-00:0FE2 B90000          	  1518: LDA red168,Y
-00:0FE5 8D0410          	  1519: STA redByte
-00:0FE8 205517          	  1520: JSR led_send
-                        	  1521: 
-                        	  1522: loadled169:
-00:0FEB B90000          	  1523: LDA blue169,Y
-00:0FEE 8D0210          	  1524: STA blueByte
-00:0FF1 B90000          	  1525: LDA green169,Y
-00:0FF4 8D0310          	  1526: STA greenByte
-00:0FF7 B90000          	  1527: LDA red169,Y
-00:0FFA 8D0410          	  1528: STA redByte
-00:0FFD 205517          	  1529: JSR led_send
-                        	  1530: 
-                        	  1531: loadled170:
-00:1000 B90000          	  1532: LDA blue170,Y
-00:1003 8D0210          	  1533: STA blueByte
-00:1006 B90000          	  1534: LDA green170,Y
-00:1009 8D0310          	  1535: STA greenByte
-00:100C B90000          	  1536: LDA red170,Y
-00:100F 8D0410          	  1537: STA redByte
-00:1012 205517          	  1538: JSR led_send
-                        	  1539: 
-                        	  1540: loadled171:
-00:1015 B90000          	  1541: LDA blue171,Y
-00:1018 8D0210          	  1542: STA blueByte
-00:101B B90000          	  1543: LDA green171,Y
-00:101E 8D0310          	  1544: STA greenByte
-00:1021 B90000          	  1545: LDA red171,Y
-00:1024 8D0410          	  1546: STA redByte
-00:1027 205517          	  1547: JSR led_send
-                        	  1548: 
-                        	  1549: loadled172:
-00:102A B90000          	  1550: LDA blue172,Y
-00:102D 8D0210          	  1551: STA blueByte
-00:1030 B90000          	  1552: LDA green172,Y
-00:1033 8D0310          	  1553: STA greenByte
-00:1036 B90000          	  1554: LDA red172,Y
-00:1039 8D0410          	  1555: STA redByte
-00:103C 205517          	  1556: JSR led_send
-                        	  1557: 
-                        	  1558: loadled173:
-00:103F B90000          	  1559: LDA blue173,Y
-00:1042 8D0210          	  1560: STA blueByte
-00:1045 B90000          	  1561: LDA green173,Y
-00:1048 8D0310          	  1562: STA greenByte
-00:104B B90000          	  1563: LDA red173,Y
-00:104E 8D0410          	  1564: STA redByte
-00:1051 205517          	  1565: JSR led_send
-                        	  1566: 
-                        	  1567: loadled174:
-00:1054 B90000          	  1568: LDA blue174,Y
-00:1057 8D0210          	  1569: STA blueByte
-00:105A B90000          	  1570: LDA green174,Y
-00:105D 8D0310          	  1571: STA greenByte
-00:1060 B90000          	  1572: LDA red174,Y
-00:1063 8D0410          	  1573: STA redByte
-00:1066 205517          	  1574: JSR led_send
-                        	  1575: 
-                        	  1576: loadled175:
-00:1069 B90000          	  1577: LDA blue175,Y
-00:106C 8D0210          	  1578: STA blueByte
-00:106F B90000          	  1579: LDA green175,Y
-00:1072 8D0310          	  1580: STA greenByte
-00:1075 B90000          	  1581: LDA red175,Y
-00:1078 8D0410          	  1582: STA redByte
-00:107B 205517          	  1583: JSR led_send
-                        	  1584: 
-                        	  1585: loadled176:
-00:107E B90000          	  1586: LDA blue176,Y
-00:1081 8D0210          	  1587: STA blueByte
-00:1084 B90000          	  1588: LDA green176,Y
-00:1087 8D0310          	  1589: STA greenByte
-00:108A B90000          	  1590: LDA red176,Y
-00:108D 8D0410          	  1591: STA redByte
-00:1090 205517          	  1592: JSR led_send
-                        	  1593: 
-                        	  1594: loadled177:
-00:1093 B90000          	  1595: LDA blue177,Y
-00:1096 8D0210          	  1596: STA blueByte
-00:1099 B90000          	  1597: LDA green177,Y
-00:109C 8D0310          	  1598: STA greenByte
-00:109F B90000          	  1599: LDA red177,Y
-00:10A2 8D0410          	  1600: STA redByte
-00:10A5 205517          	  1601: JSR led_send
-                        	  1602: 
-                        	  1603: loadled178:
-00:10A8 B90000          	  1604: LDA blue178,Y
-00:10AB 8D0210          	  1605: STA blueByte
-00:10AE B90000          	  1606: LDA green178,Y
-00:10B1 8D0310          	  1607: STA greenByte
-00:10B4 B90000          	  1608: LDA red178,Y
-00:10B7 8D0410          	  1609: STA redByte
-00:10BA 205517          	  1610: JSR led_send
-                        	  1611: 
-                        	  1612: loadled179:
-00:10BD B90000          	  1613: LDA blue179,Y
-00:10C0 8D0210          	  1614: STA blueByte
-00:10C3 B90000          	  1615: LDA green179,Y
-00:10C6 8D0310          	  1616: STA greenByte
-00:10C9 B90000          	  1617: LDA red179,Y
-00:10CC 8D0410          	  1618: STA redByte
-00:10CF 205517          	  1619: JSR led_send
-                        	  1620: 
-                        	  1621: loadled180:
-00:10D2 B90000          	  1622: LDA blue180,Y
-00:10D5 8D0210          	  1623: STA blueByte
-00:10D8 B90000          	  1624: LDA green180,Y
-00:10DB 8D0310          	  1625: STA greenByte
-00:10DE B90000          	  1626: LDA red180,Y
-00:10E1 8D0410          	  1627: STA redByte
-00:10E4 205517          	  1628: JSR led_send
-                        	  1629: 
-                        	  1630: loadled181:
-00:10E7 B90000          	  1631: LDA blue181,Y
-00:10EA 8D0210          	  1632: STA blueByte
-00:10ED B90000          	  1633: LDA green181,Y
-00:10F0 8D0310          	  1634: STA greenByte
-00:10F3 B90000          	  1635: LDA red181,Y
-00:10F6 8D0410          	  1636: STA redByte
-00:10F9 205517          	  1637: JSR led_send
-                        	  1638: 
-                        	  1639: loadled182:
-00:10FC B90000          	  1640: LDA blue182,Y
-00:10FF 8D0210          	  1641: STA blueByte
-00:1102 B90000          	  1642: LDA green182,Y
-00:1105 8D0310          	  1643: STA greenByte
-00:1108 B90000          	  1644: LDA red182,Y
-00:110B 8D0410          	  1645: STA redByte
-00:110E 205517          	  1646: JSR led_send
-                        	  1647: 
-                        	  1648: loadled183:
-00:1111 B90000          	  1649: LDA blue183,Y
-00:1114 8D0210          	  1650: STA blueByte
-00:1117 B90000          	  1651: LDA green183,Y
-00:111A 8D0310          	  1652: STA greenByte
-00:111D B90000          	  1653: LDA red183,Y
-00:1120 8D0410          	  1654: STA redByte
-00:1123 205517          	  1655: JSR led_send
-                        	  1656: 
-                        	  1657: loadled184:
-00:1126 B90000          	  1658: LDA blue184,Y
-00:1129 8D0210          	  1659: STA blueByte
-00:112C B90000          	  1660: LDA green184,Y
-00:112F 8D0310          	  1661: STA greenByte
-00:1132 B90000          	  1662: LDA red184,Y
-00:1135 8D0410          	  1663: STA redByte
-00:1138 205517          	  1664: JSR led_send
-                        	  1665: 
-                        	  1666: loadled185:
-00:113B B90000          	  1667: LDA blue185,Y
-00:113E 8D0210          	  1668: STA blueByte
-00:1141 B90000          	  1669: LDA green185,Y
-00:1144 8D0310          	  1670: STA greenByte
-00:1147 B90000          	  1671: LDA red185,Y
-00:114A 8D0410          	  1672: STA redByte
-00:114D 205517          	  1673: JSR led_send
-                        	  1674: 
-                        	  1675: loadled186:
-00:1150 B90000          	  1676: LDA blue186,Y
-00:1153 8D0210          	  1677: STA blueByte
-00:1156 B90000          	  1678: LDA green186,Y
-00:1159 8D0310          	  1679: STA greenByte
-00:115C B90000          	  1680: LDA red186,Y
-00:115F 8D0410          	  1681: STA redByte
-00:1162 205517          	  1682: JSR led_send
-                        	  1683: 
-                        	  1684: loadled187:
-00:1165 B90000          	  1685: LDA blue187,Y
-00:1168 8D0210          	  1686: STA blueByte
-00:116B B90000          	  1687: LDA green187,Y
-00:116E 8D0310          	  1688: STA greenByte
-00:1171 B90000          	  1689: LDA red187,Y
-00:1174 8D0410          	  1690: STA redByte
-00:1177 205517          	  1691: JSR led_send
-                        	  1692: 
-                        	  1693: loadled188:
-00:117A B90000          	  1694: LDA blue188,Y
-00:117D 8D0210          	  1695: STA blueByte
-00:1180 B90000          	  1696: LDA green188,Y
-00:1183 8D0310          	  1697: STA greenByte
-00:1186 B90000          	  1698: LDA red188,Y
-00:1189 8D0410          	  1699: STA redByte
-00:118C 205517          	  1700: JSR led_send
-                        	  1701: 
-                        	  1702: loadled189:
-00:118F B90000          	  1703: LDA blue189,Y
-00:1192 8D0210          	  1704: STA blueByte
-00:1195 B90000          	  1705: LDA green189,Y
-00:1198 8D0310          	  1706: STA greenByte
-00:119B B90000          	  1707: LDA red189,Y
-00:119E 8D0410          	  1708: STA redByte
-00:11A1 205517          	  1709: JSR led_send
-                        	  1710: 
-                        	  1711: loadled190:
-00:11A4 B90000          	  1712: LDA blue190,Y
-00:11A7 8D0210          	  1713: STA blueByte
-00:11AA B90000          	  1714: LDA green190,Y
-00:11AD 8D0310          	  1715: STA greenByte
-00:11B0 B90000          	  1716: LDA red190,Y
-00:11B3 8D0410          	  1717: STA redByte
-00:11B6 205517          	  1718: JSR led_send
-                        	  1719: 
-                        	  1720: loadled191:
-00:11B9 B90000          	  1721: LDA blue191,Y
-00:11BC 8D0210          	  1722: STA blueByte
-00:11BF B90000          	  1723: LDA green191,Y
-00:11C2 8D0310          	  1724: STA greenByte
-00:11C5 B90000          	  1725: LDA red191,Y
-00:11C8 8D0410          	  1726: STA redByte
-00:11CB 205517          	  1727: JSR led_send
-                        	  1728: 
-                        	  1729: loadled192:
-00:11CE B90000          	  1730: LDA blue192,Y
-00:11D1 8D0210          	  1731: STA blueByte
-00:11D4 B90000          	  1732: LDA green192,Y
-00:11D7 8D0310          	  1733: STA greenByte
-00:11DA B90000          	  1734: LDA red192,Y
-00:11DD 8D0410          	  1735: STA redByte
-00:11E0 205517          	  1736: JSR led_send
-                        	  1737: 
-                        	  1738: loadled193:
-00:11E3 B90000          	  1739: LDA blue193,Y
-00:11E6 8D0210          	  1740: STA blueByte
-00:11E9 B90000          	  1741: LDA green193,Y
-00:11EC 8D0310          	  1742: STA greenByte
-00:11EF B90000          	  1743: LDA red193,Y
-00:11F2 8D0410          	  1744: STA redByte
-00:11F5 205517          	  1745: JSR led_send
-                        	  1746: 
-                        	  1747: loadled194:
-00:11F8 B90000          	  1748: LDA blue194,Y
-00:11FB 8D0210          	  1749: STA blueByte
-00:11FE B90000          	  1750: LDA green194,Y
-00:1201 8D0310          	  1751: STA greenByte
-00:1204 B90000          	  1752: LDA red194,Y
-00:1207 8D0410          	  1753: STA redByte
-00:120A 205517          	  1754: JSR led_send
-                        	  1755: 
-                        	  1756: loadled195:
-00:120D B90000          	  1757: LDA blue195,Y
-00:1210 8D0210          	  1758: STA blueByte
-00:1213 B90000          	  1759: LDA green195,Y
-00:1216 8D0310          	  1760: STA greenByte
-00:1219 B90000          	  1761: LDA red195,Y
-00:121C 8D0410          	  1762: STA redByte
-00:121F 205517          	  1763: JSR led_send
-                        	  1764: 
-                        	  1765: loadled196:
-00:1222 B90000          	  1766: LDA blue196,Y
-00:1225 8D0210          	  1767: STA blueByte
-00:1228 B90000          	  1768: LDA green196,Y
-00:122B 8D0310          	  1769: STA greenByte
-00:122E B90000          	  1770: LDA red196,Y
-00:1231 8D0410          	  1771: STA redByte
-00:1234 205517          	  1772: JSR led_send
-                        	  1773: 
-                        	  1774: loadled197:
-00:1237 B90000          	  1775: LDA blue197,Y
-00:123A 8D0210          	  1776: STA blueByte
-00:123D B90000          	  1777: LDA green197,Y
-00:1240 8D0310          	  1778: STA greenByte
-00:1243 B90000          	  1779: LDA red197,Y
-00:1246 8D0410          	  1780: STA redByte
-00:1249 205517          	  1781: JSR led_send
-                        	  1782: 
-                        	  1783: loadled198:
-00:124C B90000          	  1784: LDA blue198,Y
-00:124F 8D0210          	  1785: STA blueByte
-00:1252 B90000          	  1786: LDA green198,Y
-00:1255 8D0310          	  1787: STA greenByte
-00:1258 B90000          	  1788: LDA red198,Y
-00:125B 8D0410          	  1789: STA redByte
-00:125E 205517          	  1790: JSR led_send
-                        	  1791: 
-                        	  1792: loadled199:
-00:1261 B90000          	  1793: LDA blue199,Y
-00:1264 8D0210          	  1794: STA blueByte
-00:1267 B90000          	  1795: LDA green199,Y
-00:126A 8D0310          	  1796: STA greenByte
-00:126D B90000          	  1797: LDA red199,Y
-00:1270 8D0410          	  1798: STA redByte
-00:1273 205517          	  1799: JSR led_send
-                        	  1800: 
-                        	  1801: loadled200:
-00:1276 B90000          	  1802: LDA blue200,Y
-00:1279 8D0210          	  1803: STA blueByte
-00:127C B90000          	  1804: LDA green200,Y
-00:127F 8D0310          	  1805: STA greenByte
-00:1282 B90000          	  1806: LDA red200,Y
-00:1285 8D0410          	  1807: STA redByte
-00:1288 205517          	  1808: JSR led_send
-                        	  1809: 
-                        	  1810: loadled201:
-00:128B B90000          	  1811: LDA blue201,Y
-00:128E 8D0210          	  1812: STA blueByte
-00:1291 B90000          	  1813: LDA green201,Y
-00:1294 8D0310          	  1814: STA greenByte
-00:1297 B90000          	  1815: LDA red201,Y
-00:129A 8D0410          	  1816: STA redByte
-00:129D 205517          	  1817: JSR led_send
-                        	  1818: 
-                        	  1819: loadled202:
-00:12A0 B90000          	  1820: LDA blue202,Y
-00:12A3 8D0210          	  1821: STA blueByte
-00:12A6 B90000          	  1822: LDA green202,Y
-00:12A9 8D0310          	  1823: STA greenByte
-00:12AC B90000          	  1824: LDA red202,Y
-00:12AF 8D0410          	  1825: STA redByte
-00:12B2 205517          	  1826: JSR led_send
-                        	  1827: 
-                        	  1828: loadled203:
-00:12B5 B90000          	  1829: LDA blue203,Y
-00:12B8 8D0210          	  1830: STA blueByte
-00:12BB B90000          	  1831: LDA green203,Y
-00:12BE 8D0310          	  1832: STA greenByte
-00:12C1 B90000          	  1833: LDA red203,Y
-00:12C4 8D0410          	  1834: STA redByte
-00:12C7 205517          	  1835: JSR led_send
-                        	  1836: 
-                        	  1837: loadled204:
-00:12CA B90000          	  1838: LDA blue204,Y
-00:12CD 8D0210          	  1839: STA blueByte
-00:12D0 B90000          	  1840: LDA green204,Y
-00:12D3 8D0310          	  1841: STA greenByte
-00:12D6 B90000          	  1842: LDA red204,Y
-00:12D9 8D0410          	  1843: STA redByte
-00:12DC 205517          	  1844: JSR led_send
-                        	  1845: 
-                        	  1846: loadled205:
-00:12DF B90000          	  1847: LDA blue205,Y
-00:12E2 8D0210          	  1848: STA blueByte
-00:12E5 B90000          	  1849: LDA green205,Y
-00:12E8 8D0310          	  1850: STA greenByte
-00:12EB B90000          	  1851: LDA red205,Y
-00:12EE 8D0410          	  1852: STA redByte
-00:12F1 205517          	  1853: JSR led_send
-                        	  1854: 
-                        	  1855: loadled206:
-00:12F4 B90000          	  1856: LDA blue206,Y
-00:12F7 8D0210          	  1857: STA blueByte
-00:12FA B90000          	  1858: LDA green206,Y
-00:12FD 8D0310          	  1859: STA greenByte
-00:1300 B90000          	  1860: LDA red206,Y
-00:1303 8D0410          	  1861: STA redByte
-00:1306 205517          	  1862: JSR led_send
-                        	  1863: 
-                        	  1864: loadled207:
-00:1309 B90000          	  1865: LDA blue207,Y
-00:130C 8D0210          	  1866: STA blueByte
-00:130F B90000          	  1867: LDA green207,Y
-00:1312 8D0310          	  1868: STA greenByte
-00:1315 B90000          	  1869: LDA red207,Y
-00:1318 8D0410          	  1870: STA redByte
-00:131B 205517          	  1871: JSR led_send
-                        	  1872: 
-                        	  1873: loadled208:
-00:131E B90000          	  1874: LDA blue208,Y
-00:1321 8D0210          	  1875: STA blueByte
-00:1324 B90000          	  1876: LDA green208,Y
-00:1327 8D0310          	  1877: STA greenByte
-00:132A B90000          	  1878: LDA red208,Y
-00:132D 8D0410          	  1879: STA redByte
-00:1330 205517          	  1880: JSR led_send
-                        	  1881: 
-                        	  1882: loadled209:
-00:1333 B90000          	  1883: LDA blue209,Y
-00:1336 8D0210          	  1884: STA blueByte
-00:1339 B90000          	  1885: LDA green209,Y
-00:133C 8D0310          	  1886: STA greenByte
-00:133F B90000          	  1887: LDA red209,Y
-00:1342 8D0410          	  1888: STA redByte
-00:1345 205517          	  1889: JSR led_send
-                        	  1890: 
-                        	  1891: loadled210:
-00:1348 B90000          	  1892: LDA blue210,Y
-00:134B 8D0210          	  1893: STA blueByte
-00:134E B90000          	  1894: LDA green210,Y
-00:1351 8D0310          	  1895: STA greenByte
-00:1354 B90000          	  1896: LDA red210,Y
-00:1357 8D0410          	  1897: STA redByte
-00:135A 205517          	  1898: JSR led_send
-                        	  1899: 
-                        	  1900: loadled211:
-00:135D B90000          	  1901: LDA blue211,Y
-00:1360 8D0210          	  1902: STA blueByte
-00:1363 B90000          	  1903: LDA green211,Y
-00:1366 8D0310          	  1904: STA greenByte
-00:1369 B90000          	  1905: LDA red211,Y
-00:136C 8D0410          	  1906: STA redByte
-00:136F 205517          	  1907: JSR led_send
-                        	  1908: 
-                        	  1909: loadled212:
-00:1372 B90000          	  1910: LDA blue212,Y
-00:1375 8D0210          	  1911: STA blueByte
-00:1378 B90000          	  1912: LDA green212,Y
-00:137B 8D0310          	  1913: STA greenByte
-00:137E B90000          	  1914: LDA red212,Y
-00:1381 8D0410          	  1915: STA redByte
-00:1384 205517          	  1916: JSR led_send
-                        	  1917: 
-                        	  1918: loadled213:
-00:1387 B90000          	  1919: LDA blue213,Y
-00:138A 8D0210          	  1920: STA blueByte
-00:138D B90000          	  1921: LDA green213,Y
-00:1390 8D0310          	  1922: STA greenByte
-00:1393 B90000          	  1923: LDA red213,Y
-00:1396 8D0410          	  1924: STA redByte
-00:1399 205517          	  1925: JSR led_send
-                        	  1926: 
-                        	  1927: loadled214:
-00:139C B90000          	  1928: LDA blue214,Y
-00:139F 8D0210          	  1929: STA blueByte
-00:13A2 B90000          	  1930: LDA green214,Y
-00:13A5 8D0310          	  1931: STA greenByte
-00:13A8 B90000          	  1932: LDA red214,Y
-00:13AB 8D0410          	  1933: STA redByte
-00:13AE 205517          	  1934: JSR led_send
-                        	  1935: 
-                        	  1936: loadled215:
-00:13B1 B90000          	  1937: LDA blue215,Y
-00:13B4 8D0210          	  1938: STA blueByte
-00:13B7 B90000          	  1939: LDA green215,Y
-00:13BA 8D0310          	  1940: STA greenByte
-00:13BD B90000          	  1941: LDA red215,Y
-00:13C0 8D0410          	  1942: STA redByte
-00:13C3 205517          	  1943: JSR led_send
-                        	  1944: 
-                        	  1945: loadled216:
-00:13C6 B90000          	  1946: LDA blue216,Y
-00:13C9 8D0210          	  1947: STA blueByte
-00:13CC B90000          	  1948: LDA green216,Y
-00:13CF 8D0310          	  1949: STA greenByte
-00:13D2 B90000          	  1950: LDA red216,Y
-00:13D5 8D0410          	  1951: STA redByte
-00:13D8 205517          	  1952: JSR led_send
-                        	  1953: 
-                        	  1954: loadled217:
-00:13DB B90000          	  1955: LDA blue217,Y
-00:13DE 8D0210          	  1956: STA blueByte
-00:13E1 B90000          	  1957: LDA green217,Y
-00:13E4 8D0310          	  1958: STA greenByte
-00:13E7 B90000          	  1959: LDA red217,Y
-00:13EA 8D0410          	  1960: STA redByte
-00:13ED 205517          	  1961: JSR led_send
-                        	  1962: 
-                        	  1963: loadled218:
-00:13F0 B90000          	  1964: LDA blue218,Y
-00:13F3 8D0210          	  1965: STA blueByte
-00:13F6 B90000          	  1966: LDA green218,Y
-00:13F9 8D0310          	  1967: STA greenByte
-00:13FC B90000          	  1968: LDA red218,Y
-00:13FF 8D0410          	  1969: STA redByte
-00:1402 205517          	  1970: JSR led_send
-                        	  1971: 
-                        	  1972: loadled219:
-00:1405 B90000          	  1973: LDA blue219,Y
-00:1408 8D0210          	  1974: STA blueByte
-00:140B B90000          	  1975: LDA green219,Y
-00:140E 8D0310          	  1976: STA greenByte
-00:1411 B90000          	  1977: LDA red219,Y
-00:1414 8D0410          	  1978: STA redByte
-00:1417 205517          	  1979: JSR led_send
-                        	  1980: 
-                        	  1981: loadled220:
-00:141A B90000          	  1982: LDA blue220,Y
-00:141D 8D0210          	  1983: STA blueByte
-00:1420 B90000          	  1984: LDA green220,Y
-00:1423 8D0310          	  1985: STA greenByte
-00:1426 B90000          	  1986: LDA red220,Y
-00:1429 8D0410          	  1987: STA redByte
-00:142C 205517          	  1988: JSR led_send
-                        	  1989: 
-                        	  1990: loadled221:
-00:142F B90000          	  1991: LDA blue221,Y
-00:1432 8D0210          	  1992: STA blueByte
-00:1435 B90000          	  1993: LDA green221,Y
-00:1438 8D0310          	  1994: STA greenByte
-00:143B B90000          	  1995: LDA red221,Y
-00:143E 8D0410          	  1996: STA redByte
-00:1441 205517          	  1997: JSR led_send
-                        	  1998: 
-                        	  1999: loadled222:
-00:1444 B90000          	  2000: LDA blue222,Y
-00:1447 8D0210          	  2001: STA blueByte
-00:144A B90000          	  2002: LDA green222,Y
-00:144D 8D0310          	  2003: STA greenByte
-00:1450 B90000          	  2004: LDA red222,Y
-00:1453 8D0410          	  2005: STA redByte
-00:1456 205517          	  2006: JSR led_send
-                        	  2007: 
-                        	  2008: loadled223:
-00:1459 B90000          	  2009: LDA blue223,Y
-00:145C 8D0210          	  2010: STA blueByte
-00:145F B90000          	  2011: LDA green223,Y
-00:1462 8D0310          	  2012: STA greenByte
-00:1465 B90000          	  2013: LDA red223,Y
-00:1468 8D0410          	  2014: STA redByte
-00:146B 205517          	  2015: JSR led_send
-                        	  2016: 
-                        	  2017: loadled224:
-00:146E B90000          	  2018: LDA blue224,Y
-00:1471 8D0210          	  2019: STA blueByte
-00:1474 B90000          	  2020: LDA green224,Y
-00:1477 8D0310          	  2021: STA greenByte
-00:147A B90000          	  2022: LDA red224,Y
-00:147D 8D0410          	  2023: STA redByte
-00:1480 205517          	  2024: JSR led_send
-                        	  2025: 
-                        	  2026: loadled225:
-00:1483 B90000          	  2027: LDA blue225,Y
-00:1486 8D0210          	  2028: STA blueByte
-00:1489 B90000          	  2029: LDA green225,Y
-00:148C 8D0310          	  2030: STA greenByte
-00:148F B90000          	  2031: LDA red225,Y
-00:1492 8D0410          	  2032: STA redByte
-00:1495 205517          	  2033: JSR led_send
-                        	  2034: 
-                        	  2035: loadled226:
-00:1498 B90000          	  2036: LDA blue226,Y
-00:149B 8D0210          	  2037: STA blueByte
-00:149E B90000          	  2038: LDA green226,Y
-00:14A1 8D0310          	  2039: STA greenByte
-00:14A4 B90000          	  2040: LDA red226,Y
-00:14A7 8D0410          	  2041: STA redByte
-00:14AA 205517          	  2042: JSR led_send
-                        	  2043: 
-                        	  2044: loadled227:
-00:14AD B90000          	  2045: LDA blue227,Y
-00:14B0 8D0210          	  2046: STA blueByte
-00:14B3 B90000          	  2047: LDA green227,Y
-00:14B6 8D0310          	  2048: STA greenByte
-00:14B9 B90000          	  2049: LDA red227,Y
-00:14BC 8D0410          	  2050: STA redByte
-00:14BF 205517          	  2051: JSR led_send
-                        	  2052: 
-                        	  2053: loadled228:
-00:14C2 B90000          	  2054: LDA blue228,Y
-00:14C5 8D0210          	  2055: STA blueByte
-00:14C8 B90000          	  2056: LDA green228,Y
-00:14CB 8D0310          	  2057: STA greenByte
-00:14CE B90000          	  2058: LDA red228,Y
-00:14D1 8D0410          	  2059: STA redByte
-00:14D4 205517          	  2060: JSR led_send
-                        	  2061: 
-                        	  2062: loadled229:
-00:14D7 B90000          	  2063: LDA blue229,Y
-00:14DA 8D0210          	  2064: STA blueByte
-00:14DD B90000          	  2065: LDA green229,Y
-00:14E0 8D0310          	  2066: STA greenByte
-00:14E3 B90000          	  2067: LDA red229,Y
-00:14E6 8D0410          	  2068: STA redByte
-00:14E9 205517          	  2069: JSR led_send
-                        	  2070: 
-                        	  2071: loadled230:
-00:14EC B90000          	  2072: LDA blue230,Y
-00:14EF 8D0210          	  2073: STA blueByte
-00:14F2 B90000          	  2074: LDA green230,Y
-00:14F5 8D0310          	  2075: STA greenByte
-00:14F8 B90000          	  2076: LDA red230,Y
-00:14FB 8D0410          	  2077: STA redByte
-00:14FE 205517          	  2078: JSR led_send
-                        	  2079: 
-                        	  2080: loadled231:
-00:1501 B90000          	  2081: LDA blue231,Y
-00:1504 8D0210          	  2082: STA blueByte
-00:1507 B90000          	  2083: LDA green231,Y
-00:150A 8D0310          	  2084: STA greenByte
-00:150D B90000          	  2085: LDA red231,Y
-00:1510 8D0410          	  2086: STA redByte
-00:1513 205517          	  2087: JSR led_send
-                        	  2088: 
-                        	  2089: loadled232:
-00:1516 B90000          	  2090: LDA blue232,Y
-00:1519 8D0210          	  2091: STA blueByte
-00:151C B90000          	  2092: LDA green232,Y
-00:151F 8D0310          	  2093: STA greenByte
-00:1522 B90000          	  2094: LDA red232,Y
-00:1525 8D0410          	  2095: STA redByte
-00:1528 205517          	  2096: JSR led_send
-                        	  2097: 
-                        	  2098: loadled233:
-00:152B B90000          	  2099: LDA blue233,Y
-00:152E 8D0210          	  2100: STA blueByte
-00:1531 B90000          	  2101: LDA green233,Y
-00:1534 8D0310          	  2102: STA greenByte
-00:1537 B90000          	  2103: LDA red233,Y
-00:153A 8D0410          	  2104: STA redByte
-00:153D 205517          	  2105: JSR led_send
-                        	  2106: 
-                        	  2107: loadled234:
-00:1540 B90000          	  2108: LDA blue234,Y
-00:1543 8D0210          	  2109: STA blueByte
-00:1546 B90000          	  2110: LDA green234,Y
-00:1549 8D0310          	  2111: STA greenByte
-00:154C B90000          	  2112: LDA red234,Y
-00:154F 8D0410          	  2113: STA redByte
-00:1552 205517          	  2114: JSR led_send
-                        	  2115: 
-                        	  2116: loadled235:
-00:1555 B90000          	  2117: LDA blue235,Y
-00:1558 8D0210          	  2118: STA blueByte
-00:155B B90000          	  2119: LDA green235,Y
-00:155E 8D0310          	  2120: STA greenByte
-00:1561 B90000          	  2121: LDA red235,Y
-00:1564 8D0410          	  2122: STA redByte
-00:1567 205517          	  2123: JSR led_send
-                        	  2124: 
-                        	  2125: loadled236:
-00:156A B90000          	  2126: LDA blue236,Y
-00:156D 8D0210          	  2127: STA blueByte
-00:1570 B90000          	  2128: LDA green236,Y
-00:1573 8D0310          	  2129: STA greenByte
-00:1576 B90000          	  2130: LDA red236,Y
-00:1579 8D0410          	  2131: STA redByte
-00:157C 205517          	  2132: JSR led_send
-                        	  2133: 
-                        	  2134: loadled237:
-00:157F B90000          	  2135: LDA blue237,Y
-00:1582 8D0210          	  2136: STA blueByte
-00:1585 B90000          	  2137: LDA green237,Y
-00:1588 8D0310          	  2138: STA greenByte
-00:158B B90000          	  2139: LDA red237,Y
-00:158E 8D0410          	  2140: STA redByte
-00:1591 205517          	  2141: JSR led_send
-                        	  2142: 
-                        	  2143: loadled238:
-00:1594 B90000          	  2144: LDA blue238,Y
-00:1597 8D0210          	  2145: STA blueByte
-00:159A B90000          	  2146: LDA green238,Y
-00:159D 8D0310          	  2147: STA greenByte
-00:15A0 B90000          	  2148: LDA red238,Y
-00:15A3 8D0410          	  2149: STA redByte
-00:15A6 205517          	  2150: JSR led_send
-                        	  2151: 
-                        	  2152: loadled239:
-00:15A9 B90000          	  2153: LDA blue239,Y
-00:15AC 8D0210          	  2154: STA blueByte
-00:15AF B90000          	  2155: LDA green239,Y
-00:15B2 8D0310          	  2156: STA greenByte
-00:15B5 B90000          	  2157: LDA red239,Y
-00:15B8 8D0410          	  2158: STA redByte
-00:15BB 205517          	  2159: JSR led_send
-                        	  2160: 
-                        	  2161: loadled240:
-00:15BE B90000          	  2162: LDA blue240,Y
-00:15C1 8D0210          	  2163: STA blueByte
-00:15C4 B90000          	  2164: LDA green240,Y
-00:15C7 8D0310          	  2165: STA greenByte
-00:15CA B90000          	  2166: LDA red240,Y
-00:15CD 8D0410          	  2167: STA redByte
-00:15D0 205517          	  2168: JSR led_send
-                        	  2169: 
-                        	  2170: loadled241:
-00:15D3 B90000          	  2171: LDA blue241,Y
-00:15D6 8D0210          	  2172: STA blueByte
-00:15D9 B90000          	  2173: LDA green241,Y
-00:15DC 8D0310          	  2174: STA greenByte
-00:15DF B90000          	  2175: LDA red241,Y
-00:15E2 8D0410          	  2176: STA redByte
-00:15E5 205517          	  2177: JSR led_send
-                        	  2178: 
-                        	  2179: loadled242:
-00:15E8 B90000          	  2180: LDA blue242,Y
-00:15EB 8D0210          	  2181: STA blueByte
-00:15EE B90000          	  2182: LDA green242,Y
-00:15F1 8D0310          	  2183: STA greenByte
-00:15F4 B90000          	  2184: LDA red242,Y
-00:15F7 8D0410          	  2185: STA redByte
-00:15FA 205517          	  2186: JSR led_send
-                        	  2187: 
-                        	  2188: loadled243:
-00:15FD B90000          	  2189: LDA blue243,Y
-00:1600 8D0210          	  2190: STA blueByte
-00:1603 B90000          	  2191: LDA green243,Y
-00:1606 8D0310          	  2192: STA greenByte
-00:1609 B90000          	  2193: LDA red243,Y
-00:160C 8D0410          	  2194: STA redByte
-00:160F 205517          	  2195: JSR led_send
-                        	  2196: 
-                        	  2197: loadled244:
-00:1612 B90000          	  2198: LDA blue244,Y
-00:1615 8D0210          	  2199: STA blueByte
-00:1618 B90000          	  2200: LDA green244,Y
-00:161B 8D0310          	  2201: STA greenByte
-00:161E B90000          	  2202: LDA red244,Y
-00:1621 8D0410          	  2203: STA redByte
-00:1624 205517          	  2204: JSR led_send
-                        	  2205: 
-                        	  2206: loadled245:
-00:1627 B90000          	  2207: LDA blue245,Y
-00:162A 8D0210          	  2208: STA blueByte
-00:162D B90000          	  2209: LDA green245,Y
-00:1630 8D0310          	  2210: STA greenByte
-00:1633 B90000          	  2211: LDA red245,Y
-00:1636 8D0410          	  2212: STA redByte
-00:1639 205517          	  2213: JSR led_send
-                        	  2214: 
-                        	  2215: loadled246:
-00:163C B90000          	  2216: LDA blue246,Y
-00:163F 8D0210          	  2217: STA blueByte
-00:1642 B90000          	  2218: LDA green246,Y
-00:1645 8D0310          	  2219: STA greenByte
-00:1648 B90000          	  2220: LDA red246,Y
-00:164B 8D0410          	  2221: STA redByte
-00:164E 205517          	  2222: JSR led_send
-                        	  2223: 
-                        	  2224: loadled247:
-00:1651 B90000          	  2225: LDA blue247,Y
-00:1654 8D0210          	  2226: STA blueByte
-00:1657 B90000          	  2227: LDA green247,Y
-00:165A 8D0310          	  2228: STA greenByte
-00:165D B90000          	  2229: LDA red247,Y
-00:1660 8D0410          	  2230: STA redByte
-00:1663 205517          	  2231: JSR led_send
-                        	  2232: 
-                        	  2233: loadled248:
-00:1666 B90000          	  2234: LDA blue248,Y
-00:1669 8D0210          	  2235: STA blueByte
-00:166C B90000          	  2236: LDA green248,Y
-00:166F 8D0310          	  2237: STA greenByte
-00:1672 B90000          	  2238: LDA red248,Y
-00:1675 8D0410          	  2239: STA redByte
-00:1678 205517          	  2240: JSR led_send
-                        	  2241: 
-                        	  2242: loadled249:
-00:167B B90000          	  2243: LDA blue249,Y
-00:167E 8D0210          	  2244: STA blueByte
-00:1681 B90000          	  2245: LDA green249,Y
-00:1684 8D0310          	  2246: STA greenByte
-00:1687 B90000          	  2247: LDA red249,Y
-00:168A 8D0410          	  2248: STA redByte
-00:168D 205517          	  2249: JSR led_send
-                        	  2250: 
-                        	  2251: loadled250:
-00:1690 B90000          	  2252: LDA blue250,Y
-00:1693 8D0210          	  2253: STA blueByte
-00:1696 B90000          	  2254: LDA green250,Y
-00:1699 8D0310          	  2255: STA greenByte
-00:169C B90000          	  2256: LDA red250,Y
-00:169F 8D0410          	  2257: STA redByte
-00:16A2 205517          	  2258: JSR led_send
-                        	  2259: 
-                        	  2260: loadled251:
-00:16A5 B90000          	  2261: LDA blue251,Y
-00:16A8 8D0210          	  2262: STA blueByte
-00:16AB B90000          	  2263: LDA green251,Y
-00:16AE 8D0310          	  2264: STA greenByte
-00:16B1 B90000          	  2265: LDA red251,Y
-00:16B4 8D0410          	  2266: STA redByte
-00:16B7 205517          	  2267: JSR led_send
-                        	  2268: 
-                        	  2269: loadled252:
-00:16BA B90000          	  2270: LDA blue252,Y
-00:16BD 8D0210          	  2271: STA blueByte
-00:16C0 B90000          	  2272: LDA green252,Y
-00:16C3 8D0310          	  2273: STA greenByte
-00:16C6 B90000          	  2274: LDA red252,Y
-00:16C9 8D0410          	  2275: STA redByte
-00:16CC 205517          	  2276: JSR led_send
-                        	  2277: 
-                        	  2278: loadled253:
-00:16CF B90000          	  2279: LDA blue253,Y
-00:16D2 8D0210          	  2280: STA blueByte
-00:16D5 B90000          	  2281: LDA green253,Y
-00:16D8 8D0310          	  2282: STA greenByte
-00:16DB B90000          	  2283: LDA red253,Y
-00:16DE 8D0410          	  2284: STA redByte
-00:16E1 205517          	  2285: JSR led_send
-                        	  2286: 
-                        	  2287: loadled254:
-00:16E4 B90000          	  2288: LDA blue254,Y
-00:16E7 8D0210          	  2289: STA blueByte
-00:16EA B90000          	  2290: LDA green254,Y
-00:16ED 8D0310          	  2291: STA greenByte
-00:16F0 B90000          	  2292: LDA red254,Y
-00:16F3 8D0410          	  2293: STA redByte
-00:16F6 205517          	  2294: JSR led_send
-                        	  2295: 
-                        	  2296: loadled255:
-00:16F9 B90000          	  2297: LDA blue255,Y
-00:16FC 8D0210          	  2298: STA blueByte
-00:16FF B90000          	  2299: LDA green255,Y
-00:1702 8D0310          	  2300: STA greenByte
-00:1705 B90000          	  2301: LDA red255,Y
-00:1708 8D0410          	  2302: STA redByte
-00:170B 205517          	  2303: JSR led_send
-                        	  2304: 
-                        	  2305: 
+                        	   577: 
 
 Source: "gif_bit_banging.asm"
                         	    38: 
-00:170E 20A817          	    39:         JSR end_frame ; send end of frame
+00:074E 20E807          	    39:         JSR end_frame ; send end of frame
                         	    40: 
-00:1711 C8              	    41:         INY ; increase Y register to increase the frame led data is being sent about
+00:0751 C8              	    41:         INY ; increase Y register to increase the frame led data is being sent about
                         	    42: 
-00:1712 CC0220          	    43:         CPY numFrames
+00:0752 CC0220          	    43:         CPY numFrames
                         	    44: 
-00:1715 20BA17          	    45:         JSR delay ; delay routine
+00:0755 20FA07          	    45:         JSR delay ; delay routine
                         	    46: 
-00:1718 D004            	    47:         BNE not_done ; branch if frame limit isn't reached
+00:0758 D004            	    47:         BNE not_done ; branch if frame limit isn't reached
                         	    48:     
-00:171A 4C0902          	    49:     JMP begin ; repeat unless commented out
+00:075A 4C0902          	    49:     JMP begin ; repeat unless commented out
                         	    50:     
-00:171D 00              	    51:     BRK ; break
+00:075D 00              	    51:     BRK ; break
                         	    52: 
                         	    53: not_done: ; have to use JMP bc BNE can't handle branch this far
-00:171E 4C0B02          	    54:     JMP send_frames
+00:075E 4C0B02          	    54:     JMP send_frames
                         	    55: byte_send: ; subroutine to send 8 bits
                         	    56: 
                         	    57:     set_clk_low: ; set the clock low before getting data in pin 7
-00:1721 AD0017          	    58:         LDA outputKIM
-00:1724 29BF            	    59:         AND #0b10111111   ; Pull CLK (bit 6) low
-00:1726 8D0017          	    60:         STA outputKIM
+00:0761 AD0017          	    58:         LDA outputKIM
+00:0764 29BF            	    59:         AND #0b10111111   ; Pull CLK (bit 6) low
+00:0766 8D0017          	    60:         STA outputKIM
                         	    61:     
                         	    62:     set_counter: ; counter to see how many bits have been sent of byte
-00:1729 A208            	    63:         LDX #0x08
+00:0769 A208            	    63:         LDX #0x08
                         	    64:         
                         	    65:     send_output: ; send byte of data
                         	    66:         
                         	    67:         ; store output bit in outputKIM bit 7
-00:172B AD0010          	    68:         LDA output ; load output into accumulator
-00:172E 2980            	    69:         AND #0b10000000 ; AND output so only last bit is recognized
-00:1730 0D0017          	    70:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
-00:1733 8D0017          	    71:         STA outputKIM ; store result in KIM output bit
+00:076B AD0010          	    68:         LDA output ; load output into accumulator
+00:076E 2980            	    69:         AND #0b10000000 ; AND output so only last bit is recognized
+00:0770 0D0017          	    70:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
+00:0773 8D0017          	    71:         STA outputKIM ; store result in KIM output bit
                         	    72:         
-00:1736 0E0010          	    73:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
+00:0776 0E0010          	    73:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
                         	    74:     
                         	    75:     clk_cycle: ; simulate a clock cycle that occurs
                         	    76:                ; data has to be stable before clock rising edge
                         	    77:         
-00:1739 AD0017          	    78:         LDA outputKIM ;load outputKIM into memory
-00:173C 4940            	    79:         EOR #0b01000000 ; Invert SCLK (bit 6)
-00:173E 8D0017          	    80:         STA outputKIM ; Store into outputKIM
+00:0779 AD0017          	    78:         LDA outputKIM ;load outputKIM into memory
+00:077C 4940            	    79:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:077E 8D0017          	    80:         STA outputKIM ; Store into outputKIM
                         	    81:         
-00:1741 AD0017          	    82:         LDA outputKIM ; load outputKIM
-00:1744 4940            	    83:         EOR #0b01000000 ; Invert SCLK (bit 6)
-00:1746 8D0017          	    84:         STA outputKIM ; Store into outputKIM
+00:0781 AD0017          	    82:         LDA outputKIM ; load outputKIM
+00:0784 4940            	    83:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:0786 8D0017          	    84:         STA outputKIM ; Store into outputKIM
                         	    85:         
-00:1749 AD0017          	    86:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
-00:174C 297F            	    87:         AND #0b01111111
-00:174E 8D0017          	    88:         STA outputKIM
+00:0789 AD0017          	    86:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
+00:078C 297F            	    87:         AND #0b01111111
+00:078E 8D0017          	    88:         STA outputKIM
                         	    89:         
-00:1751 CA              	    90:         DEX ; decrement number of bits remaining to be sent
+00:0791 CA              	    90:         DEX ; decrement number of bits remaining to be sent
                         	    91:         
-00:1752 D0D7            	    92:         BNE send_output ; jump to send_output for next bit
+00:0792 D0D7            	    92:         BNE send_output ; jump to send_output for next bit
                         	    93:         
-00:1754 60              	    94:     RTS ; end subroutine
+00:0794 60              	    94:     RTS ; end subroutine
                         	    95: 
                         	    96: 
                         	    97: led_send: ; subroutine to send 4 bytes for individual LED frame
                         	    98:     
                         	    99:     ; set SCLK pin low
                         	   100:     set_sclk_low:
-00:1755 AD0017          	   101:         LDA outputKIM
-00:1758 29BF            	   102:         AND #0b10111111 ; Pull SCLK (bit 6) low
-00:175A 8D0017          	   103:         STA outputKIM
+00:0795 AD0017          	   101:         LDA outputKIM
+00:0798 29BF            	   102:         AND #0b10111111 ; Pull SCLK (bit 6) low
+00:079A 8D0017          	   103:         STA outputKIM
                         	   104:     
                         	   105:     ; send 3 bits + global byte
                         	   106:     send_global:
-00:175D AD0110          	   107:         LDA globalByte
-00:1760 8D0010          	   108:         STA output
-00:1763 202117          	   109:         JSR byte_send
+00:079D AD0110          	   107:         LDA globalByte
+00:07A0 8D0010          	   108:         STA output
+00:07A3 206107          	   109:         JSR byte_send
                         	   110:     
                         	   111:     ; send blue data byte
                         	   112:     send_blue:
-00:1766 AD0210          	   113:         LDA blueByte
-00:1769 8D0010          	   114:         STA output
-00:176C 202117          	   115:         JSR byte_send
+00:07A6 AD0210          	   113:         LDA blueByte
+00:07A9 8D0010          	   114:         STA output
+00:07AC 206107          	   115:         JSR byte_send
                         	   116:     
                         	   117:     ; send green data byte
                         	   118:     send_green:
-00:176F AD0310          	   119:         LDA greenByte
-00:1772 8D0010          	   120:         STA output
-00:1775 202117          	   121:         JSR byte_send
+00:07AF AD0310          	   119:         LDA greenByte
+00:07B2 8D0010          	   120:         STA output
+00:07B5 206107          	   121:         JSR byte_send
                         	   122:     
                         	   123:     ; send red data byte
                         	   124:     send_red:
-00:1778 AD0410          	   125:         LDA redByte
-00:177B 8D0010          	   126:         STA output
-00:177E 202117          	   127:         JSR byte_send
+00:07B8 AD0410          	   125:         LDA redByte
+00:07BB 8D0010          	   126:         STA output
+00:07BE 206107          	   127:         JSR byte_send
                         	   128:         
-00:1781 60              	   129:     RTS ; end subroutine
+00:07C1 60              	   129:     RTS ; end subroutine
                         	   130:     
                         	   131: setup: ; setup subroutine
                         	   132: 
                         	   133:     clear_decimal_mode:
-00:1782 D8              	   134:         CLD
+00:07C2 D8              	   134:         CLD
                         	   135:     
                         	   136:     set_initial_output_state: ; set outputKIM to 0x00
-00:1783 A900            	   137:         LDA #0x00
-00:1785 8D0017          	   138:         STA outputKIM
+00:07C3 A900            	   137:         LDA #0x00
+00:07C5 8D0017          	   138:         STA outputKIM
                         	   139:     
                         	   140:     make_output: ; make port A an output
-00:1788 A9FF            	   141:         LDA #0xFF
-00:178A 8D0117          	   142:         STA outputSettings
+00:07C8 A9FF            	   141:         LDA #0xFF
+00:07CA 8D0117          	   142:         STA outputSettings
                         	   143:     
                         	   144:     set_low: ; Pull CLK pin to low by AND with outputKIM and storing it back
-00:178D AD0017          	   145:             LDA outputKIM
-00:1790 29BF            	   146:             AND #0b10111111  ; Pull CLK (bit 6) low
-00:1792 8D0017          	   147:             STA outputKIM
+00:07CD AD0017          	   145:             LDA outputKIM
+00:07D0 29BF            	   146:             AND #0b10111111  ; Pull CLK (bit 6) low
+00:07D2 8D0017          	   147:             STA outputKIM
                         	   148:             
-00:1795 60              	   149:     RTS
+00:07D5 60              	   149:     RTS
                         	   150: 
                         	   151: start_frame: ; send start byte (0's in every position)
                         	   152: 
-00:1796 A900            	   153:     LDA #0x00
-00:1798 8D0110          	   154:     STA globalByte
-00:179B 8D0210          	   155:     STA blueByte
-00:179E 8D0310          	   156:     STA greenByte
-00:17A1 8D0410          	   157:     STA redByte
+00:07D6 A900            	   153:     LDA #0x00
+00:07D8 8D0110          	   154:     STA globalByte
+00:07DB 8D0210          	   155:     STA blueByte
+00:07DE 8D0310          	   156:     STA greenByte
+00:07E1 8D0410          	   157:     STA redByte
                         	   158: 
-00:17A4 205517          	   159:     JSR led_send
+00:07E4 209507          	   159:     JSR led_send
                         	   160:     
-00:17A7 60              	   161:     RTS ; end subroutine
+00:07E7 60              	   161:     RTS ; end subroutine
                         	   162: 
                         	   163: end_frame: ; send end byte (1's in every position)
                         	   164: 
-00:17A8 A9FF            	   165:     LDA #0xFF
-00:17AA 8D0110          	   166:     STA globalByte
-00:17AD 8D0210          	   167:     STA blueByte
-00:17B0 8D0310          	   168:     STA greenByte
-00:17B3 8D0410          	   169:     STA redByte
+00:07E8 A9FF            	   165:     LDA #0xFF
+00:07EA 8D0110          	   166:     STA globalByte
+00:07ED 8D0210          	   167:     STA blueByte
+00:07F0 8D0310          	   168:     STA greenByte
+00:07F3 8D0410          	   169:     STA redByte
                         	   170: 
-00:17B6 205517          	   171:     JSR led_send
+00:07F6 209507          	   171:     JSR led_send
                         	   172:     
-00:17B9 60              	   173:     RTS ; end subroutine
+00:07F9 60              	   173:     RTS ; end subroutine
                         	   174: 
                         	   175: delay: ; delay subroutine
                         	   176: 
-00:17BA A2FF            	   177:     LDX #0xFF ; Load X with outer loop count (e.g., 255)
+00:07FA A2FF            	   177:     LDX #0xFF ; Load X with outer loop count (e.g., 255)
                         	   178:     outer_loop:
                         	   179:     
-00:17BC A9FF            	   180:             LDA #0xFF
+00:07FC A9FF            	   180:             LDA #0xFF
                         	   181:             inner_loop:
-00:17BE E901            	   182:                 SBC #0x01
-00:17C0 D0FC            	   183:                 BNE inner_loop
+00:07FE E901            	   182:                 SBC #0x01
+00:0800 D0FC            	   183:                 BNE inner_loop
                         	   184:             
-00:17C2 CA              	   185:         DEX
-00:17C3 D0F7            	   186:         BNE outer_loop
+00:0802 CA              	   185:         DEX
+00:0803 D0F7            	   186:         BNE outer_loop
                         	   187:         
-00:17C5 60              	   188:     RTS ; end subroutine
+00:0805 60              	   188:     RTS ; end subroutine
                         	   189:     
                         	   190: 
                         	   191: ; send gif data, takes a LOOOOOT of space, so more than 70 frames not possible
@@ -8228,178 +6500,22 @@ begin                            A:0209
 blue0                            A:2003
 blue1                            A:2057
 blue10                           A:234B
-blue100                         external
-blue101                         external
-blue102                         external
-blue103                         external
-blue104                         external
-blue105                         external
-blue106                         external
-blue107                         external
-blue108                         external
-blue109                         external
 blue11                           A:239F
-blue110                         external
-blue111                         external
-blue112                         external
-blue113                         external
-blue114                         external
-blue115                         external
-blue116                         external
-blue117                         external
-blue118                         external
-blue119                         external
 blue12                           A:23F3
-blue120                         external
-blue121                         external
-blue122                         external
-blue123                         external
-blue124                         external
-blue125                         external
-blue126                         external
-blue127                         external
-blue128                         external
-blue129                         external
 blue13                           A:2447
-blue130                         external
-blue131                         external
-blue132                         external
-blue133                         external
-blue134                         external
-blue135                         external
-blue136                         external
-blue137                         external
-blue138                         external
-blue139                         external
 blue14                           A:249B
-blue140                         external
-blue141                         external
-blue142                         external
-blue143                         external
-blue144                         external
-blue145                         external
-blue146                         external
-blue147                         external
-blue148                         external
-blue149                         external
 blue15                           A:24EF
-blue150                         external
-blue151                         external
-blue152                         external
-blue153                         external
-blue154                         external
-blue155                         external
-blue156                         external
-blue157                         external
-blue158                         external
-blue159                         external
 blue16                           A:2543
-blue160                         external
-blue161                         external
-blue162                         external
-blue163                         external
-blue164                         external
-blue165                         external
-blue166                         external
-blue167                         external
-blue168                         external
-blue169                         external
 blue17                           A:2597
-blue170                         external
-blue171                         external
-blue172                         external
-blue173                         external
-blue174                         external
-blue175                         external
-blue176                         external
-blue177                         external
-blue178                         external
-blue179                         external
 blue18                           A:25EB
-blue180                         external
-blue181                         external
-blue182                         external
-blue183                         external
-blue184                         external
-blue185                         external
-blue186                         external
-blue187                         external
-blue188                         external
-blue189                         external
 blue19                           A:263F
-blue190                         external
-blue191                         external
-blue192                         external
-blue193                         external
-blue194                         external
-blue195                         external
-blue196                         external
-blue197                         external
-blue198                         external
-blue199                         external
 blue2                            A:20AB
 blue20                           A:2693
-blue200                         external
-blue201                         external
-blue202                         external
-blue203                         external
-blue204                         external
-blue205                         external
-blue206                         external
-blue207                         external
-blue208                         external
-blue209                         external
 blue21                           A:26E7
-blue210                         external
-blue211                         external
-blue212                         external
-blue213                         external
-blue214                         external
-blue215                         external
-blue216                         external
-blue217                         external
-blue218                         external
-blue219                         external
 blue22                           A:273B
-blue220                         external
-blue221                         external
-blue222                         external
-blue223                         external
-blue224                         external
-blue225                         external
-blue226                         external
-blue227                         external
-blue228                         external
-blue229                         external
 blue23                           A:278F
-blue230                         external
-blue231                         external
-blue232                         external
-blue233                         external
-blue234                         external
-blue235                         external
-blue236                         external
-blue237                         external
-blue238                         external
-blue239                         external
 blue24                           A:27E3
-blue240                         external
-blue241                         external
-blue242                         external
-blue243                         external
-blue244                         external
-blue245                         external
-blue246                         external
-blue247                         external
-blue248                         external
-blue249                         external
 blue25                           A:2837
-blue250                         external
-blue251                         external
-blue252                         external
-blue253                         external
-blue254                         external
-blue255                         external
 blue26                           A:288B
 blue27                           A:28DF
 blue28                           A:2933
@@ -8442,227 +6558,35 @@ blue60                           A:33B3
 blue61                           A:3407
 blue62                           A:345B
 blue63                           A:34AF
-blue64                          external
-blue65                          external
-blue66                          external
-blue67                          external
-blue68                          external
-blue69                          external
 blue7                            A:224F
-blue70                          external
-blue71                          external
-blue72                          external
-blue73                          external
-blue74                          external
-blue75                          external
-blue76                          external
-blue77                          external
-blue78                          external
-blue79                          external
 blue8                            A:22A3
-blue80                          external
-blue81                          external
-blue82                          external
-blue83                          external
-blue84                          external
-blue85                          external
-blue86                          external
-blue87                          external
-blue88                          external
-blue89                          external
 blue9                            A:22F7
-blue90                          external
-blue91                          external
-blue92                          external
-blue93                          external
-blue94                          external
-blue95                          external
-blue96                          external
-blue97                          external
-blue98                          external
-blue99                          external
 blueByte                         S:1002
-byte_send                        A:1721
-clear_decimal_mode               A:1782
-clk_cycle                        A:1739
-delay                            A:17BA
-end_frame                        A:17A8
+byte_send                        A:0761
+clear_decimal_mode               A:07C2
+clk_cycle                        A:0779
+delay                            A:07FA
+end_frame                        A:07E8
 globalByte                       S:1001
 green0                           A:201F
 green1                           A:2073
 green10                          A:2367
-green100                        external
-green101                        external
-green102                        external
-green103                        external
-green104                        external
-green105                        external
-green106                        external
-green107                        external
-green108                        external
-green109                        external
 green11                          A:23BB
-green110                        external
-green111                        external
-green112                        external
-green113                        external
-green114                        external
-green115                        external
-green116                        external
-green117                        external
-green118                        external
-green119                        external
 green12                          A:240F
-green120                        external
-green121                        external
-green122                        external
-green123                        external
-green124                        external
-green125                        external
-green126                        external
-green127                        external
-green128                        external
-green129                        external
 green13                          A:2463
-green130                        external
-green131                        external
-green132                        external
-green133                        external
-green134                        external
-green135                        external
-green136                        external
-green137                        external
-green138                        external
-green139                        external
 green14                          A:24B7
-green140                        external
-green141                        external
-green142                        external
-green143                        external
-green144                        external
-green145                        external
-green146                        external
-green147                        external
-green148                        external
-green149                        external
 green15                          A:250B
-green150                        external
-green151                        external
-green152                        external
-green153                        external
-green154                        external
-green155                        external
-green156                        external
-green157                        external
-green158                        external
-green159                        external
 green16                          A:255F
-green160                        external
-green161                        external
-green162                        external
-green163                        external
-green164                        external
-green165                        external
-green166                        external
-green167                        external
-green168                        external
-green169                        external
 green17                          A:25B3
-green170                        external
-green171                        external
-green172                        external
-green173                        external
-green174                        external
-green175                        external
-green176                        external
-green177                        external
-green178                        external
-green179                        external
 green18                          A:2607
-green180                        external
-green181                        external
-green182                        external
-green183                        external
-green184                        external
-green185                        external
-green186                        external
-green187                        external
-green188                        external
-green189                        external
 green19                          A:265B
-green190                        external
-green191                        external
-green192                        external
-green193                        external
-green194                        external
-green195                        external
-green196                        external
-green197                        external
-green198                        external
-green199                        external
 green2                           A:20C7
 green20                          A:26AF
-green200                        external
-green201                        external
-green202                        external
-green203                        external
-green204                        external
-green205                        external
-green206                        external
-green207                        external
-green208                        external
-green209                        external
 green21                          A:2703
-green210                        external
-green211                        external
-green212                        external
-green213                        external
-green214                        external
-green215                        external
-green216                        external
-green217                        external
-green218                        external
-green219                        external
 green22                          A:2757
-green220                        external
-green221                        external
-green222                        external
-green223                        external
-green224                        external
-green225                        external
-green226                        external
-green227                        external
-green228                        external
-green229                        external
 green23                          A:27AB
-green230                        external
-green231                        external
-green232                        external
-green233                        external
-green234                        external
-green235                        external
-green236                        external
-green237                        external
-green238                        external
-green239                        external
 green24                          A:27FF
-green240                        external
-green241                        external
-green242                        external
-green243                        external
-green244                        external
-green245                        external
-green246                        external
-green247                        external
-green248                        external
-green249                        external
 green25                          A:2853
-green250                        external
-green251                        external
-green252                        external
-green253                        external
-green254                        external
-green255                        external
 green26                          A:28A7
 green27                          A:28FB
 green28                          A:294F
@@ -8705,47 +6629,11 @@ green60                          A:33CF
 green61                          A:3423
 green62                          A:3477
 green63                          A:34CB
-green64                         external
-green65                         external
-green66                         external
-green67                         external
-green68                         external
-green69                         external
 green7                           A:226B
-green70                         external
-green71                         external
-green72                         external
-green73                         external
-green74                         external
-green75                         external
-green76                         external
-green77                         external
-green78                         external
-green79                         external
 green8                           A:22BF
-green80                         external
-green81                         external
-green82                         external
-green83                         external
-green84                         external
-green85                         external
-green86                         external
-green87                         external
-green88                         external
-green89                         external
 green9                           A:2313
-green90                         external
-green91                         external
-green92                         external
-green93                         external
-green94                         external
-green95                         external
-green96                         external
-green97                         external
-green98                         external
-green99                         external
 greenByte                        S:1003
-inner_loop                       A:17BE
+inner_loop                       A:07FE
 intensity                        A:2000
 led0                             A:2003
 led1                             A:2057
@@ -8811,182 +6699,26 @@ led63                            A:34AF
 led7                             A:224F
 led8                             A:22A3
 led9                             A:22F7
-led_send                         A:1755
+led_send                         A:0795
 loadled0                         A:020E
 loadled1                         A:0223
 loadled10                        A:02E0
-loadled100                       A:0A42
-loadled101                       A:0A57
-loadled102                       A:0A6C
-loadled103                       A:0A81
-loadled104                       A:0A96
-loadled105                       A:0AAB
-loadled106                       A:0AC0
-loadled107                       A:0AD5
-loadled108                       A:0AEA
-loadled109                       A:0AFF
 loadled11                        A:02F5
-loadled110                       A:0B14
-loadled111                       A:0B29
-loadled112                       A:0B3E
-loadled113                       A:0B53
-loadled114                       A:0B68
-loadled115                       A:0B7D
-loadled116                       A:0B92
-loadled117                       A:0BA7
-loadled118                       A:0BBC
-loadled119                       A:0BD1
 loadled12                        A:030A
-loadled120                       A:0BE6
-loadled121                       A:0BFB
-loadled122                       A:0C10
-loadled123                       A:0C25
-loadled124                       A:0C3A
-loadled125                       A:0C4F
-loadled126                       A:0C64
-loadled127                       A:0C79
-loadled128                       A:0C8E
-loadled129                       A:0CA3
 loadled13                        A:031F
-loadled130                       A:0CB8
-loadled131                       A:0CCD
-loadled132                       A:0CE2
-loadled133                       A:0CF7
-loadled134                       A:0D0C
-loadled135                       A:0D21
-loadled136                       A:0D36
-loadled137                       A:0D4B
-loadled138                       A:0D60
-loadled139                       A:0D75
 loadled14                        A:0334
-loadled140                       A:0D8A
-loadled141                       A:0D9F
-loadled142                       A:0DB4
-loadled143                       A:0DC9
-loadled144                       A:0DDE
-loadled145                       A:0DF3
-loadled146                       A:0E08
-loadled147                       A:0E1D
-loadled148                       A:0E32
-loadled149                       A:0E47
 loadled15                        A:0349
-loadled150                       A:0E5C
-loadled151                       A:0E71
-loadled152                       A:0E86
-loadled153                       A:0E9B
-loadled154                       A:0EB0
-loadled155                       A:0EC5
-loadled156                       A:0EDA
-loadled157                       A:0EEF
-loadled158                       A:0F04
-loadled159                       A:0F19
 loadled16                        A:035E
-loadled160                       A:0F2E
-loadled161                       A:0F43
-loadled162                       A:0F58
-loadled163                       A:0F6D
-loadled164                       A:0F82
-loadled165                       A:0F97
-loadled166                       A:0FAC
-loadled167                       A:0FC1
-loadled168                       A:0FD6
-loadled169                       A:0FEB
 loadled17                        A:0373
-loadled170                       A:1000
-loadled171                       A:1015
-loadled172                       A:102A
-loadled173                       A:103F
-loadled174                       A:1054
-loadled175                       A:1069
-loadled176                       A:107E
-loadled177                       A:1093
-loadled178                       A:10A8
-loadled179                       A:10BD
 loadled18                        A:0388
-loadled180                       A:10D2
-loadled181                       A:10E7
-loadled182                       A:10FC
-loadled183                       A:1111
-loadled184                       A:1126
-loadled185                       A:113B
-loadled186                       A:1150
-loadled187                       A:1165
-loadled188                       A:117A
-loadled189                       A:118F
 loadled19                        A:039D
-loadled190                       A:11A4
-loadled191                       A:11B9
-loadled192                       A:11CE
-loadled193                       A:11E3
-loadled194                       A:11F8
-loadled195                       A:120D
-loadled196                       A:1222
-loadled197                       A:1237
-loadled198                       A:124C
-loadled199                       A:1261
 loadled2                         A:0238
 loadled20                        A:03B2
-loadled200                       A:1276
-loadled201                       A:128B
-loadled202                       A:12A0
-loadled203                       A:12B5
-loadled204                       A:12CA
-loadled205                       A:12DF
-loadled206                       A:12F4
-loadled207                       A:1309
-loadled208                       A:131E
-loadled209                       A:1333
 loadled21                        A:03C7
-loadled210                       A:1348
-loadled211                       A:135D
-loadled212                       A:1372
-loadled213                       A:1387
-loadled214                       A:139C
-loadled215                       A:13B1
-loadled216                       A:13C6
-loadled217                       A:13DB
-loadled218                       A:13F0
-loadled219                       A:1405
 loadled22                        A:03DC
-loadled220                       A:141A
-loadled221                       A:142F
-loadled222                       A:1444
-loadled223                       A:1459
-loadled224                       A:146E
-loadled225                       A:1483
-loadled226                       A:1498
-loadled227                       A:14AD
-loadled228                       A:14C2
-loadled229                       A:14D7
 loadled23                        A:03F1
-loadled230                       A:14EC
-loadled231                       A:1501
-loadled232                       A:1516
-loadled233                       A:152B
-loadled234                       A:1540
-loadled235                       A:1555
-loadled236                       A:156A
-loadled237                       A:157F
-loadled238                       A:1594
-loadled239                       A:15A9
 loadled24                        A:0406
-loadled240                       A:15BE
-loadled241                       A:15D3
-loadled242                       A:15E8
-loadled243                       A:15FD
-loadled244                       A:1612
-loadled245                       A:1627
-loadled246                       A:163C
-loadled247                       A:1651
-loadled248                       A:1666
-loadled249                       A:167B
 loadled25                        A:041B
-loadled250                       A:1690
-loadled251                       A:16A5
-loadled252                       A:16BA
-loadled253                       A:16CF
-loadled254                       A:16E4
-loadled255                       A:16F9
 loadled26                        A:0430
 loadled27                        A:0445
 loadled28                        A:045A
@@ -9029,229 +6761,37 @@ loadled60                        A:06FA
 loadled61                        A:070F
 loadled62                        A:0724
 loadled63                        A:0739
-loadled64                        A:074E
-loadled65                        A:0763
-loadled66                        A:0778
-loadled67                        A:078D
-loadled68                        A:07A2
-loadled69                        A:07B7
 loadled7                         A:02A1
-loadled70                        A:07CC
-loadled71                        A:07E1
-loadled72                        A:07F6
-loadled73                        A:080B
-loadled74                        A:0820
-loadled75                        A:0835
-loadled76                        A:084A
-loadled77                        A:085F
-loadled78                        A:0874
-loadled79                        A:0889
 loadled8                         A:02B6
-loadled80                        A:089E
-loadled81                        A:08B3
-loadled82                        A:08C8
-loadled83                        A:08DD
-loadled84                        A:08F2
-loadled85                        A:0907
-loadled86                        A:091C
-loadled87                        A:0931
-loadled88                        A:0946
-loadled89                        A:095B
 loadled9                         A:02CB
-loadled90                        A:0970
-loadled91                        A:0985
-loadled92                        A:099A
-loadled93                        A:09AF
-loadled94                        A:09C4
-loadled95                        A:09D9
-loadled96                        A:09EE
-loadled97                        A:0A03
-loadled98                        A:0A18
-loadled99                        A:0A2D
 main                             A:0200
-make_output                      A:1788
-not_done                         A:171E
+make_output                      A:07C8
+not_done                         A:075E
 numFrames                        A:2002
 numLEDs                          A:2001
-outer_loop                       A:17BC
+outer_loop                       A:07FC
 output                           S:1000
 outputKIM                        S:1700
 outputSettings                   S:1701
 red0                             A:203B
 red1                             A:208F
 red10                            A:2383
-red100                          external
-red101                          external
-red102                          external
-red103                          external
-red104                          external
-red105                          external
-red106                          external
-red107                          external
-red108                          external
-red109                          external
 red11                            A:23D7
-red110                          external
-red111                          external
-red112                          external
-red113                          external
-red114                          external
-red115                          external
-red116                          external
-red117                          external
-red118                          external
-red119                          external
 red12                            A:242B
-red120                          external
-red121                          external
-red122                          external
-red123                          external
-red124                          external
-red125                          external
-red126                          external
-red127                          external
-red128                          external
-red129                          external
 red13                            A:247F
-red130                          external
-red131                          external
-red132                          external
-red133                          external
-red134                          external
-red135                          external
-red136                          external
-red137                          external
-red138                          external
-red139                          external
 red14                            A:24D3
-red140                          external
-red141                          external
-red142                          external
-red143                          external
-red144                          external
-red145                          external
-red146                          external
-red147                          external
-red148                          external
-red149                          external
 red15                            A:2527
-red150                          external
-red151                          external
-red152                          external
-red153                          external
-red154                          external
-red155                          external
-red156                          external
-red157                          external
-red158                          external
-red159                          external
 red16                            A:257B
-red160                          external
-red161                          external
-red162                          external
-red163                          external
-red164                          external
-red165                          external
-red166                          external
-red167                          external
-red168                          external
-red169                          external
 red17                            A:25CF
-red170                          external
-red171                          external
-red172                          external
-red173                          external
-red174                          external
-red175                          external
-red176                          external
-red177                          external
-red178                          external
-red179                          external
 red18                            A:2623
-red180                          external
-red181                          external
-red182                          external
-red183                          external
-red184                          external
-red185                          external
-red186                          external
-red187                          external
-red188                          external
-red189                          external
 red19                            A:2677
-red190                          external
-red191                          external
-red192                          external
-red193                          external
-red194                          external
-red195                          external
-red196                          external
-red197                          external
-red198                          external
-red199                          external
 red2                             A:20E3
 red20                            A:26CB
-red200                          external
-red201                          external
-red202                          external
-red203                          external
-red204                          external
-red205                          external
-red206                          external
-red207                          external
-red208                          external
-red209                          external
 red21                            A:271F
-red210                          external
-red211                          external
-red212                          external
-red213                          external
-red214                          external
-red215                          external
-red216                          external
-red217                          external
-red218                          external
-red219                          external
 red22                            A:2773
-red220                          external
-red221                          external
-red222                          external
-red223                          external
-red224                          external
-red225                          external
-red226                          external
-red227                          external
-red228                          external
-red229                          external
 red23                            A:27C7
-red230                          external
-red231                          external
-red232                          external
-red233                          external
-red234                          external
-red235                          external
-red236                          external
-red237                          external
-red238                          external
-red239                          external
 red24                            A:281B
-red240                          external
-red241                          external
-red242                          external
-red243                          external
-red244                          external
-red245                          external
-red246                          external
-red247                          external
-red248                          external
-red249                          external
 red25                            A:286F
-red250                          external
-red251                          external
-red252                          external
-red253                          external
-red254                          external
-red255                          external
 red26                            A:28C3
 red27                            A:2917
 red28                            A:296B
@@ -9294,59 +6834,23 @@ red60                            A:33EB
 red61                            A:343F
 red62                            A:3493
 red63                            A:34E7
-red64                           external
-red65                           external
-red66                           external
-red67                           external
-red68                           external
-red69                           external
 red7                             A:2287
-red70                           external
-red71                           external
-red72                           external
-red73                           external
-red74                           external
-red75                           external
-red76                           external
-red77                           external
-red78                           external
-red79                           external
 red8                             A:22DB
-red80                           external
-red81                           external
-red82                           external
-red83                           external
-red84                           external
-red85                           external
-red86                           external
-red87                           external
-red88                           external
-red89                           external
 red9                             A:232F
-red90                           external
-red91                           external
-red92                           external
-red93                           external
-red94                           external
-red95                           external
-red96                           external
-red97                           external
-red98                           external
-red99                           external
 redByte                          S:1004
-send_blue                        A:1766
+send_blue                        A:07A6
 send_frames                      A:020B
-send_global                      A:175D
-send_green                       A:176F
-send_output                      A:172B
-send_red                         A:1778
-set_clk_low                      A:1721
-set_counter                      A:1729
-set_initial_output_state         A:1783
-set_low                          A:178D
-set_sclk_low                     A:1755
-setup                            A:1782
-start_frame                      A:1796
+send_global                      A:079D
+send_green                       A:07AF
+send_output                      A:076B
+send_red                         A:07B8
+set_clk_low                      A:0761
+set_counter                      A:0769
+set_initial_output_state         A:07C3
+set_low                          A:07CD
+set_sclk_low                     A:0795
+setup                            A:07C2
+start_frame                      A:07D6
 
 Symbols by value:
 0200 main
@@ -9416,227 +6920,35 @@ Symbols by value:
 070F loadled61
 0724 loadled62
 0739 loadled63
-074E loadled64
-0763 loadled65
-0778 loadled66
-078D loadled67
-07A2 loadled68
-07B7 loadled69
-07CC loadled70
-07E1 loadled71
-07F6 loadled72
-080B loadled73
-0820 loadled74
-0835 loadled75
-084A loadled76
-085F loadled77
-0874 loadled78
-0889 loadled79
-089E loadled80
-08B3 loadled81
-08C8 loadled82
-08DD loadled83
-08F2 loadled84
-0907 loadled85
-091C loadled86
-0931 loadled87
-0946 loadled88
-095B loadled89
-0970 loadled90
-0985 loadled91
-099A loadled92
-09AF loadled93
-09C4 loadled94
-09D9 loadled95
-09EE loadled96
-0A03 loadled97
-0A18 loadled98
-0A2D loadled99
-0A42 loadled100
-0A57 loadled101
-0A6C loadled102
-0A81 loadled103
-0A96 loadled104
-0AAB loadled105
-0AC0 loadled106
-0AD5 loadled107
-0AEA loadled108
-0AFF loadled109
-0B14 loadled110
-0B29 loadled111
-0B3E loadled112
-0B53 loadled113
-0B68 loadled114
-0B7D loadled115
-0B92 loadled116
-0BA7 loadled117
-0BBC loadled118
-0BD1 loadled119
-0BE6 loadled120
-0BFB loadled121
-0C10 loadled122
-0C25 loadled123
-0C3A loadled124
-0C4F loadled125
-0C64 loadled126
-0C79 loadled127
-0C8E loadled128
-0CA3 loadled129
-0CB8 loadled130
-0CCD loadled131
-0CE2 loadled132
-0CF7 loadled133
-0D0C loadled134
-0D21 loadled135
-0D36 loadled136
-0D4B loadled137
-0D60 loadled138
-0D75 loadled139
-0D8A loadled140
-0D9F loadled141
-0DB4 loadled142
-0DC9 loadled143
-0DDE loadled144
-0DF3 loadled145
-0E08 loadled146
-0E1D loadled147
-0E32 loadled148
-0E47 loadled149
-0E5C loadled150
-0E71 loadled151
-0E86 loadled152
-0E9B loadled153
-0EB0 loadled154
-0EC5 loadled155
-0EDA loadled156
-0EEF loadled157
-0F04 loadled158
-0F19 loadled159
-0F2E loadled160
-0F43 loadled161
-0F58 loadled162
-0F6D loadled163
-0F82 loadled164
-0F97 loadled165
-0FAC loadled166
-0FC1 loadled167
-0FD6 loadled168
-0FEB loadled169
+075E not_done
+0761 set_clk_low
+0761 byte_send
+0769 set_counter
+076B send_output
+0779 clk_cycle
+0795 set_sclk_low
+0795 led_send
+079D send_global
+07A6 send_blue
+07AF send_green
+07B8 send_red
+07C2 clear_decimal_mode
+07C2 setup
+07C3 set_initial_output_state
+07C8 make_output
+07CD set_low
+07D6 start_frame
+07E8 end_frame
+07FA delay
+07FC outer_loop
+07FE inner_loop
 1000 output
-1000 loadled170
 1001 globalByte
 1002 blueByte
 1003 greenByte
 1004 redByte
-1015 loadled171
-102A loadled172
-103F loadled173
-1054 loadled174
-1069 loadled175
-107E loadled176
-1093 loadled177
-10A8 loadled178
-10BD loadled179
-10D2 loadled180
-10E7 loadled181
-10FC loadled182
-1111 loadled183
-1126 loadled184
-113B loadled185
-1150 loadled186
-1165 loadled187
-117A loadled188
-118F loadled189
-11A4 loadled190
-11B9 loadled191
-11CE loadled192
-11E3 loadled193
-11F8 loadled194
-120D loadled195
-1222 loadled196
-1237 loadled197
-124C loadled198
-1261 loadled199
-1276 loadled200
-128B loadled201
-12A0 loadled202
-12B5 loadled203
-12CA loadled204
-12DF loadled205
-12F4 loadled206
-1309 loadled207
-131E loadled208
-1333 loadled209
-1348 loadled210
-135D loadled211
-1372 loadled212
-1387 loadled213
-139C loadled214
-13B1 loadled215
-13C6 loadled216
-13DB loadled217
-13F0 loadled218
-1405 loadled219
-141A loadled220
-142F loadled221
-1444 loadled222
-1459 loadled223
-146E loadled224
-1483 loadled225
-1498 loadled226
-14AD loadled227
-14C2 loadled228
-14D7 loadled229
-14EC loadled230
-1501 loadled231
-1516 loadled232
-152B loadled233
-1540 loadled234
-1555 loadled235
-156A loadled236
-157F loadled237
-1594 loadled238
-15A9 loadled239
-15BE loadled240
-15D3 loadled241
-15E8 loadled242
-15FD loadled243
-1612 loadled244
-1627 loadled245
-163C loadled246
-1651 loadled247
-1666 loadled248
-167B loadled249
-1690 loadled250
-16A5 loadled251
-16BA loadled252
-16CF loadled253
-16E4 loadled254
-16F9 loadled255
 1700 outputKIM
 1701 outputSettings
-171E not_done
-1721 byte_send
-1721 set_clk_low
-1729 set_counter
-172B send_output
-1739 clk_cycle
-1755 set_sclk_low
-1755 led_send
-175D send_global
-1766 send_blue
-176F send_green
-1778 send_red
-1782 clear_decimal_mode
-1782 setup
-1783 set_initial_output_state
-1788 make_output
-178D set_low
-1796 start_frame
-17A8 end_frame
-17BA delay
-17BC outer_loop
-17BE inner_loop
 2000 intensity
 2001 numLEDs
 2002 numFrames
@@ -9644,16 +6956,16 @@ Symbols by value:
 2003 blue0
 201F green0
 203B red0
-2057 led1
 2057 blue1
+2057 led1
 2073 green1
 208F red1
 20AB blue2
 20AB led2
 20C7 green2
 20E3 red2
-20FF blue3
 20FF led3
+20FF blue3
 211B green3
 2137 red3
 2153 led4
@@ -9668,24 +6980,24 @@ Symbols by value:
 21FB blue6
 2217 green6
 2233 red6
-224F led7
 224F blue7
+224F led7
 226B green7
 2287 red7
 22A3 led8
 22A3 blue8
 22BF green8
 22DB red8
-22F7 blue9
 22F7 led9
+22F7 blue9
 2313 green9
 232F red9
-234B blue10
 234B led10
+234B blue10
 2367 green10
 2383 red10
-239F blue11
 239F led11
+239F blue11
 23BB green11
 23D7 red11
 23F3 led12
@@ -9696,28 +7008,28 @@ Symbols by value:
 2447 led13
 2463 green13
 247F red13
-249B blue14
 249B led14
+249B blue14
 24B7 green14
 24D3 red14
 24EF blue15
 24EF led15
 250B green15
 2527 red15
-2543 blue16
 2543 led16
+2543 blue16
 255F green16
 257B red16
 2597 led17
 2597 blue17
 25B3 green17
 25CF red17
-25EB led18
 25EB blue18
+25EB led18
 2607 green18
 2623 red18
-263F blue19
 263F led19
+263F blue19
 265B green19
 2677 red19
 2693 blue20
@@ -9728,8 +7040,8 @@ Symbols by value:
 26E7 blue21
 2703 green21
 271F red21
-273B blue22
 273B led22
+273B blue22
 2757 green22
 2773 red22
 278F blue23
@@ -9740,16 +7052,16 @@ Symbols by value:
 27E3 blue24
 27FF green24
 281B red24
-2837 blue25
 2837 led25
+2837 blue25
 2853 green25
 286F red25
 288B led26
 288B blue26
 28A7 green26
 28C3 red26
-28DF blue27
 28DF led27
+28DF blue27
 28FB green27
 2917 red27
 2933 led28
@@ -9772,20 +7084,20 @@ Symbols by value:
 2A83 blue32
 2A9F green32
 2ABB red32
-2AD7 led33
 2AD7 blue33
+2AD7 led33
 2AF3 green33
 2B0F red33
-2B2B led34
 2B2B blue34
+2B2B led34
 2B47 green34
 2B63 red34
-2B7F led35
 2B7F blue35
+2B7F led35
 2B9B green35
 2BB7 red35
-2BD3 led36
 2BD3 blue36
+2BD3 led36
 2BEF green36
 2C0B red36
 2C27 led37
@@ -9796,16 +7108,16 @@ Symbols by value:
 2C7B blue38
 2C97 green38
 2CB3 red38
-2CCF blue39
 2CCF led39
+2CCF blue39
 2CEB green39
 2D07 red39
-2D23 led40
 2D23 blue40
+2D23 led40
 2D3F green40
 2D5B red40
-2D77 led41
 2D77 blue41
+2D77 led41
 2D93 green41
 2DAF red41
 2DCB blue42
@@ -9836,63 +7148,63 @@ Symbols by value:
 2FC3 blue48
 2FDF green48
 2FFB red48
-3017 led49
 3017 blue49
+3017 led49
 3033 green49
 304F red49
-306B blue50
 306B led50
+306B blue50
 3087 green50
 30A3 red50
 30BF led51
 30BF blue51
 30DB green51
 30F7 red51
-3113 blue52
 3113 led52
+3113 blue52
 312F green52
 314B red52
-3167 led53
 3167 blue53
+3167 led53
 3183 green53
 319F red53
-31BB blue54
 31BB led54
+31BB blue54
 31D7 green54
 31F3 red54
 320F blue55
 320F led55
 322B green55
 3247 red55
-3263 blue56
 3263 led56
+3263 blue56
 327F green56
 329B red56
-32B7 led57
 32B7 blue57
+32B7 led57
 32D3 green57
 32EF red57
-330B led58
 330B blue58
+330B led58
 3327 green58
 3343 red58
-335F led59
 335F blue59
+335F led59
 337B green59
 3397 red59
-33B3 blue60
 33B3 led60
+33B3 blue60
 33CF green60
 33EB red60
-3407 blue61
 3407 led61
+3407 blue61
 3423 green61
 343F red61
 345B led62
 345B blue62
 3477 green62
 3493 red62
-34AF blue63
 34AF led63
+34AF blue63
 34CB green63
 34E7 red63
