@@ -51,9 +51,9 @@ Source: "image_bit_banging.asm"
                         	    45: 
 00:0220 206102          	    46:         JSR led_send
                         	    47: 
-00:0223 C8              	    48:         INY
+00:0223 CC0120          	    48:         CPY numLEDs
                         	    49: 
-00:0224 CC0120          	    50:         CPY numLEDs
+00:0226 C8              	    50:         INY
                         	    51:         
 00:0227 D0E5            	    52:         BNE send_data ; branch if numLEDs not reached
                         	    53: 

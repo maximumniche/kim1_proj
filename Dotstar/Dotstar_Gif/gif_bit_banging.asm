@@ -46,7 +46,7 @@ main:
 
         BNE not_done ; branch if frame limit isn't reached
     
-    JMP begin ; repeat unless commented out
+    ;JMP begin ; repeat unless commented out
     
     BRK ; break
 

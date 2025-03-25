@@ -45,9 +45,9 @@ main:
 
         JSR led_send
 
-        INY
-
         CPY numLEDs
+
+        INY
         
         BNE send_data ; branch if numLEDs not reached
 

@@ -1,5 +1,5 @@
 Sections:
-00: "org0001:200" (200-806)
+00: "org0001:200" (200-803)
 01: "org0002:2000" (2000-3503)
 
 
@@ -25,10 +25,10 @@ Source: "gif_bit_banging.asm"
                         	    19: main:
                         	    20: 
                         	    21:     ; setup
-00:0200 20C207          	    22:     JSR setup
+00:0200 20BF07          	    22:     JSR setup
                         	    23: 
                         	    24:     ; load the intensity value for RGBs
-00:0203 B90020          	    25:     LDA intensity,Y
+00:0203 AD0020          	    25:     LDA intensity
 00:0206 8D0110          	    26:     STA globalByte
                         	    27: 
                         	    28:     ; load the Y register
@@ -37,7 +37,7 @@ Source: "gif_bit_banging.asm"
                         	    31: 
                         	    32:     send_frames: ; send LED data, 256 bytes for each spec bc 3*256 rgb values
                         	    33: 
-00:020B 20D607          	    34:         JSR start_frame ; send start of frame
+00:020B 20D307          	    34:         JSR start_frame ; send start of frame
                         	    35: 
                         	    36:         ; include a text file containing instructions to send to all leds
                         	    37:         .include "send_frame.txt"
@@ -50,7 +50,7 @@ Source: "send_frame.txt"
 00:0217 8D0310          	     5: STA greenByte
 00:021A B93B20          	     6: LDA red0,Y
 00:021D 8D0410          	     7: STA redByte
-00:0220 209507          	     8: JSR led_send
+00:0220 209207          	     8: JSR led_send
                         	     9: 
                         	    10: loadled1:
 00:0223 B95720          	    11: LDA blue1,Y
@@ -59,7 +59,7 @@ Source: "send_frame.txt"
 00:022C 8D0310          	    14: STA greenByte
 00:022F B98F20          	    15: LDA red1,Y
 00:0232 8D0410          	    16: STA redByte
-00:0235 209507          	    17: JSR led_send
+00:0235 209207          	    17: JSR led_send
                         	    18: 
                         	    19: loadled2:
 00:0238 B9AB20          	    20: LDA blue2,Y
@@ -68,7 +68,7 @@ Source: "send_frame.txt"
 00:0241 8D0310          	    23: STA greenByte
 00:0244 B9E320          	    24: LDA red2,Y
 00:0247 8D0410          	    25: STA redByte
-00:024A 209507          	    26: JSR led_send
+00:024A 209207          	    26: JSR led_send
                         	    27: 
                         	    28: loadled3:
 00:024D B9FF20          	    29: LDA blue3,Y
@@ -77,7 +77,7 @@ Source: "send_frame.txt"
 00:0256 8D0310          	    32: STA greenByte
 00:0259 B93721          	    33: LDA red3,Y
 00:025C 8D0410          	    34: STA redByte
-00:025F 209507          	    35: JSR led_send
+00:025F 209207          	    35: JSR led_send
                         	    36: 
                         	    37: loadled4:
 00:0262 B95321          	    38: LDA blue4,Y
@@ -86,7 +86,7 @@ Source: "send_frame.txt"
 00:026B 8D0310          	    41: STA greenByte
 00:026E B98B21          	    42: LDA red4,Y
 00:0271 8D0410          	    43: STA redByte
-00:0274 209507          	    44: JSR led_send
+00:0274 209207          	    44: JSR led_send
                         	    45: 
                         	    46: loadled5:
 00:0277 B9A721          	    47: LDA blue5,Y
@@ -95,7 +95,7 @@ Source: "send_frame.txt"
 00:0280 8D0310          	    50: STA greenByte
 00:0283 B9DF21          	    51: LDA red5,Y
 00:0286 8D0410          	    52: STA redByte
-00:0289 209507          	    53: JSR led_send
+00:0289 209207          	    53: JSR led_send
                         	    54: 
                         	    55: loadled6:
 00:028C B9FB21          	    56: LDA blue6,Y
@@ -104,7 +104,7 @@ Source: "send_frame.txt"
 00:0295 8D0310          	    59: STA greenByte
 00:0298 B93322          	    60: LDA red6,Y
 00:029B 8D0410          	    61: STA redByte
-00:029E 209507          	    62: JSR led_send
+00:029E 209207          	    62: JSR led_send
                         	    63: 
                         	    64: loadled7:
 00:02A1 B94F22          	    65: LDA blue7,Y
@@ -113,7 +113,7 @@ Source: "send_frame.txt"
 00:02AA 8D0310          	    68: STA greenByte
 00:02AD B98722          	    69: LDA red7,Y
 00:02B0 8D0410          	    70: STA redByte
-00:02B3 209507          	    71: JSR led_send
+00:02B3 209207          	    71: JSR led_send
                         	    72: 
                         	    73: loadled8:
 00:02B6 B9A322          	    74: LDA blue8,Y
@@ -122,7 +122,7 @@ Source: "send_frame.txt"
 00:02BF 8D0310          	    77: STA greenByte
 00:02C2 B9DB22          	    78: LDA red8,Y
 00:02C5 8D0410          	    79: STA redByte
-00:02C8 209507          	    80: JSR led_send
+00:02C8 209207          	    80: JSR led_send
                         	    81: 
                         	    82: loadled9:
 00:02CB B9F722          	    83: LDA blue9,Y
@@ -131,7 +131,7 @@ Source: "send_frame.txt"
 00:02D4 8D0310          	    86: STA greenByte
 00:02D7 B92F23          	    87: LDA red9,Y
 00:02DA 8D0410          	    88: STA redByte
-00:02DD 209507          	    89: JSR led_send
+00:02DD 209207          	    89: JSR led_send
                         	    90: 
                         	    91: loadled10:
 00:02E0 B94B23          	    92: LDA blue10,Y
@@ -140,7 +140,7 @@ Source: "send_frame.txt"
 00:02E9 8D0310          	    95: STA greenByte
 00:02EC B98323          	    96: LDA red10,Y
 00:02EF 8D0410          	    97: STA redByte
-00:02F2 209507          	    98: JSR led_send
+00:02F2 209207          	    98: JSR led_send
                         	    99: 
                         	   100: loadled11:
 00:02F5 B99F23          	   101: LDA blue11,Y
@@ -149,7 +149,7 @@ Source: "send_frame.txt"
 00:02FE 8D0310          	   104: STA greenByte
 00:0301 B9D723          	   105: LDA red11,Y
 00:0304 8D0410          	   106: STA redByte
-00:0307 209507          	   107: JSR led_send
+00:0307 209207          	   107: JSR led_send
                         	   108: 
                         	   109: loadled12:
 00:030A B9F323          	   110: LDA blue12,Y
@@ -158,7 +158,7 @@ Source: "send_frame.txt"
 00:0313 8D0310          	   113: STA greenByte
 00:0316 B92B24          	   114: LDA red12,Y
 00:0319 8D0410          	   115: STA redByte
-00:031C 209507          	   116: JSR led_send
+00:031C 209207          	   116: JSR led_send
                         	   117: 
                         	   118: loadled13:
 00:031F B94724          	   119: LDA blue13,Y
@@ -167,7 +167,7 @@ Source: "send_frame.txt"
 00:0328 8D0310          	   122: STA greenByte
 00:032B B97F24          	   123: LDA red13,Y
 00:032E 8D0410          	   124: STA redByte
-00:0331 209507          	   125: JSR led_send
+00:0331 209207          	   125: JSR led_send
                         	   126: 
                         	   127: loadled14:
 00:0334 B99B24          	   128: LDA blue14,Y
@@ -176,7 +176,7 @@ Source: "send_frame.txt"
 00:033D 8D0310          	   131: STA greenByte
 00:0340 B9D324          	   132: LDA red14,Y
 00:0343 8D0410          	   133: STA redByte
-00:0346 209507          	   134: JSR led_send
+00:0346 209207          	   134: JSR led_send
                         	   135: 
                         	   136: loadled15:
 00:0349 B9EF24          	   137: LDA blue15,Y
@@ -185,7 +185,7 @@ Source: "send_frame.txt"
 00:0352 8D0310          	   140: STA greenByte
 00:0355 B92725          	   141: LDA red15,Y
 00:0358 8D0410          	   142: STA redByte
-00:035B 209507          	   143: JSR led_send
+00:035B 209207          	   143: JSR led_send
                         	   144: 
                         	   145: loadled16:
 00:035E B94325          	   146: LDA blue16,Y
@@ -194,7 +194,7 @@ Source: "send_frame.txt"
 00:0367 8D0310          	   149: STA greenByte
 00:036A B97B25          	   150: LDA red16,Y
 00:036D 8D0410          	   151: STA redByte
-00:0370 209507          	   152: JSR led_send
+00:0370 209207          	   152: JSR led_send
                         	   153: 
                         	   154: loadled17:
 00:0373 B99725          	   155: LDA blue17,Y
@@ -203,7 +203,7 @@ Source: "send_frame.txt"
 00:037C 8D0310          	   158: STA greenByte
 00:037F B9CF25          	   159: LDA red17,Y
 00:0382 8D0410          	   160: STA redByte
-00:0385 209507          	   161: JSR led_send
+00:0385 209207          	   161: JSR led_send
                         	   162: 
                         	   163: loadled18:
 00:0388 B9EB25          	   164: LDA blue18,Y
@@ -212,7 +212,7 @@ Source: "send_frame.txt"
 00:0391 8D0310          	   167: STA greenByte
 00:0394 B92326          	   168: LDA red18,Y
 00:0397 8D0410          	   169: STA redByte
-00:039A 209507          	   170: JSR led_send
+00:039A 209207          	   170: JSR led_send
                         	   171: 
                         	   172: loadled19:
 00:039D B93F26          	   173: LDA blue19,Y
@@ -221,7 +221,7 @@ Source: "send_frame.txt"
 00:03A6 8D0310          	   176: STA greenByte
 00:03A9 B97726          	   177: LDA red19,Y
 00:03AC 8D0410          	   178: STA redByte
-00:03AF 209507          	   179: JSR led_send
+00:03AF 209207          	   179: JSR led_send
                         	   180: 
                         	   181: loadled20:
 00:03B2 B99326          	   182: LDA blue20,Y
@@ -230,7 +230,7 @@ Source: "send_frame.txt"
 00:03BB 8D0310          	   185: STA greenByte
 00:03BE B9CB26          	   186: LDA red20,Y
 00:03C1 8D0410          	   187: STA redByte
-00:03C4 209507          	   188: JSR led_send
+00:03C4 209207          	   188: JSR led_send
                         	   189: 
                         	   190: loadled21:
 00:03C7 B9E726          	   191: LDA blue21,Y
@@ -239,7 +239,7 @@ Source: "send_frame.txt"
 00:03D0 8D0310          	   194: STA greenByte
 00:03D3 B91F27          	   195: LDA red21,Y
 00:03D6 8D0410          	   196: STA redByte
-00:03D9 209507          	   197: JSR led_send
+00:03D9 209207          	   197: JSR led_send
                         	   198: 
                         	   199: loadled22:
 00:03DC B93B27          	   200: LDA blue22,Y
@@ -248,7 +248,7 @@ Source: "send_frame.txt"
 00:03E5 8D0310          	   203: STA greenByte
 00:03E8 B97327          	   204: LDA red22,Y
 00:03EB 8D0410          	   205: STA redByte
-00:03EE 209507          	   206: JSR led_send
+00:03EE 209207          	   206: JSR led_send
                         	   207: 
                         	   208: loadled23:
 00:03F1 B98F27          	   209: LDA blue23,Y
@@ -257,7 +257,7 @@ Source: "send_frame.txt"
 00:03FA 8D0310          	   212: STA greenByte
 00:03FD B9C727          	   213: LDA red23,Y
 00:0400 8D0410          	   214: STA redByte
-00:0403 209507          	   215: JSR led_send
+00:0403 209207          	   215: JSR led_send
                         	   216: 
                         	   217: loadled24:
 00:0406 B9E327          	   218: LDA blue24,Y
@@ -266,7 +266,7 @@ Source: "send_frame.txt"
 00:040F 8D0310          	   221: STA greenByte
 00:0412 B91B28          	   222: LDA red24,Y
 00:0415 8D0410          	   223: STA redByte
-00:0418 209507          	   224: JSR led_send
+00:0418 209207          	   224: JSR led_send
                         	   225: 
                         	   226: loadled25:
 00:041B B93728          	   227: LDA blue25,Y
@@ -275,7 +275,7 @@ Source: "send_frame.txt"
 00:0424 8D0310          	   230: STA greenByte
 00:0427 B96F28          	   231: LDA red25,Y
 00:042A 8D0410          	   232: STA redByte
-00:042D 209507          	   233: JSR led_send
+00:042D 209207          	   233: JSR led_send
                         	   234: 
                         	   235: loadled26:
 00:0430 B98B28          	   236: LDA blue26,Y
@@ -284,7 +284,7 @@ Source: "send_frame.txt"
 00:0439 8D0310          	   239: STA greenByte
 00:043C B9C328          	   240: LDA red26,Y
 00:043F 8D0410          	   241: STA redByte
-00:0442 209507          	   242: JSR led_send
+00:0442 209207          	   242: JSR led_send
                         	   243: 
                         	   244: loadled27:
 00:0445 B9DF28          	   245: LDA blue27,Y
@@ -293,7 +293,7 @@ Source: "send_frame.txt"
 00:044E 8D0310          	   248: STA greenByte
 00:0451 B91729          	   249: LDA red27,Y
 00:0454 8D0410          	   250: STA redByte
-00:0457 209507          	   251: JSR led_send
+00:0457 209207          	   251: JSR led_send
                         	   252: 
                         	   253: loadled28:
 00:045A B93329          	   254: LDA blue28,Y
@@ -302,7 +302,7 @@ Source: "send_frame.txt"
 00:0463 8D0310          	   257: STA greenByte
 00:0466 B96B29          	   258: LDA red28,Y
 00:0469 8D0410          	   259: STA redByte
-00:046C 209507          	   260: JSR led_send
+00:046C 209207          	   260: JSR led_send
                         	   261: 
                         	   262: loadled29:
 00:046F B98729          	   263: LDA blue29,Y
@@ -311,7 +311,7 @@ Source: "send_frame.txt"
 00:0478 8D0310          	   266: STA greenByte
 00:047B B9BF29          	   267: LDA red29,Y
 00:047E 8D0410          	   268: STA redByte
-00:0481 209507          	   269: JSR led_send
+00:0481 209207          	   269: JSR led_send
                         	   270: 
                         	   271: loadled30:
 00:0484 B9DB29          	   272: LDA blue30,Y
@@ -320,7 +320,7 @@ Source: "send_frame.txt"
 00:048D 8D0310          	   275: STA greenByte
 00:0490 B9132A          	   276: LDA red30,Y
 00:0493 8D0410          	   277: STA redByte
-00:0496 209507          	   278: JSR led_send
+00:0496 209207          	   278: JSR led_send
                         	   279: 
                         	   280: loadled31:
 00:0499 B92F2A          	   281: LDA blue31,Y
@@ -329,7 +329,7 @@ Source: "send_frame.txt"
 00:04A2 8D0310          	   284: STA greenByte
 00:04A5 B9672A          	   285: LDA red31,Y
 00:04A8 8D0410          	   286: STA redByte
-00:04AB 209507          	   287: JSR led_send
+00:04AB 209207          	   287: JSR led_send
                         	   288: 
                         	   289: loadled32:
 00:04AE B9832A          	   290: LDA blue32,Y
@@ -338,7 +338,7 @@ Source: "send_frame.txt"
 00:04B7 8D0310          	   293: STA greenByte
 00:04BA B9BB2A          	   294: LDA red32,Y
 00:04BD 8D0410          	   295: STA redByte
-00:04C0 209507          	   296: JSR led_send
+00:04C0 209207          	   296: JSR led_send
                         	   297: 
                         	   298: loadled33:
 00:04C3 B9D72A          	   299: LDA blue33,Y
@@ -347,7 +347,7 @@ Source: "send_frame.txt"
 00:04CC 8D0310          	   302: STA greenByte
 00:04CF B90F2B          	   303: LDA red33,Y
 00:04D2 8D0410          	   304: STA redByte
-00:04D5 209507          	   305: JSR led_send
+00:04D5 209207          	   305: JSR led_send
                         	   306: 
                         	   307: loadled34:
 00:04D8 B92B2B          	   308: LDA blue34,Y
@@ -356,7 +356,7 @@ Source: "send_frame.txt"
 00:04E1 8D0310          	   311: STA greenByte
 00:04E4 B9632B          	   312: LDA red34,Y
 00:04E7 8D0410          	   313: STA redByte
-00:04EA 209507          	   314: JSR led_send
+00:04EA 209207          	   314: JSR led_send
                         	   315: 
                         	   316: loadled35:
 00:04ED B97F2B          	   317: LDA blue35,Y
@@ -365,7 +365,7 @@ Source: "send_frame.txt"
 00:04F6 8D0310          	   320: STA greenByte
 00:04F9 B9B72B          	   321: LDA red35,Y
 00:04FC 8D0410          	   322: STA redByte
-00:04FF 209507          	   323: JSR led_send
+00:04FF 209207          	   323: JSR led_send
                         	   324: 
                         	   325: loadled36:
 00:0502 B9D32B          	   326: LDA blue36,Y
@@ -374,7 +374,7 @@ Source: "send_frame.txt"
 00:050B 8D0310          	   329: STA greenByte
 00:050E B90B2C          	   330: LDA red36,Y
 00:0511 8D0410          	   331: STA redByte
-00:0514 209507          	   332: JSR led_send
+00:0514 209207          	   332: JSR led_send
                         	   333: 
                         	   334: loadled37:
 00:0517 B9272C          	   335: LDA blue37,Y
@@ -383,7 +383,7 @@ Source: "send_frame.txt"
 00:0520 8D0310          	   338: STA greenByte
 00:0523 B95F2C          	   339: LDA red37,Y
 00:0526 8D0410          	   340: STA redByte
-00:0529 209507          	   341: JSR led_send
+00:0529 209207          	   341: JSR led_send
                         	   342: 
                         	   343: loadled38:
 00:052C B97B2C          	   344: LDA blue38,Y
@@ -392,7 +392,7 @@ Source: "send_frame.txt"
 00:0535 8D0310          	   347: STA greenByte
 00:0538 B9B32C          	   348: LDA red38,Y
 00:053B 8D0410          	   349: STA redByte
-00:053E 209507          	   350: JSR led_send
+00:053E 209207          	   350: JSR led_send
                         	   351: 
                         	   352: loadled39:
 00:0541 B9CF2C          	   353: LDA blue39,Y
@@ -401,7 +401,7 @@ Source: "send_frame.txt"
 00:054A 8D0310          	   356: STA greenByte
 00:054D B9072D          	   357: LDA red39,Y
 00:0550 8D0410          	   358: STA redByte
-00:0553 209507          	   359: JSR led_send
+00:0553 209207          	   359: JSR led_send
                         	   360: 
                         	   361: loadled40:
 00:0556 B9232D          	   362: LDA blue40,Y
@@ -410,7 +410,7 @@ Source: "send_frame.txt"
 00:055F 8D0310          	   365: STA greenByte
 00:0562 B95B2D          	   366: LDA red40,Y
 00:0565 8D0410          	   367: STA redByte
-00:0568 209507          	   368: JSR led_send
+00:0568 209207          	   368: JSR led_send
                         	   369: 
                         	   370: loadled41:
 00:056B B9772D          	   371: LDA blue41,Y
@@ -419,7 +419,7 @@ Source: "send_frame.txt"
 00:0574 8D0310          	   374: STA greenByte
 00:0577 B9AF2D          	   375: LDA red41,Y
 00:057A 8D0410          	   376: STA redByte
-00:057D 209507          	   377: JSR led_send
+00:057D 209207          	   377: JSR led_send
                         	   378: 
                         	   379: loadled42:
 00:0580 B9CB2D          	   380: LDA blue42,Y
@@ -428,7 +428,7 @@ Source: "send_frame.txt"
 00:0589 8D0310          	   383: STA greenByte
 00:058C B9032E          	   384: LDA red42,Y
 00:058F 8D0410          	   385: STA redByte
-00:0592 209507          	   386: JSR led_send
+00:0592 209207          	   386: JSR led_send
                         	   387: 
                         	   388: loadled43:
 00:0595 B91F2E          	   389: LDA blue43,Y
@@ -437,7 +437,7 @@ Source: "send_frame.txt"
 00:059E 8D0310          	   392: STA greenByte
 00:05A1 B9572E          	   393: LDA red43,Y
 00:05A4 8D0410          	   394: STA redByte
-00:05A7 209507          	   395: JSR led_send
+00:05A7 209207          	   395: JSR led_send
                         	   396: 
                         	   397: loadled44:
 00:05AA B9732E          	   398: LDA blue44,Y
@@ -446,7 +446,7 @@ Source: "send_frame.txt"
 00:05B3 8D0310          	   401: STA greenByte
 00:05B6 B9AB2E          	   402: LDA red44,Y
 00:05B9 8D0410          	   403: STA redByte
-00:05BC 209507          	   404: JSR led_send
+00:05BC 209207          	   404: JSR led_send
                         	   405: 
                         	   406: loadled45:
 00:05BF B9C72E          	   407: LDA blue45,Y
@@ -455,7 +455,7 @@ Source: "send_frame.txt"
 00:05C8 8D0310          	   410: STA greenByte
 00:05CB B9FF2E          	   411: LDA red45,Y
 00:05CE 8D0410          	   412: STA redByte
-00:05D1 209507          	   413: JSR led_send
+00:05D1 209207          	   413: JSR led_send
                         	   414: 
                         	   415: loadled46:
 00:05D4 B91B2F          	   416: LDA blue46,Y
@@ -464,7 +464,7 @@ Source: "send_frame.txt"
 00:05DD 8D0310          	   419: STA greenByte
 00:05E0 B9532F          	   420: LDA red46,Y
 00:05E3 8D0410          	   421: STA redByte
-00:05E6 209507          	   422: JSR led_send
+00:05E6 209207          	   422: JSR led_send
                         	   423: 
                         	   424: loadled47:
 00:05E9 B96F2F          	   425: LDA blue47,Y
@@ -473,7 +473,7 @@ Source: "send_frame.txt"
 00:05F2 8D0310          	   428: STA greenByte
 00:05F5 B9A72F          	   429: LDA red47,Y
 00:05F8 8D0410          	   430: STA redByte
-00:05FB 209507          	   431: JSR led_send
+00:05FB 209207          	   431: JSR led_send
                         	   432: 
                         	   433: loadled48:
 00:05FE B9C32F          	   434: LDA blue48,Y
@@ -482,7 +482,7 @@ Source: "send_frame.txt"
 00:0607 8D0310          	   437: STA greenByte
 00:060A B9FB2F          	   438: LDA red48,Y
 00:060D 8D0410          	   439: STA redByte
-00:0610 209507          	   440: JSR led_send
+00:0610 209207          	   440: JSR led_send
                         	   441: 
                         	   442: loadled49:
 00:0613 B91730          	   443: LDA blue49,Y
@@ -491,7 +491,7 @@ Source: "send_frame.txt"
 00:061C 8D0310          	   446: STA greenByte
 00:061F B94F30          	   447: LDA red49,Y
 00:0622 8D0410          	   448: STA redByte
-00:0625 209507          	   449: JSR led_send
+00:0625 209207          	   449: JSR led_send
                         	   450: 
                         	   451: loadled50:
 00:0628 B96B30          	   452: LDA blue50,Y
@@ -500,7 +500,7 @@ Source: "send_frame.txt"
 00:0631 8D0310          	   455: STA greenByte
 00:0634 B9A330          	   456: LDA red50,Y
 00:0637 8D0410          	   457: STA redByte
-00:063A 209507          	   458: JSR led_send
+00:063A 209207          	   458: JSR led_send
                         	   459: 
                         	   460: loadled51:
 00:063D B9BF30          	   461: LDA blue51,Y
@@ -509,7 +509,7 @@ Source: "send_frame.txt"
 00:0646 8D0310          	   464: STA greenByte
 00:0649 B9F730          	   465: LDA red51,Y
 00:064C 8D0410          	   466: STA redByte
-00:064F 209507          	   467: JSR led_send
+00:064F 209207          	   467: JSR led_send
                         	   468: 
                         	   469: loadled52:
 00:0652 B91331          	   470: LDA blue52,Y
@@ -518,7 +518,7 @@ Source: "send_frame.txt"
 00:065B 8D0310          	   473: STA greenByte
 00:065E B94B31          	   474: LDA red52,Y
 00:0661 8D0410          	   475: STA redByte
-00:0664 209507          	   476: JSR led_send
+00:0664 209207          	   476: JSR led_send
                         	   477: 
                         	   478: loadled53:
 00:0667 B96731          	   479: LDA blue53,Y
@@ -527,7 +527,7 @@ Source: "send_frame.txt"
 00:0670 8D0310          	   482: STA greenByte
 00:0673 B99F31          	   483: LDA red53,Y
 00:0676 8D0410          	   484: STA redByte
-00:0679 209507          	   485: JSR led_send
+00:0679 209207          	   485: JSR led_send
                         	   486: 
                         	   487: loadled54:
 00:067C B9BB31          	   488: LDA blue54,Y
@@ -536,7 +536,7 @@ Source: "send_frame.txt"
 00:0685 8D0310          	   491: STA greenByte
 00:0688 B9F331          	   492: LDA red54,Y
 00:068B 8D0410          	   493: STA redByte
-00:068E 209507          	   494: JSR led_send
+00:068E 209207          	   494: JSR led_send
                         	   495: 
                         	   496: loadled55:
 00:0691 B90F32          	   497: LDA blue55,Y
@@ -545,7 +545,7 @@ Source: "send_frame.txt"
 00:069A 8D0310          	   500: STA greenByte
 00:069D B94732          	   501: LDA red55,Y
 00:06A0 8D0410          	   502: STA redByte
-00:06A3 209507          	   503: JSR led_send
+00:06A3 209207          	   503: JSR led_send
                         	   504: 
                         	   505: loadled56:
 00:06A6 B96332          	   506: LDA blue56,Y
@@ -554,7 +554,7 @@ Source: "send_frame.txt"
 00:06AF 8D0310          	   509: STA greenByte
 00:06B2 B99B32          	   510: LDA red56,Y
 00:06B5 8D0410          	   511: STA redByte
-00:06B8 209507          	   512: JSR led_send
+00:06B8 209207          	   512: JSR led_send
                         	   513: 
                         	   514: loadled57:
 00:06BB B9B732          	   515: LDA blue57,Y
@@ -563,7 +563,7 @@ Source: "send_frame.txt"
 00:06C4 8D0310          	   518: STA greenByte
 00:06C7 B9EF32          	   519: LDA red57,Y
 00:06CA 8D0410          	   520: STA redByte
-00:06CD 209507          	   521: JSR led_send
+00:06CD 209207          	   521: JSR led_send
                         	   522: 
                         	   523: loadled58:
 00:06D0 B90B33          	   524: LDA blue58,Y
@@ -572,7 +572,7 @@ Source: "send_frame.txt"
 00:06D9 8D0310          	   527: STA greenByte
 00:06DC B94333          	   528: LDA red58,Y
 00:06DF 8D0410          	   529: STA redByte
-00:06E2 209507          	   530: JSR led_send
+00:06E2 209207          	   530: JSR led_send
                         	   531: 
                         	   532: loadled59:
 00:06E5 B95F33          	   533: LDA blue59,Y
@@ -581,7 +581,7 @@ Source: "send_frame.txt"
 00:06EE 8D0310          	   536: STA greenByte
 00:06F1 B99733          	   537: LDA red59,Y
 00:06F4 8D0410          	   538: STA redByte
-00:06F7 209507          	   539: JSR led_send
+00:06F7 209207          	   539: JSR led_send
                         	   540: 
                         	   541: loadled60:
 00:06FA B9B333          	   542: LDA blue60,Y
@@ -590,7 +590,7 @@ Source: "send_frame.txt"
 00:0703 8D0310          	   545: STA greenByte
 00:0706 B9EB33          	   546: LDA red60,Y
 00:0709 8D0410          	   547: STA redByte
-00:070C 209507          	   548: JSR led_send
+00:070C 209207          	   548: JSR led_send
                         	   549: 
                         	   550: loadled61:
 00:070F B90734          	   551: LDA blue61,Y
@@ -599,7 +599,7 @@ Source: "send_frame.txt"
 00:0718 8D0310          	   554: STA greenByte
 00:071B B93F34          	   555: LDA red61,Y
 00:071E 8D0410          	   556: STA redByte
-00:0721 209507          	   557: JSR led_send
+00:0721 209207          	   557: JSR led_send
                         	   558: 
                         	   559: loadled62:
 00:0724 B95B34          	   560: LDA blue62,Y
@@ -608,7 +608,7 @@ Source: "send_frame.txt"
 00:072D 8D0310          	   563: STA greenByte
 00:0730 B99334          	   564: LDA red62,Y
 00:0733 8D0410          	   565: STA redByte
-00:0736 209507          	   566: JSR led_send
+00:0736 209207          	   566: JSR led_send
                         	   567: 
                         	   568: loadled63:
 00:0739 B9AF34          	   569: LDA blue63,Y
@@ -617,162 +617,162 @@ Source: "send_frame.txt"
 00:0742 8D0310          	   572: STA greenByte
 00:0745 B9E734          	   573: LDA red63,Y
 00:0748 8D0410          	   574: STA redByte
-00:074B 209507          	   575: JSR led_send
+00:074B 209207          	   575: JSR led_send
                         	   576: 
                         	   577: 
 
 Source: "gif_bit_banging.asm"
                         	    38: 
-00:074E 20E807          	    39:         JSR end_frame ; send end of frame
+00:074E 20E507          	    39:         JSR end_frame ; send end of frame
                         	    40: 
 00:0751 C8              	    41:         INY ; increase Y register to increase the frame led data is being sent about
                         	    42: 
 00:0752 CC0220          	    43:         CPY numFrames
                         	    44: 
-00:0755 20FA07          	    45:         JSR delay ; delay routine
+00:0755 20F707          	    45:         JSR delay ; delay routine
                         	    46: 
-00:0758 D004            	    47:         BNE not_done ; branch if frame limit isn't reached
+00:0758 D001            	    47:         BNE not_done ; branch if frame limit isn't reached
                         	    48:     
-00:075A 4C0902          	    49:     JMP begin ; repeat unless commented out
+                        	    49:     ;JMP begin ; repeat unless commented out
                         	    50:     
-00:075D 00              	    51:     BRK ; break
+00:075A 00              	    51:     BRK ; break
                         	    52: 
                         	    53: not_done: ; have to use JMP bc BNE can't handle branch this far
-00:075E 4C0B02          	    54:     JMP send_frames
+00:075B 4C0B02          	    54:     JMP send_frames
                         	    55: byte_send: ; subroutine to send 8 bits
                         	    56: 
                         	    57:     set_clk_low: ; set the clock low before getting data in pin 7
-00:0761 AD0017          	    58:         LDA outputKIM
-00:0764 29BF            	    59:         AND #0b10111111   ; Pull CLK (bit 6) low
-00:0766 8D0017          	    60:         STA outputKIM
+00:075E AD0017          	    58:         LDA outputKIM
+00:0761 29BF            	    59:         AND #0b10111111   ; Pull CLK (bit 6) low
+00:0763 8D0017          	    60:         STA outputKIM
                         	    61:     
                         	    62:     set_counter: ; counter to see how many bits have been sent of byte
-00:0769 A208            	    63:         LDX #0x08
+00:0766 A208            	    63:         LDX #0x08
                         	    64:         
                         	    65:     send_output: ; send byte of data
                         	    66:         
                         	    67:         ; store output bit in outputKIM bit 7
-00:076B AD0010          	    68:         LDA output ; load output into accumulator
-00:076E 2980            	    69:         AND #0b10000000 ; AND output so only last bit is recognized
-00:0770 0D0017          	    70:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
-00:0773 8D0017          	    71:         STA outputKIM ; store result in KIM output bit
+00:0768 AD0010          	    68:         LDA output ; load output into accumulator
+00:076B 2980            	    69:         AND #0b10000000 ; AND output so only last bit is recognized
+00:076D 0D0017          	    70:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
+00:0770 8D0017          	    71:         STA outputKIM ; store result in KIM output bit
                         	    72:         
-00:0776 0E0010          	    73:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
+00:0773 0E0010          	    73:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
                         	    74:     
                         	    75:     clk_cycle: ; simulate a clock cycle that occurs
                         	    76:                ; data has to be stable before clock rising edge
                         	    77:         
-00:0779 AD0017          	    78:         LDA outputKIM ;load outputKIM into memory
-00:077C 4940            	    79:         EOR #0b01000000 ; Invert SCLK (bit 6)
-00:077E 8D0017          	    80:         STA outputKIM ; Store into outputKIM
+00:0776 AD0017          	    78:         LDA outputKIM ;load outputKIM into memory
+00:0779 4940            	    79:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:077B 8D0017          	    80:         STA outputKIM ; Store into outputKIM
                         	    81:         
-00:0781 AD0017          	    82:         LDA outputKIM ; load outputKIM
-00:0784 4940            	    83:         EOR #0b01000000 ; Invert SCLK (bit 6)
-00:0786 8D0017          	    84:         STA outputKIM ; Store into outputKIM
+00:077E AD0017          	    82:         LDA outputKIM ; load outputKIM
+00:0781 4940            	    83:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:0783 8D0017          	    84:         STA outputKIM ; Store into outputKIM
                         	    85:         
-00:0789 AD0017          	    86:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
-00:078C 297F            	    87:         AND #0b01111111
-00:078E 8D0017          	    88:         STA outputKIM
+00:0786 AD0017          	    86:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
+00:0789 297F            	    87:         AND #0b01111111
+00:078B 8D0017          	    88:         STA outputKIM
                         	    89:         
-00:0791 CA              	    90:         DEX ; decrement number of bits remaining to be sent
+00:078E CA              	    90:         DEX ; decrement number of bits remaining to be sent
                         	    91:         
-00:0792 D0D7            	    92:         BNE send_output ; jump to send_output for next bit
+00:078F D0D7            	    92:         BNE send_output ; jump to send_output for next bit
                         	    93:         
-00:0794 60              	    94:     RTS ; end subroutine
+00:0791 60              	    94:     RTS ; end subroutine
                         	    95: 
                         	    96: 
                         	    97: led_send: ; subroutine to send 4 bytes for individual LED frame
                         	    98:     
                         	    99:     ; set SCLK pin low
                         	   100:     set_sclk_low:
-00:0795 AD0017          	   101:         LDA outputKIM
-00:0798 29BF            	   102:         AND #0b10111111 ; Pull SCLK (bit 6) low
-00:079A 8D0017          	   103:         STA outputKIM
+00:0792 AD0017          	   101:         LDA outputKIM
+00:0795 29BF            	   102:         AND #0b10111111 ; Pull SCLK (bit 6) low
+00:0797 8D0017          	   103:         STA outputKIM
                         	   104:     
                         	   105:     ; send 3 bits + global byte
                         	   106:     send_global:
-00:079D AD0110          	   107:         LDA globalByte
-00:07A0 8D0010          	   108:         STA output
-00:07A3 206107          	   109:         JSR byte_send
+00:079A AD0110          	   107:         LDA globalByte
+00:079D 8D0010          	   108:         STA output
+00:07A0 205E07          	   109:         JSR byte_send
                         	   110:     
                         	   111:     ; send blue data byte
                         	   112:     send_blue:
-00:07A6 AD0210          	   113:         LDA blueByte
-00:07A9 8D0010          	   114:         STA output
-00:07AC 206107          	   115:         JSR byte_send
+00:07A3 AD0210          	   113:         LDA blueByte
+00:07A6 8D0010          	   114:         STA output
+00:07A9 205E07          	   115:         JSR byte_send
                         	   116:     
                         	   117:     ; send green data byte
                         	   118:     send_green:
-00:07AF AD0310          	   119:         LDA greenByte
-00:07B2 8D0010          	   120:         STA output
-00:07B5 206107          	   121:         JSR byte_send
+00:07AC AD0310          	   119:         LDA greenByte
+00:07AF 8D0010          	   120:         STA output
+00:07B2 205E07          	   121:         JSR byte_send
                         	   122:     
                         	   123:     ; send red data byte
                         	   124:     send_red:
-00:07B8 AD0410          	   125:         LDA redByte
-00:07BB 8D0010          	   126:         STA output
-00:07BE 206107          	   127:         JSR byte_send
+00:07B5 AD0410          	   125:         LDA redByte
+00:07B8 8D0010          	   126:         STA output
+00:07BB 205E07          	   127:         JSR byte_send
                         	   128:         
-00:07C1 60              	   129:     RTS ; end subroutine
+00:07BE 60              	   129:     RTS ; end subroutine
                         	   130:     
                         	   131: setup: ; setup subroutine
                         	   132: 
                         	   133:     clear_decimal_mode:
-00:07C2 D8              	   134:         CLD
+00:07BF D8              	   134:         CLD
                         	   135:     
                         	   136:     set_initial_output_state: ; set outputKIM to 0x00
-00:07C3 A900            	   137:         LDA #0x00
-00:07C5 8D0017          	   138:         STA outputKIM
+00:07C0 A900            	   137:         LDA #0x00
+00:07C2 8D0017          	   138:         STA outputKIM
                         	   139:     
                         	   140:     make_output: ; make port A an output
-00:07C8 A9FF            	   141:         LDA #0xFF
-00:07CA 8D0117          	   142:         STA outputSettings
+00:07C5 A9FF            	   141:         LDA #0xFF
+00:07C7 8D0117          	   142:         STA outputSettings
                         	   143:     
                         	   144:     set_low: ; Pull CLK pin to low by AND with outputKIM and storing it back
-00:07CD AD0017          	   145:             LDA outputKIM
-00:07D0 29BF            	   146:             AND #0b10111111  ; Pull CLK (bit 6) low
-00:07D2 8D0017          	   147:             STA outputKIM
+00:07CA AD0017          	   145:             LDA outputKIM
+00:07CD 29BF            	   146:             AND #0b10111111  ; Pull CLK (bit 6) low
+00:07CF 8D0017          	   147:             STA outputKIM
                         	   148:             
-00:07D5 60              	   149:     RTS
+00:07D2 60              	   149:     RTS
                         	   150: 
                         	   151: start_frame: ; send start byte (0's in every position)
                         	   152: 
-00:07D6 A900            	   153:     LDA #0x00
-00:07D8 8D0110          	   154:     STA globalByte
-00:07DB 8D0210          	   155:     STA blueByte
-00:07DE 8D0310          	   156:     STA greenByte
-00:07E1 8D0410          	   157:     STA redByte
+00:07D3 A900            	   153:     LDA #0x00
+00:07D5 8D0110          	   154:     STA globalByte
+00:07D8 8D0210          	   155:     STA blueByte
+00:07DB 8D0310          	   156:     STA greenByte
+00:07DE 8D0410          	   157:     STA redByte
                         	   158: 
-00:07E4 209507          	   159:     JSR led_send
+00:07E1 209207          	   159:     JSR led_send
                         	   160:     
-00:07E7 60              	   161:     RTS ; end subroutine
+00:07E4 60              	   161:     RTS ; end subroutine
                         	   162: 
                         	   163: end_frame: ; send end byte (1's in every position)
                         	   164: 
-00:07E8 A9FF            	   165:     LDA #0xFF
-00:07EA 8D0110          	   166:     STA globalByte
-00:07ED 8D0210          	   167:     STA blueByte
-00:07F0 8D0310          	   168:     STA greenByte
-00:07F3 8D0410          	   169:     STA redByte
+00:07E5 A9FF            	   165:     LDA #0xFF
+00:07E7 8D0110          	   166:     STA globalByte
+00:07EA 8D0210          	   167:     STA blueByte
+00:07ED 8D0310          	   168:     STA greenByte
+00:07F0 8D0410          	   169:     STA redByte
                         	   170: 
-00:07F6 209507          	   171:     JSR led_send
+00:07F3 209207          	   171:     JSR led_send
                         	   172:     
-00:07F9 60              	   173:     RTS ; end subroutine
+00:07F6 60              	   173:     RTS ; end subroutine
                         	   174: 
                         	   175: delay: ; delay subroutine
                         	   176: 
-00:07FA A2FF            	   177:     LDX #0xFF ; Load X with outer loop count (e.g., 255)
+00:07F7 A2FF            	   177:     LDX #0xFF ; Load X with outer loop count (e.g., 255)
                         	   178:     outer_loop:
                         	   179:     
-00:07FC A9FF            	   180:             LDA #0xFF
+00:07F9 A9FF            	   180:             LDA #0xFF
                         	   181:             inner_loop:
-00:07FE E901            	   182:                 SBC #0x01
-00:0800 D0FC            	   183:                 BNE inner_loop
+00:07FB E901            	   182:                 SBC #0x01
+00:07FD D0FC            	   183:                 BNE inner_loop
                         	   184:             
-00:0802 CA              	   185:         DEX
-00:0803 D0F7            	   186:         BNE outer_loop
+00:07FF CA              	   185:         DEX
+00:0800 D0F7            	   186:         BNE outer_loop
                         	   187:         
-00:0805 60              	   188:     RTS ; end subroutine
+00:0802 60              	   188:     RTS ; end subroutine
                         	   189:     
                         	   190: 
                         	   191: ; send gif data, takes a LOOOOOT of space, so more than 70 frames not possible
@@ -6562,11 +6562,11 @@ blue7                            A:224F
 blue8                            A:22A3
 blue9                            A:22F7
 blueByte                         S:1002
-byte_send                        A:0761
-clear_decimal_mode               A:07C2
-clk_cycle                        A:0779
-delay                            A:07FA
-end_frame                        A:07E8
+byte_send                        A:075E
+clear_decimal_mode               A:07BF
+clk_cycle                        A:0776
+delay                            A:07F7
+end_frame                        A:07E5
 globalByte                       S:1001
 green0                           A:201F
 green1                           A:2073
@@ -6633,7 +6633,7 @@ green7                           A:226B
 green8                           A:22BF
 green9                           A:2313
 greenByte                        S:1003
-inner_loop                       A:07FE
+inner_loop                       A:07FB
 intensity                        A:2000
 led0                             A:2003
 led1                             A:2057
@@ -6699,7 +6699,7 @@ led63                            A:34AF
 led7                             A:224F
 led8                             A:22A3
 led9                             A:22F7
-led_send                         A:0795
+led_send                         A:0792
 loadled0                         A:020E
 loadled1                         A:0223
 loadled10                        A:02E0
@@ -6765,11 +6765,11 @@ loadled7                         A:02A1
 loadled8                         A:02B6
 loadled9                         A:02CB
 main                             A:0200
-make_output                      A:07C8
-not_done                         A:075E
+make_output                      A:07C5
+not_done                         A:075B
 numFrames                        A:2002
 numLEDs                          A:2001
-outer_loop                       A:07FC
+outer_loop                       A:07F9
 output                           S:1000
 outputKIM                        S:1700
 outputSettings                   S:1701
@@ -6838,19 +6838,19 @@ red7                             A:2287
 red8                             A:22DB
 red9                             A:232F
 redByte                          S:1004
-send_blue                        A:07A6
+send_blue                        A:07A3
 send_frames                      A:020B
-send_global                      A:079D
-send_green                       A:07AF
-send_output                      A:076B
-send_red                         A:07B8
-set_clk_low                      A:0761
-set_counter                      A:0769
-set_initial_output_state         A:07C3
-set_low                          A:07CD
-set_sclk_low                     A:0795
-setup                            A:07C2
-start_frame                      A:07D6
+send_global                      A:079A
+send_green                       A:07AC
+send_output                      A:0768
+send_red                         A:07B5
+set_clk_low                      A:075E
+set_counter                      A:0766
+set_initial_output_state         A:07C0
+set_low                          A:07CA
+set_sclk_low                     A:0792
+setup                            A:07BF
+start_frame                      A:07D3
 
 Symbols by value:
 0200 main
@@ -6920,28 +6920,28 @@ Symbols by value:
 070F loadled61
 0724 loadled62
 0739 loadled63
-075E not_done
-0761 set_clk_low
-0761 byte_send
-0769 set_counter
-076B send_output
-0779 clk_cycle
-0795 set_sclk_low
-0795 led_send
-079D send_global
-07A6 send_blue
-07AF send_green
-07B8 send_red
-07C2 clear_decimal_mode
-07C2 setup
-07C3 set_initial_output_state
-07C8 make_output
-07CD set_low
-07D6 start_frame
-07E8 end_frame
-07FA delay
-07FC outer_loop
-07FE inner_loop
+075B not_done
+075E set_clk_low
+075E byte_send
+0766 set_counter
+0768 send_output
+0776 clk_cycle
+0792 set_sclk_low
+0792 led_send
+079A send_global
+07A3 send_blue
+07AC send_green
+07B5 send_red
+07BF clear_decimal_mode
+07BF setup
+07C0 set_initial_output_state
+07C5 make_output
+07CA set_low
+07D3 start_frame
+07E5 end_frame
+07F7 delay
+07F9 outer_loop
+07FB inner_loop
 1000 output
 1001 globalByte
 1002 blueByte
