@@ -1,0 +1,523 @@
+Sections:
+00: "org0001:0" (0-8)
+01: "org0002:200" (200-36B)
+02: "org0003:2000" (2000-207A)
+
+
+Source: "display_bit_banging.asm"
+                        	     1: ; display_bit_banging.asm
+                        	     2: ; program to do SPI 256 word input to MAX7219 LED chip with software bit-banging on KIM-1
+                        	     3: ; MOS6502 assembly
+                        	     4: 
+                        	     5: .cpu 6502
+                        	     6: .equ outputKIM, 0x1700 ; variable for address of SPI pins, bit 7 is MOSI, bit 6 is SS, bit 5 is SCLK
+                        	     7: .equ outputSettings, 0x1701 ; variable for address of output settings, where we can set pins to inputs or outputs
+                        	     8: 
+                        	     9: .equ output, 0x1000 ; variable for address of output (for byte_send)
+                        	    10: 
+                        	    11: .equ byte1, 0x1001 ; variable for address of first byte sent (for spi_send)
+                        	    12: .equ byte2, 0x1002 ; variable for address of second byte sent (for spi_send)
+                        	    13: 
+                        	    14: .org 0x0000
+                        	    15: ; 8 bytes of data to send to digits, MSB to LSB (for display_send), default is HELLO
+00:0000 0F              	    16: data: .byte 0x0F, 0x0F, 0x0F, 0x0C, 0x0B, 0x0D, 0x0D, 0x00
+00:0001 0F
+00:0002 0F
+00:0003 0C
+00:0004 0B
+00:0005 0D
+00:0006 0D
+00:0007 00
+                        	    17: 
+                        	    18: .org 0x0200 ; start main at $0200
+                        	    19: 
+                        	    20: main:
+                        	    21: 
+                        	    22:     ; setup
+01:0200 209D02          	    23:     JSR setup
+                        	    24: 
+                        	    25:     ; initialize LED chip
+01:0203 20B302          	    26:     JSR initialize
+                        	    27:     
+                        	    28:     ; send all data to display in 1 second intervals,
+                        	    29:     ; 8 bytes per display, loops indefinitely unless JMP is commented out
+01:0206 A000            	    30:     LDY #0x00
+                        	    31:     
+                        	    32:     send:
+                        	    33:     
+01:0208 B90220          	    34:         LDA data_input0,Y
+01:020B 8500            	    35:         STA data
+01:020D B91120          	    36:         LDA data_input1,Y
+01:0210 8501            	    37:         STA data+1
+01:0212 B92020          	    38:         LDA data_input2,Y
+01:0215 8502            	    39:         STA data+2
+01:0217 B92F20          	    40:         LDA data_input3,Y
+01:021A 8503            	    41:         STA data+3
+01:021C B93E20          	    42:         LDA data_input4,Y
+01:021F 8504            	    43:         STA data+4
+01:0221 B94D20          	    44:         LDA data_input5,Y
+01:0224 8505            	    45:         STA data+5
+01:0226 B95C20          	    46:         LDA data_input6,Y
+01:0229 8506            	    47:         STA data+6
+01:022B B96B20          	    48:         LDA data_input7,Y
+01:022E 8507            	    49:         STA data+7
+                        	    50: 
+01:0230 C8              	    51:         INY
+                        	    52:         
+01:0231 20F602          	    53:         JSR display_send
+                        	    54:         
+01:0234 205F03          	    55:         JSR delay
+01:0237 205F03          	    56:         JSR delay
+01:023A 205F03          	    57:         JSR delay
+                        	    58: 
+01:023D CC0120          	    59:         CPY limit
+                        	    60:         
+01:0240 D0C6            	    61:         BNE send
+                        	    62:     
+01:0242 4C0002          	    63:     JMP main
+                        	    64:     
+01:0245 00              	    65:     BRK ; break
+                        	    66: 
+                        	    67: byte_send: ; subroutine to send 8 bits
+                        	    68: 
+                        	    69:     set_clk_low: ; set the clock low before getting data in pin 7
+01:0246 AD0017          	    70:         LDA outputKIM
+01:0249 29DF            	    71:         AND #0b11011111   ; Pull CLK (bit 5) low
+01:024B 8D0017          	    72:         STA outputKIM
+                        	    73:     
+                        	    74:     set_counter: ; counter to see how many bits have been sent of byte
+01:024E A208            	    75:         LDX #0x08
+                        	    76:         
+                        	    77:     send_output: ; send byte of data
+                        	    78:         
+                        	    79:         ; store output bit in outputKIM bit 7
+01:0250 AD0010          	    80:         LDA output ; load output into accumulator
+01:0253 2980            	    81:         AND #0b10000000 ; AND output so only last bit is recognized
+01:0255 0D0017          	    82:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
+01:0258 8D0017          	    83:         STA outputKIM ; store result in KIM output bit
+                        	    84:         
+01:025B 0E0010          	    85:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
+                        	    86:     
+                        	    87:     clk_cycle: ; simulate a clock cycle that occurs
+                        	    88:                ; data has to be stable before clock rising edge
+                        	    89:         
+01:025E AD0017          	    90:         LDA outputKIM ;load outputKIM into memory
+01:0261 4920            	    91:         EOR #0b00100000 ; Invert SCLK (bit 5)
+01:0263 8D0017          	    92:         STA outputKIM ; Store into outputKIM
+                        	    93:         
+01:0266 AD0017          	    94:         LDA outputKIM ; load outputKIM
+01:0269 4920            	    95:         EOR #0b00100000 ; Invert SCLK (bit 5)
+01:026B 8D0017          	    96:         STA outputKIM ; Store into outputKIM
+                        	    97:         
+01:026E AD0017          	    98:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
+01:0271 297F            	    99:         AND #0b01111111
+01:0273 8D0017          	   100:         STA outputKIM
+                        	   101:         
+01:0276 CA              	   102:         DEX ; decrement number of bits remaining to be sent
+                        	   103:         
+01:0277 D0D7            	   104:         BNE send_output ; jump to send_output for next bit
+                        	   105:         
+01:0279 60              	   106:     RTS ; end subroutine
+                        	   107: 
+                        	   108: 
+                        	   109: spi_send: ; subroutine to send 2 bytes for display
+                        	   110:     
+                        	   111:     ; set SS pin low
+                        	   112:     set_ss_low:
+01:027A AD0017          	   113:         LDA outputKIM
+01:027D 29BF            	   114:         AND #0b10111111 ; Pull SS (bit 6) low
+01:027F 8D0017          	   115:         STA outputKIM
+                        	   116:     
+                        	   117:     ; send address byte
+                        	   118:     send_address:
+01:0282 AD0110          	   119:         LDA byte1
+01:0285 8D0010          	   120:         STA output
+01:0288 204602          	   121:         JSR byte_send
+                        	   122:     
+                        	   123:     ; send data byte
+                        	   124:     send_data:
+01:028B AD0210          	   125:         LDA byte2
+01:028E 8D0010          	   126:         STA output
+01:0291 204602          	   127:         JSR byte_send
+                        	   128:     
+                        	   129:     ; set SS pin high
+                        	   130:     set_ss_high:
+01:0294 AD0017          	   131:         LDA outputKIM
+01:0297 0940            	   132:         ORA #0b01000000 ; Pull SS (bit 6) high
+01:0299 8D0017          	   133:         STA outputKIM
+                        	   134:         
+01:029C 60              	   135:     RTS ; end subroutine
+                        	   136:     
+                        	   137: setup: ; setup subroutine
+                        	   138: 
+                        	   139:     clear_decimal_mode:
+01:029D D8              	   140:         CLD
+                        	   141:     
+                        	   142:     set_initial_output_state: ; set outputKIM to 0x00
+01:029E A900            	   143:         LDA #0x00
+01:02A0 8D0017          	   144:         STA outputKIM
+                        	   145:     
+                        	   146:     make_output: ; make port A an output
+01:02A3 A9FF            	   147:         LDA #0xFF
+01:02A5 8D0117          	   148:         STA outputSettings
+                        	   149:     
+                        	   150:     set_low: ; Pull SS and CLK pin to low by AND with outputKIM and storing it back
+01:02A8 AD0017          	   151:             LDA outputKIM
+01:02AB 29DF            	   152:             AND #0b11011111  ; Pull CLK (bit 5) low
+01:02AD 29BF            	   153:             AND #0b10111111  ; Pull SS (bit 6) low
+01:02AF 8D0017          	   154:             STA outputKIM
+                        	   155:             
+01:02B2 60              	   156:     RTS
+                        	   157: 
+                        	   158: initialize: ; Initialize MAX7219 subroutine
+                        	   159: 
+                        	   160:     ; Set Decode Mode to no code B (Address 0x09 -> Data 0x00)
+01:02B3 A909            	   161:     LDA #0x09
+01:02B5 8D0110          	   162:     STA byte1
+01:02B8 A900            	   163:     LDA #0x00
+01:02BA 8D0210          	   164:     STA byte2
+01:02BD 207A02          	   165:     JSR spi_send
+                        	   166: 
+                        	   167:     ; Set Intensity (Address 0x0A -> Data 0x0F)
+01:02C0 A90A            	   168:     LDA #0x0A
+01:02C2 8D0110          	   169:     STA byte1
+01:02C5 AD0020          	   170:     LDA intensity
+01:02C8 8D0210          	   171:     STA byte2
+01:02CB 207A02          	   172:     JSR spi_send
+                        	   173: 
+                        	   174:     ; Set Scan Limit (Address 0x0B -> Data 0x07)
+01:02CE A90B            	   175:     LDA #0x0B
+01:02D0 8D0110          	   176:     STA byte1
+01:02D3 A907            	   177:     LDA #0x07
+01:02D5 8D0210          	   178:     STA byte2
+01:02D8 207A02          	   179:     JSR spi_send
+                        	   180: 
+                        	   181:     ; Turn on display (Address 0x0C -> Data 0x01)
+01:02DB A90C            	   182:     LDA #0x0C
+01:02DD 8D0110          	   183:     STA byte1
+01:02E0 A901            	   184:     LDA #0x01
+01:02E2 8D0210          	   185:     STA byte2
+01:02E5 207A02          	   186:     JSR spi_send
+                        	   187: 
+                        	   188:     ; Exit Display Test Mode (Address 0x0F -> Data 0x00)
+01:02E8 A90F            	   189:     LDA #0x0F
+01:02EA 8D0110          	   190:     STA byte1
+01:02ED A900            	   191:     LDA #0x00
+01:02EF 8D0210          	   192:     STA byte2
+01:02F2 207A02          	   193:     JSR spi_send
+                        	   194:     
+01:02F5 60              	   195:     RTS ; end subroutine
+                        	   196: 
+                        	   197: display_send: ; Send data to display digits on 8 parts of display, from MSB to LSB
+                        	   198: 
+                        	   199:     ; send bytes to display data[0] on digit 7 (Address 0x08 -> data[0])
+01:02F6 A908            	   200:     LDA #0x08
+01:02F8 8D0110          	   201:     STA byte1
+01:02FB A500            	   202:     LDA data
+01:02FD 8D0210          	   203:     STA byte2
+                        	   204:     
+01:0300 207A02          	   205:     JSR spi_send
+                        	   206:     
+                        	   207:     ; display data[1] on digit 6 (Address 0x07 -> data[1])
+01:0303 A907            	   208:     LDA #0x07
+01:0305 8D0110          	   209:     STA byte1
+01:0308 A501            	   210:     LDA data+1
+01:030A 8D0210          	   211:     STA byte2
+                        	   212:     
+01:030D 207A02          	   213:     JSR spi_send
+                        	   214:     
+                        	   215:     ; display data[2] on digit 5 (Address 0x06 -> data[2])
+01:0310 A906            	   216:     LDA #0x06
+01:0312 8D0110          	   217:     STA byte1
+01:0315 A502            	   218:     LDA data+2
+01:0317 8D0210          	   219:     STA byte2
+                        	   220:     
+01:031A 207A02          	   221:     JSR spi_send
+                        	   222:     
+                        	   223:     ; display data[3] on digit 4 (Address 0x05 -> data[3])
+01:031D A905            	   224:     LDA #0x05
+01:031F 8D0110          	   225:     STA byte1
+01:0322 A503            	   226:     LDA data+3
+01:0324 8D0210          	   227:     STA byte2
+                        	   228:     
+01:0327 207A02          	   229:     JSR spi_send
+                        	   230:     
+                        	   231:     ; display data[4] on digit 3 (Address 0x04 -> data[4])
+01:032A A904            	   232:     LDA #0x04
+01:032C 8D0110          	   233:     STA byte1
+01:032F A504            	   234:     LDA data+4
+01:0331 8D0210          	   235:     STA byte2
+                        	   236:     
+01:0334 207A02          	   237:     JSR spi_send
+                        	   238:     
+                        	   239:     ; display data[5] on digit 2 (Address 0x03 -> data[5])
+01:0337 A903            	   240:     LDA #0x03
+01:0339 8D0110          	   241:     STA byte1
+01:033C A505            	   242:     LDA data+5
+01:033E 8D0210          	   243:     STA byte2
+                        	   244:     
+01:0341 207A02          	   245:     JSR spi_send
+                        	   246:     
+                        	   247:     ; display data[6] on digit 1 (Address 0x02 -> data[6])
+01:0344 A902            	   248:     LDA #0x02
+01:0346 8D0110          	   249:     STA byte1
+01:0349 A506            	   250:     LDA data+6
+01:034B 8D0210          	   251:     STA byte2
+                        	   252:     
+01:034E 207A02          	   253:     JSR spi_send
+                        	   254:     
+                        	   255:     ; display data[7] on digit 0 (Address 0x01 -> data[7])
+01:0351 A901            	   256:     LDA #0x01
+01:0353 8D0110          	   257:     STA byte1
+01:0356 A507            	   258:     LDA data+7
+01:0358 8D0210          	   259:     STA byte2
+                        	   260:     
+01:035B 207A02          	   261:     JSR spi_send
+                        	   262:     
+01:035E 60              	   263:     RTS ; end subroutine
+                        	   264:     
+                        	   265: delay: ; delay subroutine
+                        	   266: 
+01:035F A2FF            	   267:     LDX #0xFF ; Load X with outer loop count (e.g., 255)
+                        	   268:     outer_loop:
+                        	   269:     
+01:0361 A9FF            	   270:             LDA #0xFF
+                        	   271:             inner_loop:
+01:0363 E901            	   272:                 SBC #0x01
+01:0365 D0FC            	   273:                 BNE inner_loop
+                        	   274:             
+01:0367 CA              	   275:         DEX
+01:0368 D0F7            	   276:         BNE outer_loop
+                        	   277:         
+01:036A 60              	   278:     RTS ; end subroutine
+                        	   279: 
+                        	   280: 
+                        	   281: 
+                        	   282: ; intensity and up to 16 displays that can be sent in order
+                        	   283: .org 0x2000
+                        	   284: 
+                        	   285: .include "displays.txt"
+
+Source: "displays.txt"
+02:2000 0F              	     1: intensity: .byte 0xf
+                        	     2: 
+02:2001 0F              	     3: limit: .byte 0xf
+                        	     4: 
+                        	     5: data_input0: 
+02:2002 00              	     6: .byte 0b00000000
+02:2003 00              	     7: .byte 0b00000000
+02:2004 00              	     8: .byte 0b00000000
+02:2005 00              	     9: .byte 0b00000000
+02:2006 00              	    10: .byte 0b00000000
+02:2007 00              	    11: .byte 0b00000000
+02:2008 00              	    12: .byte 0b00000000
+02:2009 00              	    13: .byte 0b00000000
+02:200A 00              	    14: .byte 0b00000000
+02:200B 00              	    15: .byte 0b00000000
+02:200C 00              	    16: .byte 0b00000000
+02:200D 00              	    17: .byte 0b00000000
+02:200E 00              	    18: .byte 0b00000000
+02:200F 00              	    19: .byte 0b00000000
+02:2010 00              	    20: .byte 0b00000000
+                        	    21: 
+                        	    22: data_input1: 
+02:2011 00              	    23: .byte 0b00000000
+02:2012 00              	    24: .byte 0b00000000
+02:2013 00              	    25: .byte 0b00000000
+02:2014 2A              	    26: .byte 0b00101010
+02:2015 00              	    27: .byte 0b00000000
+02:2016 00              	    28: .byte 0b00000000
+02:2017 00              	    29: .byte 0b00000000
+02:2018 00              	    30: .byte 0b00000000
+02:2019 00              	    31: .byte 0b00000000
+02:201A 00              	    32: .byte 0b00000000
+02:201B 00              	    33: .byte 0b00000000
+02:201C 00              	    34: .byte 0b00000000
+02:201D 00              	    35: .byte 0b00000000
+02:201E 00              	    36: .byte 0b00000000
+02:201F 00              	    37: .byte 0b00000000
+                        	    38: 
+                        	    39: data_input2: 
+02:2020 00              	    40: .byte 0b00000000
+02:2021 00              	    41: .byte 0b00000000
+02:2022 00              	    42: .byte 0b00000000
+02:2023 30              	    43: .byte 0b00110000
+02:2024 00              	    44: .byte 0b00000000
+02:2025 00              	    45: .byte 0b00000000
+02:2026 00              	    46: .byte 0b00000000
+02:2027 1F              	    47: .byte 0b00011111
+02:2028 00              	    48: .byte 0b00000000
+02:2029 5B              	    49: .byte 0b01011011
+02:202A 00              	    50: .byte 0b00000000
+02:202B 00              	    51: .byte 0b00000000
+02:202C 00              	    52: .byte 0b00000000
+02:202D 00              	    53: .byte 0b00000000
+02:202E 00              	    54: .byte 0b00000000
+                        	    55: 
+                        	    56: data_input3: 
+02:202F 00              	    57: .byte 0b00000000
+02:2030 00              	    58: .byte 0b00000000
+02:2031 00              	    59: .byte 0b00000000
+02:2032 0E              	    60: .byte 0b00001110
+02:2033 77              	    61: .byte 0b01110111
+02:2034 00              	    62: .byte 0b00000000
+02:2035 00              	    63: .byte 0b00000000
+02:2036 4F              	    64: .byte 0b01001111
+02:2037 00              	    65: .byte 0b00000000
+02:2038 0E              	    66: .byte 0b00001110
+02:2039 00              	    67: .byte 0b00000000
+02:203A 00              	    68: .byte 0b00000000
+02:203B 00              	    69: .byte 0b00000000
+02:203C 00              	    70: .byte 0b00000000
+02:203D 00              	    71: .byte 0b00000000
+                        	    72: 
+                        	    73: data_input4: 
+02:203E 00              	    74: .byte 0b00000000
+02:203F 76              	    75: .byte 0b01110110
+02:2040 00              	    76: .byte 0b00000000
+02:2041 0E              	    77: .byte 0b00001110
+02:2042 47              	    78: .byte 0b01000111
+02:2043 00              	    79: .byte 0b00000000
+02:2044 00              	    80: .byte 0b00000000
+02:2045 17              	    81: .byte 0b00010111
+02:2046 00              	    82: .byte 0b00000000
+02:2047 77              	    83: .byte 0b01110111
+02:2048 00              	    84: .byte 0b00000000
+02:2049 00              	    85: .byte 0b00000000
+02:204A 00              	    86: .byte 0b00000000
+02:204B 00              	    87: .byte 0b00000000
+02:204C 00              	    88: .byte 0b00000000
+                        	    89: 
+                        	    90: data_input5: 
+02:204D 00              	    91: .byte 0b00000000
+02:204E 77              	    92: .byte 0b01110111
+02:204F 00              	    93: .byte 0b00000000
+02:2050 30              	    94: .byte 0b00110000
+02:2051 0F              	    95: .byte 0b00001111
+02:2052 0F              	    96: .byte 0b00001111
+02:2053 54              	    97: .byte 0b01010100
+02:2054 30              	    98: .byte 0b00110000
+02:2055 0F              	    99: .byte 0b00001111
+02:2056 3E              	   100: .byte 0b00111110
+02:2057 0F              	   101: .byte 0b00001111
+02:2058 00              	   102: .byte 0b00000000
+02:2059 00              	   103: .byte 0b00000000
+02:205A 00              	   104: .byte 0b00000000
+02:205B 00              	   105: .byte 0b00000000
+                        	   106: 
+                        	   107: data_input6: 
+02:205C 54              	   108: .byte 0b01010100
+02:205D 54              	   109: .byte 0b01010100
+02:205E 30              	   110: .byte 0b00110000
+02:205F 77              	   111: .byte 0b01110111
+02:2060 7E              	   112: .byte 0b01111110
+02:2061 17              	   113: .byte 0b00010111
+02:2062 77              	   114: .byte 0b01110111
+02:2063 76              	   115: .byte 0b01110110
+02:2064 17              	   116: .byte 0b00010111
+02:2065 7B              	   117: .byte 0b01111011
+02:2066 4F              	   118: .byte 0b01001111
+02:2067 00              	   119: .byte 0b00000000
+02:2068 00              	   120: .byte 0b00000000
+02:2069 00              	   121: .byte 0b00000000
+02:206A 00              	   122: .byte 0b00000000
+                        	   123: 
+                        	   124: data_input7: 
+02:206B 3B              	   125: .byte 0b00111011
+02:206C 4F              	   126: .byte 0b01001111
+02:206D 5B              	   127: .byte 0b01011011
+02:206E 54              	   128: .byte 0b01010100
+02:206F 76              	   129: .byte 0b01110110
+02:2070 4F              	   130: .byte 0b01001111
+02:2071 76              	   131: .byte 0b01110110
+02:2072 3D              	   132: .byte 0b00111101
+02:2073 4F              	   133: .byte 0b01001111
+02:2074 17              	   134: .byte 0b00010111
+02:2075 46              	   135: .byte 0b01000110
+02:2076 00              	   136: .byte 0b00000000
+02:2077 00              	   137: .byte 0b00000000
+02:2078 00              	   138: .byte 0b00000000
+02:2079 00              	   139: .byte 0b00000000
+                        	   140: 
+                        	   141: 
+
+
+Symbols by name:
+byte1                            S:1001
+byte2                            S:1002
+byte_send                        A:0246
+clear_decimal_mode               A:029D
+clk_cycle                        A:025E
+data                             A:0000
+data_input0                      A:2002
+data_input1                      A:2011
+data_input2                      A:2020
+data_input3                      A:202F
+data_input4                      A:203E
+data_input5                      A:204D
+data_input6                      A:205C
+data_input7                      A:206B
+delay                            A:035F
+display_send                     A:02F6
+initialize                       A:02B3
+inner_loop                       A:0363
+intensity                        A:2000
+limit                            A:2001
+main                             A:0200
+make_output                      A:02A3
+outer_loop                       A:0361
+output                           S:1000
+outputKIM                        S:1700
+outputSettings                   S:1701
+send                             A:0208
+send_address                     A:0282
+send_data                        A:028B
+send_output                      A:0250
+set_clk_low                      A:0246
+set_counter                      A:024E
+set_initial_output_state         A:029E
+set_low                          A:02A8
+set_ss_high                      A:0294
+set_ss_low                       A:027A
+setup                            A:029D
+spi_send                         A:027A
+
+Symbols by value:
+0000 data
+0200 main
+0208 send
+0246 set_clk_low
+0246 byte_send
+024E set_counter
+0250 send_output
+025E clk_cycle
+027A set_ss_low
+027A spi_send
+0282 send_address
+028B send_data
+0294 set_ss_high
+029D setup
+029D clear_decimal_mode
+029E set_initial_output_state
+02A3 make_output
+02A8 set_low
+02B3 initialize
+02F6 display_send
+035F delay
+0361 outer_loop
+0363 inner_loop
+1000 output
+1001 byte1
+1002 byte2
+1700 outputKIM
+1701 outputSettings
+2000 intensity
+2001 limit
+2002 data_input0
+2011 data_input1
+2020 data_input2
+202F data_input3
+203E data_input4
+204D data_input5
+205C data_input6
+206B data_input7

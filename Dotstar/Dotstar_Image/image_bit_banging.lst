@@ -1,0 +1,472 @@
+Sections:
+00: "org0001:200" (200-2C3)
+01: "org0002:2000" (2000-20C2)
+
+
+Source: "image_bit_banging.asm"
+                        	     1: ; image_bit_banging.asm
+                        	     2: ; program to do SPI input to dotstar LED BGR displays with software bit-banging on KIM-1, single image
+                        	     3: 
+                        	     4: .cpu 6502
+                        	     5: 
+                        	     6: .equ outputKIM, 0x1700 ; variable for address of SPI pins, bit 7 is MOSI, bit 6 is SCLK
+                        	     7: .equ outputSettings, 0x1701 ; variable for address of output settings, where we can set pins to inputs or outputs
+                        	     8: 
+                        	     9: .equ output, 0x1000 ; variable for address of output (for byte_send)
+                        	    10: 
+                        	    11: .equ globalByte, 0x1001 ; variable for address of first byte sent (for led_send)
+                        	    12: .equ blueByte, 0x1002 ; variable for address of second byte sent (for led_send)
+                        	    13: .equ greenByte, 0x1003 ; variable for address of third byte sent (for led_send)
+                        	    14: .equ redByte, 0x1004 ; variable for address of fourth byte sent (for led_send)
+                        	    15: 
+                        	    16: .org 0x0200 ; start main at $0200
+                        	    17: 
+                        	    18: main:
+                        	    19: 
+                        	    20:     ; setup
+00:0200 208B02          	    21:     JSR setup
+                        	    22: 
+                        	    23:     begin:
+                        	    24:     ; send start frame
+00:0203 209F02          	    25:     JSR start_frame
+                        	    26: 
+                        	    27:     ; load Y register
+00:0206 A000            	    28:     LDY #0x00
+                        	    29: 
+                        	    30:     ; load the intensity value for RGBs
+00:0208 A9E0            	    31:     LDA #0b11100000
+                        	    32:     ;LDA intensity
+00:020A 8D0110          	    33:     STA globalByte
+                        	    34: 
+                        	    35:     send_data: ; send LED data, up to 256 bytes for each spec bc 3*256 rgb values
+                        	    36:         
+00:020D B90220          	    37:         LDA blueData,Y
+00:0210 8D0210          	    38:         STA blueByte
+                        	    39: 
+00:0213 B94220          	    40:         LDA greenData,Y
+00:0216 8D0310          	    41:         STA greenByte
+                        	    42: 
+00:0219 B98220          	    43:         LDA redData,Y
+00:021C 8D0410          	    44:         STA redByte
+                        	    45: 
+00:021F 206602          	    46:         JSR led_send
+                        	    47: 
+00:0222 C8              	    48:         INY
+                        	    49: 
+00:0223 CC0120          	    50:         CPY numLEDs
+                        	    51:         
+00:0226 D0E5            	    52:         BNE send_data ; branch if numLEDs not reached
+                        	    53: 
+                        	    54:     ; send end frame
+00:0228 20B102          	    55:     JSR end_frame
+00:022B 20B102          	    56:     JSR end_frame
+                        	    57: 
+00:022E 4C0302          	    58:     JMP begin ; comment out if you don't want loop
+                        	    59:     
+00:0231 00              	    60:     BRK ; break
+                        	    61: 
+                        	    62: byte_send: ; subroutine to send 8 bits
+                        	    63: 
+                        	    64:     set_clk_low: ; set the clock low before getting data in pin 7
+00:0232 AD0017          	    65:         LDA outputKIM
+00:0235 29BF            	    66:         AND #0b10111111   ; Pull CLK (bit 6) low
+00:0237 8D0017          	    67:         STA outputKIM
+                        	    68:     
+                        	    69:     set_counter: ; counter to see how many bits have been sent of byte
+00:023A A208            	    70:         LDX #0x08
+                        	    71:         
+                        	    72:     send_output: ; send byte of data
+                        	    73:         
+                        	    74:         ; store output bit in outputKIM bit 7
+00:023C AD0010          	    75:         LDA output ; load output into accumulator
+00:023F 2980            	    76:         AND #0b10000000 ; AND output so only last bit is recognized
+00:0241 0D0017          	    77:         ORA outputKIM ; OR output to what's in 0x1700, nothing is changed except last bit
+00:0244 8D0017          	    78:         STA outputKIM ; store result in KIM output bit
+                        	    79:         
+                        	    80:     
+                        	    81:     clk_cycle: ; simulate a clock cycle that occurs
+                        	    82:                ; data has to be stable before clock rising edge
+                        	    83:         
+00:0247 AD0017          	    84:         LDA outputKIM ;load outputKIM into memory
+00:024A 4940            	    85:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:024C 8D0017          	    86:         STA outputKIM ; Store into outputKIM
+                        	    87: 
+00:024F 0E0010          	    88:         ASL output ; arithmetic shift left of output1 to move next output1 bit to bit 0
+                        	    89:         
+00:0252 AD0017          	    90:         LDA outputKIM ; load outputKIM
+00:0255 4940            	    91:         EOR #0b01000000 ; Invert SCLK (bit 6)
+00:0257 8D0017          	    92:         STA outputKIM ; Store into outputKIM
+                        	    93:         
+00:025A AD0017          	    94:         LDA outputKIM ; set final digit of outputKIM to 0 so it is modified correctly on next edge
+00:025D 297F            	    95:         AND #0b01111111
+00:025F 8D0017          	    96:         STA outputKIM
+                        	    97:         
+00:0262 CA              	    98:         DEX ; decrement number of bits remaining to be sent
+                        	    99:         
+00:0263 D0D7            	   100:         BNE send_output ; jump to send_output for next bit
+                        	   101:         
+00:0265 60              	   102:     RTS ; end subroutine
+                        	   103: 
+                        	   104: 
+                        	   105: led_send: ; subroutine to send 4 bytes for individual LED frame
+                        	   106:     
+                        	   107:     ; send 3 bits + global byte
+                        	   108:     send_global:
+00:0266 AD0110          	   109:         LDA globalByte
+00:0269 8D0010          	   110:         STA output
+00:026C 203202          	   111:         JSR byte_send
+                        	   112:     
+                        	   113:     ; send blue data byte
+                        	   114:     send_blue:
+00:026F AD0210          	   115:         LDA blueByte
+00:0272 8D0010          	   116:         STA output
+00:0275 203202          	   117:         JSR byte_send
+                        	   118:     
+                        	   119:     ; send green data byte
+                        	   120:     send_green:
+00:0278 AD0310          	   121:         LDA greenByte
+00:027B 8D0010          	   122:         STA output
+00:027E 203202          	   123:         JSR byte_send
+                        	   124:     
+                        	   125:     ; send red data byte
+                        	   126:     send_red:
+00:0281 AD0410          	   127:         LDA redByte
+00:0284 8D0010          	   128:         STA output
+00:0287 203202          	   129:         JSR byte_send
+                        	   130:         
+00:028A 60              	   131:     RTS ; end subroutine
+                        	   132:     
+                        	   133: setup: ; setup subroutine
+                        	   134: 
+                        	   135:     clear_decimal_mode:
+00:028B D8              	   136:         CLD
+                        	   137:     
+                        	   138:     set_initial_output_state: ; set outputKIM to 0x00
+00:028C A900            	   139:         LDA #0x00
+00:028E 8D0017          	   140:         STA outputKIM
+                        	   141:     
+                        	   142:     make_output: ; make port A an output
+00:0291 A9FF            	   143:         LDA #0xFF
+00:0293 8D0117          	   144:         STA outputSettings
+                        	   145:     
+                        	   146:     set_low: ; Pull CLK pin to low by AND with outputKIM and storing it back
+00:0296 AD0017          	   147:             LDA outputKIM
+00:0299 29BF            	   148:             AND #0b10111111  ; Pull CLK (bit 6) low
+00:029B 8D0017          	   149:             STA outputKIM
+                        	   150:             
+00:029E 60              	   151:     RTS
+                        	   152: 
+                        	   153: start_frame: ; send start frame (0's in every position)
+                        	   154: 
+00:029F A900            	   155:     LDA #0x00
+00:02A1 8D0110          	   156:     STA globalByte
+00:02A4 8D0210          	   157:     STA blueByte
+00:02A7 8D0310          	   158:     STA greenByte
+00:02AA 8D0410          	   159:     STA redByte
+                        	   160: 
+00:02AD 206602          	   161:     JSR led_send
+                        	   162:     
+00:02B0 60              	   163:     RTS ; end subroutine
+                        	   164: 
+                        	   165: end_frame: ; send end frame (1's in every position)
+                        	   166: 
+00:02B1 A9FF            	   167:     LDA #0xFF
+00:02B3 8D0110          	   168:     STA globalByte
+00:02B6 8D0210          	   169:     STA blueByte
+00:02B9 8D0310          	   170:     STA greenByte
+00:02BC 8D0410          	   171:     STA redByte
+                        	   172: 
+00:02BF 206602          	   173:     JSR led_send
+                        	   174:     
+00:02C2 60              	   175:     RTS ; end subroutine
+                        	   176: 
+                        	   177: 
+                        	   178: 
+                        	   179: 
+                        	   180: 
+                        	   181: ; send image data
+                        	   182: ; intensity: how bright RGBs are
+                        	   183: ; numLEDs: total number of LEDs
+                        	   184: ; blueData: label with up to 256 bytes for blue data
+                        	   185: ; greenData: label with up to 256 bytes for green data
+                        	   186: ; redData: label with up to 256 bytes for red data
+                        	   187: .org 0x2000
+                        	   188: 
+                        	   189: .include "image.txt"
+
+Source: "image.txt"
+01:2000 E0              	     1: intensity: .byte 0xe0
+                        	     2: 
+01:2001 3F              	     3: numLEDs: .byte 0x3f
+                        	     4: 
+                        	     5: 
+                        	     6: 
+                        	     7: blueData:
+01:2002 BC              	     8: .byte 0xbc
+01:2003 92              	     9: .byte 0x92
+01:2004 60              	    10: .byte 0x60
+01:2005 33              	    11: .byte 0x33
+01:2006 34              	    12: .byte 0x34
+01:2007 39              	    13: .byte 0x39
+01:2008 38              	    14: .byte 0x38
+01:2009 33              	    15: .byte 0x33
+01:200A B1              	    16: .byte 0xb1
+01:200B 92              	    17: .byte 0x92
+01:200C 6C              	    18: .byte 0x6c
+01:200D 3F              	    19: .byte 0x3f
+01:200E 3C              	    20: .byte 0x3c
+01:200F 40              	    21: .byte 0x40
+01:2010 3D              	    22: .byte 0x3d
+01:2011 35              	    23: .byte 0x35
+01:2012 8D              	    24: .byte 0x8d
+01:2013 73              	    25: .byte 0x73
+01:2014 65              	    26: .byte 0x65
+01:2015 4B              	    27: .byte 0x4b
+01:2016 40              	    28: .byte 0x40
+01:2017 42              	    29: .byte 0x42
+01:2018 3F              	    30: .byte 0x3f
+01:2019 35              	    31: .byte 0x35
+01:201A 6E              	    32: .byte 0x6e
+01:201B 56              	    33: .byte 0x56
+01:201C 4B              	    34: .byte 0x4b
+01:201D 47              	    35: .byte 0x47
+01:201E 44              	    36: .byte 0x44
+01:201F 43              	    37: .byte 0x43
+01:2020 3F              	    38: .byte 0x3f
+01:2021 33              	    39: .byte 0x33
+01:2022 50              	    40: .byte 0x50
+01:2023 3D              	    41: .byte 0x3d
+01:2024 37              	    42: .byte 0x37
+01:2025 3C              	    43: .byte 0x3c
+01:2026 44              	    44: .byte 0x44
+01:2027 43              	    45: .byte 0x43
+01:2028 3D              	    46: .byte 0x3d
+01:2029 2F              	    47: .byte 0x2f
+01:202A 34              	    48: .byte 0x34
+01:202B 27              	    49: .byte 0x27
+01:202C 29              	    50: .byte 0x29
+01:202D 35              	    51: .byte 0x35
+01:202E 42              	    52: .byte 0x42
+01:202F 40              	    53: .byte 0x40
+01:2030 38              	    54: .byte 0x38
+01:2031 2A              	    55: .byte 0x2a
+01:2032 1A              	    56: .byte 0x1a
+01:2033 19              	    57: .byte 0x19
+01:2034 24              	    58: .byte 0x24
+01:2035 34              	    59: .byte 0x34
+01:2036 4B              	    60: .byte 0x4b
+01:2037 41              	    61: .byte 0x41
+01:2038 2E              	    62: .byte 0x2e
+01:2039 24              	    63: .byte 0x24
+01:203A 0A              	    64: .byte 0xa
+01:203B 15              	    65: .byte 0x15
+01:203C 28              	    66: .byte 0x28
+01:203D 3C              	    67: .byte 0x3c
+01:203E 59              	    68: .byte 0x59
+01:203F 53              	    69: .byte 0x53
+01:2040 2E              	    70: .byte 0x2e
+01:2041 1E              	    71: .byte 0x1e
+                        	    72: 
+                        	    73: 
+                        	    74: greenData:
+01:2042 00              	    75: .byte 0x0
+01:2043 00              	    76: .byte 0x0
+01:2044 01              	    77: .byte 0x1
+01:2045 00              	    78: .byte 0x0
+01:2046 00              	    79: .byte 0x0
+01:2047 00              	    80: .byte 0x0
+01:2048 00              	    81: .byte 0x0
+01:2049 00              	    82: .byte 0x0
+01:204A 00              	    83: .byte 0x0
+01:204B 00              	    84: .byte 0x0
+01:204C 00              	    85: .byte 0x0
+01:204D 00              	    86: .byte 0x0
+01:204E 00              	    87: .byte 0x0
+01:204F 00              	    88: .byte 0x0
+01:2050 00              	    89: .byte 0x0
+01:2051 00              	    90: .byte 0x0
+01:2052 00              	    91: .byte 0x0
+01:2053 00              	    92: .byte 0x0
+01:2054 01              	    93: .byte 0x1
+01:2055 00              	    94: .byte 0x0
+01:2056 00              	    95: .byte 0x0
+01:2057 00              	    96: .byte 0x0
+01:2058 00              	    97: .byte 0x0
+01:2059 00              	    98: .byte 0x0
+01:205A 00              	    99: .byte 0x0
+01:205B 01              	   100: .byte 0x1
+01:205C 01              	   101: .byte 0x1
+01:205D 00              	   102: .byte 0x0
+01:205E 00              	   103: .byte 0x0
+01:205F 00              	   104: .byte 0x0
+01:2060 00              	   105: .byte 0x0
+01:2061 00              	   106: .byte 0x0
+01:2062 01              	   107: .byte 0x1
+01:2063 00              	   108: .byte 0x0
+01:2064 00              	   109: .byte 0x0
+01:2065 00              	   110: .byte 0x0
+01:2066 00              	   111: .byte 0x0
+01:2067 00              	   112: .byte 0x0
+01:2068 00              	   113: .byte 0x0
+01:2069 00              	   114: .byte 0x0
+01:206A 00              	   115: .byte 0x0
+01:206B 00              	   116: .byte 0x0
+01:206C 00              	   117: .byte 0x0
+01:206D 00              	   118: .byte 0x0
+01:206E 00              	   119: .byte 0x0
+01:206F 00              	   120: .byte 0x0
+01:2070 00              	   121: .byte 0x0
+01:2071 00              	   122: .byte 0x0
+01:2072 00              	   123: .byte 0x0
+01:2073 00              	   124: .byte 0x0
+01:2074 00              	   125: .byte 0x0
+01:2075 00              	   126: .byte 0x0
+01:2076 01              	   127: .byte 0x1
+01:2077 00              	   128: .byte 0x0
+01:2078 00              	   129: .byte 0x0
+01:2079 00              	   130: .byte 0x0
+01:207A 01              	   131: .byte 0x1
+01:207B 00              	   132: .byte 0x0
+01:207C 00              	   133: .byte 0x0
+01:207D 00              	   134: .byte 0x0
+01:207E 01              	   135: .byte 0x1
+01:207F 01              	   136: .byte 0x1
+01:2080 00              	   137: .byte 0x0
+01:2081 00              	   138: .byte 0x0
+                        	   139: 
+                        	   140: 
+                        	   141: redData:
+01:2082 00              	   142: .byte 0x0
+01:2083 00              	   143: .byte 0x0
+01:2084 00              	   144: .byte 0x0
+01:2085 00              	   145: .byte 0x0
+01:2086 00              	   146: .byte 0x0
+01:2087 00              	   147: .byte 0x0
+01:2088 00              	   148: .byte 0x0
+01:2089 00              	   149: .byte 0x0
+01:208A 00              	   150: .byte 0x0
+01:208B 00              	   151: .byte 0x0
+01:208C 00              	   152: .byte 0x0
+01:208D 00              	   153: .byte 0x0
+01:208E 00              	   154: .byte 0x0
+01:208F 00              	   155: .byte 0x0
+01:2090 00              	   156: .byte 0x0
+01:2091 00              	   157: .byte 0x0
+01:2092 01              	   158: .byte 0x1
+01:2093 00              	   159: .byte 0x0
+01:2094 00              	   160: .byte 0x0
+01:2095 00              	   161: .byte 0x0
+01:2096 00              	   162: .byte 0x0
+01:2097 00              	   163: .byte 0x0
+01:2098 00              	   164: .byte 0x0
+01:2099 00              	   165: .byte 0x0
+01:209A 00              	   166: .byte 0x0
+01:209B 00              	   167: .byte 0x0
+01:209C 00              	   168: .byte 0x0
+01:209D 00              	   169: .byte 0x0
+01:209E 00              	   170: .byte 0x0
+01:209F 00              	   171: .byte 0x0
+01:20A0 00              	   172: .byte 0x0
+01:20A1 00              	   173: .byte 0x0
+01:20A2 00              	   174: .byte 0x0
+01:20A3 00              	   175: .byte 0x0
+01:20A4 00              	   176: .byte 0x0
+01:20A5 00              	   177: .byte 0x0
+01:20A6 00              	   178: .byte 0x0
+01:20A7 00              	   179: .byte 0x0
+01:20A8 00              	   180: .byte 0x0
+01:20A9 00              	   181: .byte 0x0
+01:20AA 00              	   182: .byte 0x0
+01:20AB 00              	   183: .byte 0x0
+01:20AC 00              	   184: .byte 0x0
+01:20AD 00              	   185: .byte 0x0
+01:20AE 00              	   186: .byte 0x0
+01:20AF 00              	   187: .byte 0x0
+01:20B0 00              	   188: .byte 0x0
+01:20B1 00              	   189: .byte 0x0
+01:20B2 00              	   190: .byte 0x0
+01:20B3 00              	   191: .byte 0x0
+01:20B4 00              	   192: .byte 0x0
+01:20B5 00              	   193: .byte 0x0
+01:20B6 00              	   194: .byte 0x0
+01:20B7 00              	   195: .byte 0x0
+01:20B8 00              	   196: .byte 0x0
+01:20B9 00              	   197: .byte 0x0
+01:20BA 01              	   198: .byte 0x1
+01:20BB 00              	   199: .byte 0x0
+01:20BC 00              	   200: .byte 0x0
+01:20BD 00              	   201: .byte 0x0
+01:20BE 00              	   202: .byte 0x0
+01:20BF 00              	   203: .byte 0x0
+01:20C0 00              	   204: .byte 0x0
+01:20C1 00              	   205: .byte 0x0
+                        	   206: 
+
+
+Symbols by name:
+begin                            A:0203
+blueByte                         S:1002
+blueData                         A:2002
+byte_send                        A:0232
+clear_decimal_mode               A:028B
+clk_cycle                        A:0247
+end_frame                        A:02B1
+globalByte                       S:1001
+greenByte                        S:1003
+greenData                        A:2042
+intensity                        A:2000
+led_send                         A:0266
+main                             A:0200
+make_output                      A:0291
+numLEDs                          A:2001
+output                           S:1000
+outputKIM                        S:1700
+outputSettings                   S:1701
+redByte                          S:1004
+redData                          A:2082
+send_blue                        A:026F
+send_data                        A:020D
+send_global                      A:0266
+send_green                       A:0278
+send_output                      A:023C
+send_red                         A:0281
+set_clk_low                      A:0232
+set_counter                      A:023A
+set_initial_output_state         A:028C
+set_low                          A:0296
+setup                            A:028B
+start_frame                      A:029F
+
+Symbols by value:
+0200 main
+0203 begin
+020D send_data
+0232 byte_send
+0232 set_clk_low
+023A set_counter
+023C send_output
+0247 clk_cycle
+0266 send_global
+0266 led_send
+026F send_blue
+0278 send_green
+0281 send_red
+028B clear_decimal_mode
+028B setup
+028C set_initial_output_state
+0291 make_output
+0296 set_low
+029F start_frame
+02B1 end_frame
+1000 output
+1001 globalByte
+1002 blueByte
+1003 greenByte
+1004 redByte
+1700 outputKIM
+1701 outputSettings
+2000 intensity
+2001 numLEDs
+2002 blueData
+2042 greenData
+2082 redData
