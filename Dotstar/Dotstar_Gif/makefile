@@ -6,7 +6,7 @@ generate_output:
 
 # Clean up generated files
 clean:
-	rm -f image_bit_banging.hex
+	rm -f gif_bit_banging.hex
 
 # Phony targets (not real files)
 .PHONY: clean
