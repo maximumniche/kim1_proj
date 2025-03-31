@@ -191,7 +191,7 @@ Source: "image_bit_banging.asm"
                         	   185: .include "image.txt"
 
 Source: "image.txt"
-01:2000 E1              	     1: intensity: .byte 0xe1
+01:2000 EF              	     1: intensity: .byte 0xef
                         	     2: 
 01:2001 3F              	     3: numLEDs: .byte 0x3f
                         	     4: 

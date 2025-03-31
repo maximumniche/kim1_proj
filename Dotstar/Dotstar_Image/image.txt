@@ -1,4 +1,4 @@
-intensity: .byte 0xe1
+intensity: .byte 0xef
 
 numLEDs: .byte 0x3f
 
