@@ -43,6 +43,30 @@ main:
         CPY numFrames
 
         JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
 
         BNE not_done ; branch if frame limit isn't reached
     
@@ -194,7 +218,7 @@ delay: ; delay subroutine
 ; numLEDs: number of LEDs on display
 ; blue0, blue1, ... blueN: labels for blue of each LED, and offset for each frame
 ; green0, green1, .... greenN: labels for green of each LED, and offset for each frame
-; redData: labels for red of each LED, and offset for each frame
+; red0, red1, ... redN: labels for red of each LED, and offset for each frame
 .org 0x2000
 
 .include "frames.txt" ; include all data
