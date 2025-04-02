@@ -42,7 +42,7 @@ def gif_to_bgr(image_directory, dim):
         gif_frame = gif_frame.convert('RGB')
 
         # display the converted frame
-        gif_frame.show()
+        #gif_frame.show()
 
         # Convert to BGR using list comprehension
         bgr_values = [(b, g, r) for r, g, b in list(gif_frame.getdata())]
