@@ -1,4 +1,4 @@
-; gif_bit_banging.asm
+; image_bit_banging.asm
 ; program to do SPI input to dotstar LED BGR displays with software bit-banging on KIM-1, gifs
 ; support for up to 70 frames, any more than that would need monochrome program
 
@@ -11,8 +11,8 @@
 
 .equ globalByte, 0x1001 ; variable for address of first byte sent (for led_send)
 .equ blueByte, 0x1002 ; variable for address of second byte sent (for led_send)
-.equ greenByte, 0x1003 ; variable for address of third byte sent (for led_send)
-.equ redByte, 0x1004 ; variable for address of fourth byte sent (for led_send)
+.equ greenByte, 0x1003 ; variable for address of first byte sent (for led_send)
+.equ redByte, 0x1004 ; variable for address of second byte sent (for led_send)
 
 .org 0x0200 ; start main at $0200
 
@@ -21,6 +21,10 @@ main:
     ; setup
     JSR setup
 
+    ; load the intensity value for RGBs
+    LDA intensity
+    STA globalByte
+
     ; load the Y register
     begin:
     LDY #0x00
@@ -28,10 +32,6 @@ main:
     send_frames: ; send LED data, 256 bytes for each spec bc 3*256 rgb values
 
         JSR start_frame ; send start of frame
-
-        ; load the intensity value for RGBs after start frame
-        LDA intensity
-        STA globalByte
 
         ; include a text file containing instructions to send to all leds
         .include "send_frame.txt"
@@ -42,15 +42,37 @@ main:
 
         CPY numFrames
 
-        BEQ end
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
+        JSR delay ; delay routine
 
-        JMP send_frames
-
-        ; BNE not_done ; branch if frame limit isn't reached
+        BNE not_done ; branch if frame limit isn't reached
     
     ;JMP begin ; repeat unless commented out
     
-    end: BRK ; break
+    BRK ; break
 
 not_done: ; have to use JMP bc BNE can't handle branch this far
     JMP send_frames
