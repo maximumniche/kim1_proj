@@ -47,14 +47,14 @@ dim = int(math.sqrt(int(num_leds)))
 dim_display = int(math.sqrt(int(leds_per_display)))
 
 # Open, resize the image to dimxdim, convert to bgr list of tuples
-img_directory = fr'C:\Users\Imad\Documents\VSCode\kim1_proj\Dotstar\Dotstar_Image\{image_name}'
+img_directory = fr'C:\Users\Imad\Documents\VSCode\kim1_proj\Dotstar\image\{image_name}'
 img_pixels = img_to_bgr(img_directory, dim)
 
 # split and flatten into dotstar format, then reverse
 formatted_img = split_and_flatten(img_pixels, dim_display)
-formatted_img.reverse()
+# formatted_img.reverse()
 
-file = open(r"C:\Users\Imad\Documents\VSCode\kim1_proj\Dotstar\Dotstar_Image\image.txt", "w")
+file = open(r"C:\Users\Imad\Documents\VSCode\kim1_proj\Dotstar\image\image.txt", "w")
 
 types = {
     0: "blueData",
